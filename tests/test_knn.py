@@ -8,9 +8,27 @@ import unittest
 from itertools import product
 
 import torch
+import torch_musa
 from pytorch3d.ops.knn import _KNN, knn_gather, knn_points
 
-from .common_testing import get_random_cuda_device, TestCaseMixin
+import sys
+sys.path.append("./")
+# from .common_testing import get_random_cuda_device, TestCaseMixin
+from common_testing import TestCaseMixin
+
+def get_random_cuda_device() -> str:
+    """
+    Function to get a random GPU device from the
+    available devices. This is useful for testing
+    that custom cuda kernels can support inputs on
+    any device without having to set the device explicitly.
+    """
+    num_devices = torch.musa.device_count()
+    device_id = (
+        torch.randint(high=num_devices, size=(1,)).item() if num_devices > 1 else 0
+    )
+    return "musa:%d" % device_id
+print(get_random_cuda_device())
 
 
 class TestKNN(TestCaseMixin, unittest.TestCase):
@@ -261,3 +279,7 @@ class TestKNN(TestCaseMixin, unittest.TestCase):
             torch.cuda.synchronize()
 
         return output
+
+
+if __name__=='__main__':
+    unittest.main()

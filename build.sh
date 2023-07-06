@@ -1,0 +1,1 @@
+FORCE_CUDA=0 pip install -e .
