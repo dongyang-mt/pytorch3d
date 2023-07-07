@@ -7,42 +7,40 @@
 
 import glob
 import os
-from os.path import join as pjoin
 import runpy
 import sys
 import warnings
 from typing import List, Optional
 import setuptools
 import distutils
-# from Cython.Distutils import build_ext
 
 import torch
 from setuptools import find_packages, setup
 from torch.utils.cpp_extension import CppExtension, CUDA_HOME, CUDAExtension
-from torch.torch_version import TorchVersion
-from typing import Dict, List, Optional, Union, Tuple
 
-BASE_DIR = os.path.abspath('/home/torch_musa')
-IS_MUSA_EXTENSION = True
-os.putenv("FORCE_MUSA", "1")
-os.putenv("FORCE_CUDA", "0")
 
-def get_existing_ccbin(mcc_args: List[str]) -> Optional[str]:
+def get_existing_ccbin(nvcc_args: List[str]) -> Optional[str]:
     """
-    Given a list of mcc arguments, return the compiler if specified.
+    Given a list of nvcc arguments, return the compiler if specified.
 
     Note from CUDA doc: Single value options and list options must have
     arguments, which must follow the name of the option itself by either
     one of more spaces or an equals character.
     """
     last_arg = None
-    for arg in reversed(mcc_args):
+    for arg in reversed(nvcc_args):
         if arg == "-ccbin":
             return last_arg
         if arg.startswith("-ccbin="):
             return arg[7:]
         last_arg = arg
     return None
+
+
+BASE_DIR = os.path.abspath('/home/torch_musa')
+IS_MUSA_EXTENSION = True
+os.putenv("FORCE_MUSA", "1")
+os.putenv("FORCE_CUDA", "0")
 
 _HERE = os.path.abspath(__file__)
 _TORCH_PATH = os.path.dirname(os.path.dirname(_HERE))
@@ -85,10 +83,9 @@ def MUSAExtension(name, sources, *args, **kwargs):
 
 def find_in_path(name, path):
     """Find a file in a search path"""
-
     # Adapted fom http://code.activestate.com/recipes/52224
     for dir in path.split(os.pathsep):
-        binpath = pjoin(dir, name)
+        binpath = os.path.join(dir, name)
         if os.path.exists(binpath):
             return os.path.abspath(binpath)
     return None
@@ -107,7 +104,7 @@ def locate_musa():
     # First check if the MUSA_HOME env variable is in use
     if 'MUSA_HOME' in os.environ:
         home = os.environ['MUSA_HOME']
-        mcc = pjoin(home, 'bin', 'mcc')
+        mcc = os.path.join(home, 'bin', 'mcc')
     else:
         # Otherwise, search the PATH for NVCC
         mcc = find_in_path('mcc', os.environ['PATH'])
@@ -118,8 +115,8 @@ def locate_musa():
         home = os.path.dirname(os.path.dirname(mcc))
 
     musaconfig = {'home': home, 'mcc': mcc,
-                  'include': pjoin(home, 'include'),
-                  'lib': pjoin(home, 'lib')}
+                  'include': os.path.join(home, 'include'),
+                  'lib': os.path.join(home, 'lib')}
     for k, v in iter(musaconfig.items()):
         if not os.path.exists(v):
             raise EnvironmentError('The MUSA %s path could not be '
@@ -167,13 +164,11 @@ def customize_compiler_for_mcc(self):
     self._compile = _compile
 
 
-
 # Run the customize_compiler
 class custom_build_ext(setuptools.command.build_ext.build_ext):
     def build_extensions(self):
         customize_compiler_for_mcc(self.compiler)
         setuptools.command.build_ext.build_ext.build_extensions(self)
-
 
 
 MUSA = locate_musa()
@@ -242,14 +237,14 @@ def get_extensions():
         # we aren't using parts of Thrust which actually use CUB.
         define_macros += [("THRUST_IGNORE_CUB_VERSION_CHECK", None)]
         cub_home = os.environ.get("CUB_HOME", None)
-        mcc_args = [
+        nvcc_args = [
             "-DCUDA_HAS_FP16=1",
             "-D__CUDA_NO_HALF_OPERATORS__",
             "-D__CUDA_NO_HALF_CONVERSIONS__",
             "-D__CUDA_NO_HALF2_OPERATORS__",
         ]
         if os.name != "nt":
-            mcc_args.append("-std=c++14")
+            nvcc_args.append("-std=c++14")
         if cub_home is None:
             prefix = os.environ.get("CONDA_PREFIX", None)
             if prefix is not None and os.path.isdir(prefix + "/include/cub"):
@@ -265,9 +260,9 @@ def get_extensions():
             )
         else:
             include_dirs.append(os.path.realpath(cub_home).replace("\\ ", " "))
-        mcc_flags_env = os.getenv("NVCC_FLAGS", "")
-        if mcc_flags_env != "":
-            mcc_args.extend(mcc_flags_env.split(" "))
+        nvcc_flags_env = os.getenv("NVCC_FLAGS", "")
+        if nvcc_flags_env != "":
+            nvcc_args.extend(nvcc_flags_env.split(" "))
 
         # This is needed for pytorch 1.6 and earlier. See e.g.
         # https://github.com/facebookresearch/pytorch3d/issues/436
@@ -276,15 +271,15 @@ def get_extensions():
         if torch.__version__[:4] != "1.7.":
             CC = os.environ.get("CC", None)
             if CC is not None:
-                existing_CC = get_existing_ccbin(mcc_args)
+                existing_CC = get_existing_ccbin(nvcc_args)
                 if existing_CC is None:
                     CC_arg = "-ccbin={}".format(CC)
-                    mcc_args.append(CC_arg)
+                    nvcc_args.append(CC_arg)
                 elif existing_CC != CC:
                     msg = f"Inconsistent ccbins: {CC} and {existing_CC}"
                     raise ValueError(msg)
 
-        extra_compile_args["mcc"] = mcc_args
+        extra_compile_args["nvcc"] = nvcc_args
     # elif os.getenv('FORCE_MUSA', '0') == '1':
     elif True:
             print("------------build MUSA source code")
@@ -373,8 +368,6 @@ def get_extensions():
             sources,
             include_dirs=include_dirs,
             define_macros=define_macros,
-            library_dirs=library_dirs,
-            libraries=libraries,
             extra_compile_args=extra_compile_args,
         )
     ]
@@ -384,28 +377,13 @@ def get_extensions():
 
 # Retrieve __version__ from the package.
 __version__ = runpy.run_path("pytorch3d/__init__.py")["__version__"]
-# from distutils.ccompiler import new_compiler
-# compiler = new_compiler(compiler=None, verbose=True)
+
 
 if os.getenv("PYTORCH3D_NO_NINJA", "0") == "1":
 
     class BuildExtension(torch.utils.cpp_extension.BuildExtension):
         def __init__(self, *args, **kwargs):
             super().__init__(use_ninja=False, *args, **kwargs)
-
-elif os.getenv('FORCE_MUSA', '0') == '1':
-    class BuildExtension(setuptools.command.build_ext.build_ext):
-        def __init__(self, *args, **kwargs):
-            super().__init__(use_ninja=False, *args, **kwargs)
-            from distutils.ccompiler import new_compiler
-            self.compiler = new_compiler()
-            self.compiler.compiler_type == 'mcc'
-            self.compiler._cpp_extensions += ['.mu', '.muh']
-
-        def _check_abi(self) -> Tuple[str, TorchVersion]:
-            compiler = os.environ.get('mcc', 'cl')
-            version = TorchVersion('1.4.0')
-            return compiler, version
 
 else:
     BuildExtension = torch.utils.cpp_extension.BuildExtension
