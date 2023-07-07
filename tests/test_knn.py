@@ -13,10 +13,10 @@ from pytorch3d.ops.knn import _KNN, knn_gather, knn_points
 
 import sys
 sys.path.append("./")
-# from .common_testing import get_random_cuda_device, TestCaseMixin
+# from .common_testing import get_random_musa_device, TestCaseMixin
 from common_testing import TestCaseMixin
 
-def get_random_cuda_device() -> str:
+def get_random_musa_device() -> str:
     """
     Function to get a random GPU device from the
     available devices. This is useful for testing
@@ -28,7 +28,7 @@ def get_random_cuda_device() -> str:
         torch.randint(high=num_devices, size=(1,)).item() if num_devices > 1 else 0
     )
     return "musa:%d" % device_id
-print(get_random_cuda_device())
+print(get_random_musa_device())
 
 
 class TestKNN(TestCaseMixin, unittest.TestCase):
@@ -144,7 +144,7 @@ class TestKNN(TestCaseMixin, unittest.TestCase):
         self._knn_vs_python_square_helper(device, return_sorted=True)
 
     def test_knn_vs_python_square_cuda(self):
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         # Check both cases where the output is sorted and unsorted
         self._knn_vs_python_square_helper(device, return_sorted=True)
         self._knn_vs_python_square_helper(device, return_sorted=False)
@@ -193,11 +193,11 @@ class TestKNN(TestCaseMixin, unittest.TestCase):
         self._knn_vs_python_ragged_helper(device)
 
     def test_knn_vs_python_ragged_cuda(self):
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         self._knn_vs_python_ragged_helper(device)
 
     def test_knn_gather(self):
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         N, P1, P2, K, D = 4, 16, 12, 8, 3
         x = torch.rand((N, P1, D), device=device)
         y = torch.rand((N, P2, D), device=device)
@@ -236,7 +236,7 @@ class TestKNN(TestCaseMixin, unittest.TestCase):
                     self.assertEqual(actual, expected)
 
     def test_invalid_norm(self):
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         N, P1, P2, K, D = 4, 16, 12, 8, 3
         x = torch.rand((N, P1, D), device=device)
         y = torch.rand((N, P2, D), device=device)

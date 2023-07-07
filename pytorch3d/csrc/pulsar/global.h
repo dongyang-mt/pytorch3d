@@ -53,6 +53,8 @@
 #ifndef cudaStream_t
 typedef void* cudaStream_t;
 #endif
+#ifdef WITH_MUSA
+#else
 struct int2 {
   int x, y;
 };
@@ -65,6 +67,7 @@ struct float2 {
 struct float3 {
   float x, y, z;
 };
+#endif
 #endif
 namespace py = pybind11;
 inline float3 make_float3(const float& x, const float& y, const float& z) {
