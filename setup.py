@@ -11,8 +11,6 @@ import runpy
 import sys
 import warnings
 from typing import List, Optional
-import setuptools
-import distutils
 
 import torch
 from setuptools import find_packages, setup
@@ -118,10 +116,14 @@ def get_extensions():
 
         extra_compile_args["nvcc"] = nvcc_args
     elif force_musa:
+        print("== build for MUSA ==")
         sources += source_musa
         define_macros += [("WITH_MUSA", None)]
         extension = MUSAExtension
+    else:
+        print("== build for CPU ==")
 
+    print("== start building ==")
     sources = [os.path.join(extensions_dir, s) for s in sources]
 
     ext_modules = [
