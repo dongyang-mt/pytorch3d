@@ -74,24 +74,27 @@ std::tuple<at::Tensor, at::Tensor> KNearestNeighborIdx(
     const int norm,
     const int K,
     const int version) {
-  if (true) {
+//   std::cout<<(!p1.is_cpu() && !p2.is_cpu())<<std::endl;
+//   std::cout<<p1.is_cpu()<<std::endl;
+//   std::cout<<p2.is_cpu()<<std::endl;
+  if (p1.is_cpu() && p2.is_cpu()) {
+    std::cout<<"== run on CPU =="<<std::endl;
+    return KNearestNeighborIdxCpu(p1, p2, lengths1, lengths2, norm, K);
+  } else {
 #ifdef WITH_CUDA
+    std::cout<<"== run on CUDA =="<<std::endl;
     CHECK_CUDA(p1);
     CHECK_CUDA(p2);
     return KNearestNeighborIdxCuda(
         p1, p2, lengths1, lengths2, norm, K, version);
-#elseif WITH_MUSA
+#else
+    std::cout<<"== run on MUSA =="<<std::endl;
     CHECK_MUSA(p1);
     CHECK_MUSA(p2);
     return KNearestNeighborIdxMusa(
         p1, p2, lengths1, lengths2, norm, K, version);
-#else
-    // AT_ERROR("Not compiled with GPU support.");
-    return KNearestNeighborIdxMusa(
-        p1, p2, lengths1, lengths2, norm, K, version);
 #endif
   }
-  return KNearestNeighborIdxCpu(p1, p2, lengths1, lengths2, norm, K);
 }
 
 // Compute gradients with respect to p1 and p2
