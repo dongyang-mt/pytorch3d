@@ -1,0 +1,1350 @@
+== use torch.utils.cpp_extension.BuildExtension ==
+== build for CPU ==
+== start building ==
+running install
+running bdist_egg
+running egg_info
+writing manifest file 'pytorch3d.egg-info/SOURCES.txt'
+running install_lib
+running build_py
+running build_ext
+/opt/conda/envs/py38/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/opt/conda/envs/py38/lib/python3.8/site-packages/setuptools/command/easy_install.py:156: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+Emitting ninja build file /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/util.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/util.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/util.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[2/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.cpp: In function ‘at::Tensor MeshNormalConsistencyFindVerticesCpu(const at::Tensor&)’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.cpp:46:35: warning: comparison of integer expressions of different signedness: ‘int64_t’ {aka ‘long int’} and ‘std::vector<std::pair<long int, long int> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   46 |   for (int64_t i_pair = 0; i_pair < pairs.size(); ++i_pair) {
+      |                            ~~~~~~~^~~~~~~~~~~~~~
+[3/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/gather_scatter/gather_scatter_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/gather_scatter/gather_scatter_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/gather_scatter/gather_scatter_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[4/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./camera.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./camera.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/../include/math.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.cpp:10:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/../include/./commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/../include/./commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/../include/./commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+[5/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/weighted_sum_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/weighted_sum_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/weighted_sum_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[6/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.destruct.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.destruct.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.destruct.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.destruct.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.destruct.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.destruct.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+[7/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/Device.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../global.h:48,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h: In instantiation of ‘void pulsar::Renderer::backward_dbg(pulsar::Renderer::Renderer*, const float*, const float*, const float*, const float*, const float*, const float*, const pulsar::CamInfo&, const float&, float, const uint&, const float*, const size_t&, const uint&, const bool&, const bool&, const bool&, const bool&, const bool&, const uint&, const uint&, cudaStream_t) [with bool DEV = false; uint = unsigned int; size_t = long unsigned int; cudaStream_t = void*]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:36:24:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:50:34: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘int’ [-Wsign-compare]
+   50 |       num_balls > 0 && num_balls <= self->max_num_balls,
+      |                        ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro ‘C10_UNLIKELY’
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/util/Exception.h:506:7: note: in expansion of macro ‘C10_UNLIKELY_OR_CONST’
+  506 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:160:3: note: in expansion of macro ‘TORCH_CHECK’
+  160 |   TORCH_CHECK(cond, "invalid argument ", argN, ": ", __VA_ARGS__)
+      |   ^~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:49:3: note: in expansion of macro ‘ARGCHECK’
+   49 |   ARGCHECK(
+      |   ^~~~~~~~
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:32,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:334:9: warning: ‘void* memset(void*, int, size_t)’ clearing an object of non-trivial type ‘struct pulsar::CamGradInfo’; use assignment or value-initialization instead [-Wclass-memaccess]
+  334 |   memset((VAR), (VAL), sizeof(TYPE) * (SIZE))
+      |   ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:106:3: note: in expansion of macro ‘MEMSET’
+  106 |   MEMSET(self->grad_cam_buf_d, 0, CamGradInfo, num_balls, stream);
+      |   ^~~~~~
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././camera.h:65:8: note: ‘struct pulsar::CamGradInfo’ declared here
+   65 | struct CamGradInfo {
+      |        ^~~~~~~~~~~
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:32,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h: In instantiation of ‘void SUM_WS(T*, T*, size_t, char*, size_t, cudaStream_t) [with T = pulsar::CamGradInfo; size_t = long unsigned int; cudaStream_t = void*]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward_dbg.device.h:142:9:   required from ‘void pulsar::Renderer::backward_dbg(pulsar::Renderer::Renderer*, const float*, const float*, const float*, const float*, const float*, const float*, const pulsar::CamInfo&, const float&, float, const uint&, const float*, const size_t&, const uint&, const bool&, const bool&, const bool&, const bool&, const bool&, const uint&, const uint&, cudaStream_t) [with bool DEV = false; uint = unsigned int; size_t = long unsigned int; cudaStream_t = void*]’
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward_dbg.instantiate.h:36:24:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:285:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  285 |   for (int i = 0; i < (NUM_OBJECTS); ++i) {
+      |                   ~~^~~~~~~~~~~~~~~
+[8/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_cam_gradients.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.norm_cam_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_cam_gradients.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.norm_cam_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_cam_gradients.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.norm_cam_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+[9/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/alpha_composite_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/alpha_composite_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/alpha_composite_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[10/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.construct.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.construct.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.construct.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.construct.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.construct.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.construct.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+[11/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_sphere_gradients.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.norm_sphere_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_sphere_gradients.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.norm_sphere_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_sphere_gradients.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.norm_sphere_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:32,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_sphere_gradients.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.norm_sphere_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_sphere_gradients.device.h: In instantiation of ‘void pulsar::Renderer::norm_sphere_gradients(pulsar::Renderer::Renderer, int) [with bool DEV = false]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.norm_sphere_gradients.instantiate.h:16:24:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../host/commands.h:347:34: warning: comparison of integer expressions of different signedness: ‘uint’ {aka ‘unsigned int’} and ‘const int’ [-Wsign-compare]
+  347 |   for (uint VARNAME = 0; VARNAME < (N); ++VARNAME) {
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.norm_sphere_gradients.device.h:28:3: note: in expansion of macro ‘GET_PARALLEL_IDX_1D’
+   28 |   GET_PARALLEL_IDX_1D(idx, num_balls);
+      |   ^~~~~~~~~~~~~~~~~~~
+[12/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/Device.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../global.h:48,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h: In instantiation of ‘void pulsar::Renderer::backward(pulsar::Renderer::Renderer*, const float*, const float*, const float*, const float*, const float*, const float*, const pulsar::CamInfo&, const float&, float, const uint&, const float*, const size_t&, const uint&, const bool&, const bool&, const bool&, const bool&, const bool&, cudaStream_t) [with bool DEV = false; uint = unsigned int; size_t = long unsigned int; cudaStream_t = void*]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:34:24:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:48:34: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘int’ [-Wsign-compare]
+   48 |       num_balls > 0 && num_balls <= self->max_num_balls,
+      |                        ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro ‘C10_UNLIKELY’
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/util/Exception.h:506:7: note: in expansion of macro ‘C10_UNLIKELY_OR_CONST’
+  506 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:160:3: note: in expansion of macro ‘TORCH_CHECK’
+  160 |   TORCH_CHECK(cond, "invalid argument ", argN, ": ", __VA_ARGS__)
+      |   ^~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:47:3: note: in expansion of macro ‘ARGCHECK’
+   47 |   ARGCHECK(
+      |   ^~~~~~~~
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:32,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:334:9: warning: ‘void* memset(void*, int, size_t)’ clearing an object of non-trivial type ‘struct pulsar::CamGradInfo’; use assignment or value-initialization instead [-Wclass-memaccess]
+  334 |   memset((VAR), (VAL), sizeof(TYPE) * (SIZE))
+      |   ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:106:3: note: in expansion of macro ‘MEMSET’
+  106 |   MEMSET(self->grad_cam_buf_d, 0, CamGradInfo, num_balls, stream);
+      |   ^~~~~~
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././camera.h:65:8: note: ‘struct pulsar::CamGradInfo’ declared here
+   65 | struct CamGradInfo {
+      |        ^~~~~~~~~~~
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:32,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h: In instantiation of ‘void SUM_WS(T*, T*, size_t, char*, size_t, cudaStream_t) [with T = pulsar::CamGradInfo; size_t = long unsigned int; cudaStream_t = void*]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:149:11:   required from ‘void pulsar::Renderer::backward(pulsar::Renderer::Renderer*, const float*, const float*, const float*, const float*, const float*, const float*, const pulsar::CamInfo&, const float&, float, const uint&, const float*, const size_t&, const uint&, const bool&, const bool&, const bool&, const bool&, const bool&, cudaStream_t) [with bool DEV = false; uint = unsigned int; size_t = long unsigned int; cudaStream_t = void*]’
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:34:24:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:285:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  285 |   for (int i = 0; i < (NUM_OBJECTS); ++i) {
+      |                   ~~^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h: In instantiation of ‘void SUM_WS(T*, T*, size_t, char*, size_t, cudaStream_t) [with T = pulsar::IntWrapper; size_t = long unsigned int; cudaStream_t = void*]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.backward.device.h:157:11:   required from ‘void pulsar::Renderer::backward(pulsar::Renderer::Renderer*, const float*, const float*, const float*, const float*, const float*, const float*, const pulsar::CamInfo&, const float&, float, const uint&, const float*, const size_t&, const uint&, const bool&, const bool&, const bool&, const bool&, const bool&, cudaStream_t) [with bool DEV = false; uint = unsigned int; size_t = long unsigned int; cudaStream_t = void*]’
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.backward.instantiate.h:34:24:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:285:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+[13/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/norm_weighted_sum_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/norm_weighted_sum_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/norm_weighted_sum_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[14/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/ball_query/ball_query_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/ball_query/ball_query_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/ball_query/ball_query_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[15/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/warnings.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/warnings.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/warnings.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/warnings.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/./global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/./global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/warnings.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/./global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+[16/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.fill_bg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.fill_bg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.fill_bg.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.fill_bg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.fill_bg.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.fill_bg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.fill_bg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.fill_bg.device.h: In instantiation of ‘void pulsar::Renderer::fill_bg(pulsar::Renderer::Renderer, pulsar::CamInfo, const float*, float, uint) [with bool DEV = false; uint = unsigned int]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.fill_bg.instantiate.h:19:20:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.fill_bg.device.h:49:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uint’ {aka ‘const unsigned int’} [-Wsign-compare]
+   49 |       for (int i = 0; i < cam.n_channels; ++i) {
+      |                       ~~^~~~~~~~~~~~~~~~
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:32,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.fill_bg.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.fill_bg.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../host/commands.h:349:8: warning: variable ‘blockDim’ set but not used [-Wunused-but-set-variable]
+  349 |   int2 blockDim;                                                  \
+      |        ^~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../host/commands.h:349:8: note: in definition of macro ‘GET_PARALLEL_IDS_2D’
+  349 |   int2 blockDim;                                                  \
+      |        ^~~~~~~~
+[17/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.calc_gradients.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.calc_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.calc_gradients.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.calc_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.calc_gradients.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.calc_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:32,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.calc_gradients.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.calc_gradients.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.calc_gradients.device.h: In instantiation of ‘void pulsar::Renderer::calc_gradients(pulsar::CamInfo, const float*, float, const float3*, const float*, const float*, const float*, uint, const float*, const float*, const pulsar::Renderer::DrawInfo*, const pulsar::Renderer::IntersectInfo*, bool, bool, bool, bool, bool, float*, float*, float3*, pulsar::CamGradInfo*, float*, int*, int, uint, uint) [with bool DEV = false; uint = unsigned int]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.calc_gradients.instantiate.h:45:22:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../host/commands.h:349:8: warning: variable ‘blockDim’ set but not used [-Wunused-but-set-variable]
+  349 |   int2 blockDim;                                                  \
+      |        ^~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././../host/commands.h:349:8: note: in definition of macro ‘GET_PARALLEL_IDS_2D’
+  349 |   int2 blockDim;                                                  \
+      |        ^~~~~~~~
+[18/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.render.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.render.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.render.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.render.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.render.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.render.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.render.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.render.device.h: In instantiation of ‘void pulsar::Renderer::render(const size_t*, const pulsar::Renderer::IntersectInfo*, const pulsar::Renderer::DrawInfo*, const float*, const int*, const float*, pulsar::CamInfo, float, float, uint, const float*, uint, int, int, int, int, float*, float*, int) [with bool DEV = false; size_t = long unsigned int; uint = unsigned int]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.render.instantiate.h:42:1:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.render.device.h:178:39: warning: comparison of integer expressions of different signedness: ‘int’ and ‘uint’ {aka ‘unsigned int’} [-Wsign-compare]
+  178 |        !loading_done && n_pixels_done < thread_block.size();
+      |                         ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.render.device.h:285:32: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uint’ {aka ‘const unsigned int’} [-Wsign-compare]
+  285 |           tracker.get_n_hits() >= max_n_hits;
+      |           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+[19/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/tensor_util.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/tensor_util.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/tensor_util.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[20/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/packed_to_padded_tensor/packed_to_padded_tensor_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/packed_to_padded_tensor/packed_to_padded_tensor_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/packed_to_padded_tensor/packed_to_padded_tensor_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[21/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.forward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.forward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.forward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/DeviceType.h:8,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/Device.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/TensorBody.h:11,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:48,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.forward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h: In instantiation of ‘void pulsar::Renderer::forward(pulsar::Renderer::Renderer*, const float*, const float*, const float*, const pulsar::CamInfo&, const float&, float, const uint&, const float*, const float*, const size_t&, const uint&, cudaStream_t) [with bool DEV = false; uint = unsigned int; size_t = long unsigned int; cudaStream_t = void*]’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.forward.instantiate.h:27:24:   required from here
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:43:34: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘int’ [-Wsign-compare]
+   43 |       num_balls > 0 && num_balls <= self->max_num_balls,
+      |                        ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/macros/Macros.h:200:64: note: in definition of macro ‘C10_UNLIKELY’
+  200 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+      |                                                                ^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/util/Exception.h:506:7: note: in expansion of macro ‘C10_UNLIKELY_OR_CONST’
+  506 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+      |       ^~~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:160:3: note: in expansion of macro ‘TORCH_CHECK’
+  160 |   TORCH_CHECK(cond, "invalid argument ", argN, ": ", __VA_ARGS__)
+      |   ^~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:42:3: note: in expansion of macro ‘ARGCHECK’
+   42 |   ARGCHECK(
+      |   ^~~~~~~~
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:32,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.forward.instantiate.h:9,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:206:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  206 |     for (int i = 0; i < (NUM_OBJECTS); ++i) {                           \
+      |                     ~~^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:235:3: note: in expansion of macro ‘SORT_ASCENDING’
+  235 |   SORT_ASCENDING(          \
+      |   ^~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:96:3: note: in expansion of macro ‘SORT_ASCENDING_WS’
+   96 |   SORT_ASCENDING_WS(
+      |   ^~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:209:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  209 |     for (int i = 0; i < (NUM_OBJECTS); ++i) {                           \
+      |                     ~~^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:235:3: note: in expansion of macro ‘SORT_ASCENDING’
+  235 |   SORT_ASCENDING(          \
+      |   ^~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:96:3: note: in expansion of macro ‘SORT_ASCENDING_WS’
+   96 |   SORT_ASCENDING_WS(
+      |   ^~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:206:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  206 |     for (int i = 0; i < (NUM_OBJECTS); ++i) {                           \
+      |                     ~~^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:235:3: note: in expansion of macro ‘SORT_ASCENDING’
+  235 |   SORT_ASCENDING(          \
+      |   ^~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:105:3: note: in expansion of macro ‘SORT_ASCENDING_WS’
+  105 |   SORT_ASCENDING_WS(
+      |   ^~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:209:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  209 |     for (int i = 0; i < (NUM_OBJECTS); ++i) {                           \
+      |                     ~~^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:235:3: note: in expansion of macro ‘SORT_ASCENDING’
+  235 |   SORT_ASCENDING(          \
+      |   ^~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:105:3: note: in expansion of macro ‘SORT_ASCENDING_WS’
+  105 |   SORT_ASCENDING_WS(
+      |   ^~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:206:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  206 |     for (int i = 0; i < (NUM_OBJECTS); ++i) {                           \
+      |                     ~~^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:235:3: note: in expansion of macro ‘SORT_ASCENDING’
+  235 |   SORT_ASCENDING(          \
+      |   ^~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:114:3: note: in expansion of macro ‘SORT_ASCENDING_WS’
+  114 |   SORT_ASCENDING_WS(
+      |   ^~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:209:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  209 |     for (int i = 0; i < (NUM_OBJECTS); ++i) {                           \
+      |                     ~~^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:235:3: note: in expansion of macro ‘SORT_ASCENDING’
+  235 |   SORT_ASCENDING(          \
+      |   ^~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:114:3: note: in expansion of macro ‘SORT_ASCENDING_WS’
+  114 |   SORT_ASCENDING_WS(
+      |   ^~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:241:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  241 |     for (int i = 0; i < (NUM_ITEMS); ++i) {                               \
+      |                     ~~^~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:254:3: note: in expansion of macro ‘REDUCE’
+  254 |   REDUCE(REDUCE_PTR, RESULT_PTR, NUM_ITEMS, REDUCE_OP, REDUCE_INIT)
+      |   ^~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:133:3: note: in expansion of macro ‘REDUCE_WS’
+  133 |   REDUCE_WS(
+      |   ^~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:268:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  268 |     for (int i = 0; i < NUM_ITEMS; ++i) {   \
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:206:9: note: in expansion of macro ‘SELECT_FLAGS_WS’
+  206 |         SELECT_FLAGS_WS(
+      |         ^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:268:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  268 |     for (int i = 0; i < NUM_ITEMS; ++i) {   \
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:216:9: note: in expansion of macro ‘SELECT_FLAGS_WS’
+  216 |         SELECT_FLAGS_WS(
+      |         ^~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././../host/commands.h:268:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  268 |     for (int i = 0; i < NUM_ITEMS; ++i) {   \
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.forward.device.h:226:9: note: in expansion of macro ‘SELECT_FLAGS_WS’
+  226 |         SELECT_FLAGS_WS(
+      |         ^~~~~~~~~~~~~~~
+[22/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/blending/sigmoid_alpha_blend_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/blending/sigmoid_alpha_blend_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/blending/sigmoid_alpha_blend_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[23/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/face_areas_normals/face_areas_normals_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/face_areas_normals/face_areas_normals_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/face_areas_normals/face_areas_normals_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[24/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/sample_pdf/sample_pdf_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/sample_pdf/sample_pdf_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/sample_pdf/sample_pdf_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[25/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[26/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[27/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/sample_farthest_points/sample_farthest_points_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/sample_farthest_points/sample_farthest_points_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/sample_farthest_points/sample_farthest_points_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[28/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[29/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.calc_signature.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.calc_signature.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.calc_signature.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.calc_signature.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././camera.device.h:14,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.calc_signature.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.calc_signature.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+[30/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.cpp:15:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_utils.h: In function ‘float BoxVolume(const face_verts&, const vec3<float>&)’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_utils.h:320:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<vec3<float> > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  320 |   for (int t = 0; t < box_tris.size(); ++t) {
+      |                   ~~^~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_utils.h: In function ‘face_verts BoxIntersections(const face_verts&, const face_verts&, const vec3<float>&)’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_utils.h:721:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<vec3<float> > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  721 |     for (int t = 0; t < out_tris.size(); ++t) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_utils.h:725:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<vec3<float> > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  725 |       for (int v = 0; v < tri_updated.size(); ++v) {
+      |                       ~~^~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.cpp: In function ‘std::tuple<at::Tensor, at::Tensor> IoUBox3DCpu(const at::Tensor&, const at::Tensor&)’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.cpp:80:29: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<vec3<float> > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   80 |         for (int b1 = 0; b1 < box1_intersect.size(); ++b1) {
+      |                          ~~~^~~~~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.cpp:81:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<vec3<float> > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   81 |           for (int b2 = 0; b2 < box2_intersect.size(); ++b2) {
+      |                            ~~~^~~~~~~~~~~~~~~~~~~~~~~
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.cpp:93:29: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<vec3<float> > >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   93 |         for (int b2 = 0; b2 < box2_intersect.size(); ++b2) {
+      |                          ~~~^~~~~~~~~~~~~~~~~~~~~~~
+[31/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.create_selector.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.create_selector.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.create_selector.device.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.create_selector.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/./renderer.create_selector.device.h:13,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/renderer.create_selector.instantiate.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/../include/././commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+[32/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/knn/knn_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/knn/knn_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/knn/knn_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[33/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[34/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/marching_cubes/marching_cubes_cpu.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/marching_cubes/marching_cubes_cpu.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/marching_cubes/marching_cubes_cpu.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+[35/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./renderer.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./../global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./../global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./renderer.h:12,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.cpp:9:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/./../global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.cpp:10:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/../include/commands.h:29: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/../include/commands.h:30: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   30 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/../include/commands.h:31: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   31 | #pragma clang diagnostic pop
+      | 
+[36/36] c++ -MMD -MF /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/dongyang/code/pytorch3d/pytorch3d/csrc -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.cpp -o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.o -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/./pulsar/global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/./pulsar/global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/./pulsar/global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/Exceptions.h:14,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/python.h:11,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:6,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h: In instantiation of ‘struct pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >::is_valid_class_option<std::shared_ptr<pulsar::pytorch::Renderer> >’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/detail/../detail/common.h:658:7:   required by substitution of ‘template<class ... Ts> using all_of = std::is_same<pybind11::detail::bools<Ts::value ..., true>, pybind11::detail::bools<true, Ts::value ...> > [with Ts = {pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >::is_valid_class_option<std::shared_ptr<pulsar::pytorch::Renderer> >}]’
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h:1494:11:   required from ‘class pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >’
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.cpp:107:70:   required from here
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h:1488:12: warning: ‘pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >::is_valid_class_option<std::shared_ptr<pulsar::pytorch::Renderer> >’ declared with greater visibility than its base ‘pybind11::detail::negation<std::is_same<pybind11::detail::bools<false, true, true, true>, pybind11::detail::bools<true, false, true, true> > >’ [-Wattributes]
+ 1488 |     struct is_valid_class_option : detail::any_of<is_holder<T>, is_subtype<T>, is_base<T>> {};
+      |            ^~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h: In instantiation of ‘class pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >’:
+/home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.cpp:107:70:   required from here
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h:1479:7: warning: ‘pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >’ declared with greater visibility than its base ‘pybind11::detail::generic_type’ [-Wattributes]
+ 1479 | class class_ : public detail::generic_type {
+      |       ^~~~~~
+g++ -pthread -shared -B /opt/conda/envs/py38/compiler_compat -L/opt/conda/envs/py38/lib -Wl,-rpath=/opt/conda/envs/py38/lib -Wl,--no-as-needed -Wl,--sysroot=/ /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/ball_query/ball_query_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/blending/sigmoid_alpha_blend_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/alpha_composite_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/norm_weighted_sum_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/compositing/weighted_sum_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/ext.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/face_areas_normals/face_areas_normals_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/gather_scatter/gather_scatter_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/knn/knn_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/marching_cubes/marching_cubes_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/packed_to_padded_tensor/packed_to_padded_tensor_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/tensor_util.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/pytorch/util.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/pulsar/warnings.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/sample_farthest_points/sample_farthest_points_cpu.o /home/dongyang/code/pytorch3d/build/temp.linux-x86_64-3.8/home/dongyang/code/pytorch3d/pytorch3d/csrc/sample_pdf/sample_pdf_cpu.o -L/opt/conda/envs/py38/lib/python3.8/site-packages/torch/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/lib.linux-x86_64-3.8/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/projects
+creating build/bdist.linux-x86_64/egg/pytorch3d
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/evaluation
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/feature_extractor
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/visualization
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/global_encoder
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/third_party
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools
+creating build/bdist.linux-x86_64/egg/pytorch3d/io
+creating build/bdist.linux-x86_64/egg/pytorch3d/datasets
+creating build/bdist.linux-x86_64/egg/pytorch3d/datasets/r2n2
+creating build/bdist.linux-x86_64/egg/pytorch3d/datasets/shapenet
+creating build/bdist.linux-x86_64/egg/pytorch3d/vis
+creating build/bdist.linux-x86_64/egg/pytorch3d/common
+creating build/bdist.linux-x86_64/egg/pytorch3d/common/workaround
+creating build/bdist.linux-x86_64/egg/pytorch3d/ops
+creating build/bdist.linux-x86_64/egg/pytorch3d/utils
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/opengl
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/points
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/pulsar
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron_trainer
+creating build/bdist.linux-x86_64/egg/pytorch3d/transforms
+creating build/bdist.linux-x86_64/egg/pytorch3d/loss
+creating build/bdist.linux-x86_64/egg/pytorch3d/structures
+byte-compiling build/bdist.linux-x86_64/egg/projects/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/evaluation/evaluate_new_view_synthesis.py to evaluate_new_view_synthesis.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/evaluation/evaluator.py to evaluator.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/evaluation/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/eval_demo.py to eval_demo.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/load_llff.py to load_llff.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/blender_dataset_map_provider.py to blender_dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/data_loader_map_provider.py to data_loader_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/dataset_base.py to dataset_base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/single_sequence_dataset.py to single_sequence_dataset.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/dataset_map_provider.py to dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/scene_batch_sampler.py to scene_batch_sampler.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/types.py to types.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/sql_dataset_provider.py to sql_dataset_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/rendered_mesh_dataset_map_provider.py to rendered_mesh_dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/sql_dataset.py to sql_dataset.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/orm_types.py to orm_types.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/frame_data.py to frame_data.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/load_blender.py to load_blender.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/json_index_dataset_map_provider_v2.py to json_index_dataset_map_provider_v2.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/visualize.py to visualize.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/json_index_dataset_map_provider.py to json_index_dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/json_index_dataset.py to json_index_dataset.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/data_source.py to data_source.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/train_eval_data_loader_provider.py to train_eval_data_loader_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/llff_dataset_map_provider.py to llff_dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/metrics.py to metrics.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/feature_extractor/feature_extractor.py to feature_extractor.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/feature_extractor/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/feature_extractor/resnet_feature_extractor.py to resnet_feature_extractor.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/base_model.py to base_model.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler/view_sampler.py to view_sampler.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler/view_pooler.py to view_pooler.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler/feature_aggregator.py to feature_aggregator.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/visualization/render_flyaround.py to render_flyaround.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/visualization/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/raymarcher.py to raymarcher.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/rgb_net.py to rgb_net.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/ray_sampler.py to ray_sampler.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/sdf_renderer.py to sdf_renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/ray_point_refiner.py to ray_point_refiner.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/base.py to base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/lstm_renderer.py to lstm_renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/ray_tracing.py to ray_tracing.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/multipass_ea.py to multipass_ea.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/overfit_model.py to overfit_model.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/model_dbir.py to model_dbir.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/global_encoder/autodecoder.py to autodecoder.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/global_encoder/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/global_encoder/global_encoder.py to global_encoder.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/generic_model.py to generic_model.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/scene_representation_networks.py to scene_representation_networks.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/idr_feature_field.py to idr_feature_field.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/decoding_functions.py to decoding_functions.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/voxel_grid.py to voxel_grid.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/voxel_grid_implicit_function.py to voxel_grid_implicit_function.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/base.py to base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/neural_radiance_field.py to neural_radiance_field.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/third_party/pytorch_prototyping.py to pytorch_prototyping.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/third_party/hyperlayers.py to hyperlayers.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/third_party/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/depth_cleanup.py to depth_cleanup.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/stats.py to stats.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/vis_utils.py to vis_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/model_io.py to model_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/rasterize_mc.py to rasterize_mc.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/config.py to config.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/eval_video_trajectory.py to eval_video_trajectory.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/point_cloud_utils.py to point_cloud_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/circle_fitting.py to circle_fitting.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/image_utils.py to image_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/metric_utils.py to metric_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/video_writer.py to video_writer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/camera_utils.py to camera_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/mtl_io.py to mtl_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/pluggable_formats.py to pluggable_formats.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/off_io.py to off_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/experimental_gltf_io.py to experimental_gltf_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/obj_io.py to obj_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/ply_io.py to ply_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/pluggable.py to pluggable.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/r2n2/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/r2n2/r2n2.py to r2n2.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/r2n2/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/shapenet_base.py to shapenet_base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/shapenet/shapenet_core.py to shapenet_core.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/shapenet/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/vis/plotly_vis.py to plotly_vis.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/vis/texture_vis.py to texture_vis.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/vis/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/linear_with_repeat.py to linear_with_repeat.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/workaround/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/workaround/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/workaround/symeig3x3.py to symeig3x3.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/compat.py to compat.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/datatypes.py to datatypes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/cubify.py to cubify.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/mesh_filtering.py to mesh_filtering.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/sample_points_from_meshes.py to sample_points_from_meshes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/mesh_face_areas_normals.py to mesh_face_areas_normals.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/sample_farthest_points.py to sample_farthest_points.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/points_alignment.py to points_alignment.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/points_normals.py to points_normals.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/points_to_volumes.py to points_to_volumes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/marching_cubes.py to marching_cubes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/perspective_n_points.py to perspective_n_points.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/interp_face_attrs.py to interp_face_attrs.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/cameras_alignment.py to cameras_alignment.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/knn.py to knn.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/iou_box3d.py to iou_box3d.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/packed_to_padded.py to packed_to_padded.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/laplacian_matrices.py to laplacian_matrices.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/graph_conv.py to graph_conv.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/subdivide_meshes.py to subdivide_meshes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/ball_query.py to ball_query.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/marching_cubes_data.py to marching_cubes_data.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/vert_align.py to vert_align.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/checkerboard.py to checkerboard.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/torus.py to torus.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/ico_sphere.py to ico_sphere.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/camera_conversions.py to camera_conversions.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/compositing.py to compositing.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/opengl/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/opengl/opengl_utils.py to opengl_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/opengl/rasterizer_opengl.py to rasterizer_opengl.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/sample_pdf.py to sample_pdf.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/raymarching.py to raymarching.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/renderer.py to renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/raysampling.py to raysampling.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/harmonic_embedding.py to harmonic_embedding.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/splatter_blend.py to splatter_blend.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/materials.py to materials.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/fisheyecameras.py to fisheyecameras.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/lighting.py to lighting.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/blending.py to blending.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/textures.py to textures.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/shading.py to shading.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/rasterize_meshes.py to rasterize_meshes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/rasterizer.py to rasterizer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/clip.py to clip.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/renderer.py to renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/shader.py to shader.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/camera_conversions.py to camera_conversions.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/rasterize_points.py to rasterize_points.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/rasterizer.py to rasterizer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/compositor.py to compositor.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/pulsar/unified.py to unified.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/pulsar/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/pulsar/renderer.py to renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/renderer.py to renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/camera_utils.py to camera_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/cameras.py to cameras.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron_trainer/experiment.py to experiment.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron_trainer/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron_trainer/visualize_reconstruction.py to visualize_reconstruction.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/transform3d.py to transform3d.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/so3.py to so3.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/math.py to math.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/se3.py to se3.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/rotation_conversions.py to rotation_conversions.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/point_mesh_distance.py to point_mesh_distance.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/mesh_laplacian_smoothing.py to mesh_laplacian_smoothing.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/mesh_edge_loss.py to mesh_edge_loss.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/mesh_normal_consistency.py to mesh_normal_consistency.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/chamfer.py to chamfer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/volumes.py to volumes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/meshes.py to meshes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/pointclouds.py to pointclouds.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/_C.py to _C.cpython-38.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/entry_points.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/requires.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+pytorch3d.__pycache__._C.cpython-38: module references __file__
+pytorch3d.datasets.r2n2.__pycache__.r2n2.cpython-38: module references __file__
+pytorch3d.datasets.shapenet.__pycache__.shapenet_core.cpython-38: module references __file__
+pytorch3d.implicitron.dataset.__pycache__.rendered_mesh_dataset_map_provider.cpython-38: module references __file__
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+removing '/opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg' (and everything under it)
+creating /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg
+Extracting pytorch3d-0.7.4-py3.8-linux-x86_64.egg to /opt/conda/envs/py38/lib/python3.8/site-packages
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/projects/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/_C.py to _C.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/compat.py to compat.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/datatypes.py to datatypes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/linear_with_repeat.py to linear_with_repeat.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/workaround/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/workaround/symeig3x3.py to symeig3x3.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/workaround/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/shapenet_base.py to shapenet_base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/r2n2/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/r2n2/r2n2.py to r2n2.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/r2n2/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/shapenet/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/shapenet/shapenet_core.py to shapenet_core.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/eval_demo.py to eval_demo.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/blender_dataset_map_provider.py to blender_dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/data_loader_map_provider.py to data_loader_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/data_source.py to data_source.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/dataset_base.py to dataset_base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/dataset_map_provider.py to dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/frame_data.py to frame_data.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/json_index_dataset.py to json_index_dataset.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/json_index_dataset_map_provider.py to json_index_dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/json_index_dataset_map_provider_v2.py to json_index_dataset_map_provider_v2.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/llff_dataset_map_provider.py to llff_dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/load_blender.py to load_blender.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/load_llff.py to load_llff.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/orm_types.py to orm_types.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/rendered_mesh_dataset_map_provider.py to rendered_mesh_dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/scene_batch_sampler.py to scene_batch_sampler.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/single_sequence_dataset.py to single_sequence_dataset.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/sql_dataset.py to sql_dataset.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/sql_dataset_provider.py to sql_dataset_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/train_eval_data_loader_provider.py to train_eval_data_loader_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/types.py to types.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/visualize.py to visualize.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/evaluation/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/evaluation/evaluate_new_view_synthesis.py to evaluate_new_view_synthesis.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/evaluation/evaluator.py to evaluator.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/base_model.py to base_model.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/generic_model.py to generic_model.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/metrics.py to metrics.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/model_dbir.py to model_dbir.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/overfit_model.py to overfit_model.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/feature_extractor/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/feature_extractor/feature_extractor.py to feature_extractor.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/feature_extractor/resnet_feature_extractor.py to resnet_feature_extractor.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/global_encoder/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/global_encoder/autodecoder.py to autodecoder.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/global_encoder/global_encoder.py to global_encoder.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/base.py to base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/decoding_functions.py to decoding_functions.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/idr_feature_field.py to idr_feature_field.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/neural_radiance_field.py to neural_radiance_field.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/scene_representation_networks.py to scene_representation_networks.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/voxel_grid.py to voxel_grid.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/voxel_grid_implicit_function.py to voxel_grid_implicit_function.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/base.py to base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/lstm_renderer.py to lstm_renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/multipass_ea.py to multipass_ea.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/ray_point_refiner.py to ray_point_refiner.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/ray_sampler.py to ray_sampler.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/ray_tracing.py to ray_tracing.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/raymarcher.py to raymarcher.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/rgb_net.py to rgb_net.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/sdf_renderer.py to sdf_renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/view_pooler/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/view_pooler/feature_aggregator.py to feature_aggregator.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/view_pooler/view_pooler.py to view_pooler.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/view_pooler/view_sampler.py to view_sampler.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/visualization/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/visualization/render_flyaround.py to render_flyaround.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/third_party/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/third_party/hyperlayers.py to hyperlayers.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/third_party/pytorch_prototyping.py to pytorch_prototyping.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/camera_utils.py to camera_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/circle_fitting.py to circle_fitting.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/config.py to config.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/depth_cleanup.py to depth_cleanup.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/eval_video_trajectory.py to eval_video_trajectory.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/image_utils.py to image_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/metric_utils.py to metric_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/model_io.py to model_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/point_cloud_utils.py to point_cloud_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/rasterize_mc.py to rasterize_mc.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/stats.py to stats.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/video_writer.py to video_writer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/vis_utils.py to vis_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron_trainer/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron_trainer/experiment.py to experiment.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron_trainer/visualize_reconstruction.py to visualize_reconstruction.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/experimental_gltf_io.py to experimental_gltf_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/mtl_io.py to mtl_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/obj_io.py to obj_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/off_io.py to off_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/pluggable.py to pluggable.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/pluggable_formats.py to pluggable_formats.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/ply_io.py to ply_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/chamfer.py to chamfer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/mesh_edge_loss.py to mesh_edge_loss.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/mesh_laplacian_smoothing.py to mesh_laplacian_smoothing.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/mesh_normal_consistency.py to mesh_normal_consistency.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/point_mesh_distance.py to point_mesh_distance.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/ball_query.py to ball_query.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/cameras_alignment.py to cameras_alignment.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/cubify.py to cubify.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/graph_conv.py to graph_conv.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/interp_face_attrs.py to interp_face_attrs.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/iou_box3d.py to iou_box3d.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/knn.py to knn.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/laplacian_matrices.py to laplacian_matrices.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/marching_cubes.py to marching_cubes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/marching_cubes_data.py to marching_cubes_data.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/mesh_face_areas_normals.py to mesh_face_areas_normals.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/mesh_filtering.py to mesh_filtering.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/packed_to_padded.py to packed_to_padded.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/perspective_n_points.py to perspective_n_points.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/points_alignment.py to points_alignment.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/points_normals.py to points_normals.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/points_to_volumes.py to points_to_volumes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/sample_farthest_points.py to sample_farthest_points.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/sample_points_from_meshes.py to sample_points_from_meshes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/subdivide_meshes.py to subdivide_meshes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/vert_align.py to vert_align.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/blending.py to blending.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/camera_conversions.py to camera_conversions.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/camera_utils.py to camera_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/cameras.py to cameras.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/compositing.py to compositing.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/fisheyecameras.py to fisheyecameras.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/lighting.py to lighting.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/materials.py to materials.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/splatter_blend.py to splatter_blend.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/harmonic_embedding.py to harmonic_embedding.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/raymarching.py to raymarching.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/raysampling.py to raysampling.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/renderer.py to renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/sample_pdf.py to sample_pdf.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/clip.py to clip.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/rasterize_meshes.py to rasterize_meshes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/rasterizer.py to rasterizer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/renderer.py to renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/shader.py to shader.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/shading.py to shading.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/textures.py to textures.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/opengl/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/opengl/opengl_utils.py to opengl_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/opengl/rasterizer_opengl.py to rasterizer_opengl.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/compositor.py to compositor.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/rasterize_points.py to rasterize_points.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/rasterizer.py to rasterizer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/renderer.py to renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/pulsar/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/pulsar/renderer.py to renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/pulsar/unified.py to unified.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/meshes.py to meshes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/pointclouds.py to pointclouds.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/volumes.py to volumes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/math.py to math.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/rotation_conversions.py to rotation_conversions.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/se3.py to se3.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/so3.py to so3.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/transform3d.py to transform3d.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/camera_conversions.py to camera_conversions.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/checkerboard.py to checkerboard.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/ico_sphere.py to ico_sphere.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/torus.py to torus.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/vis/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/vis/plotly_vis.py to plotly_vis.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/vis/texture_vis.py to texture_vis.cpython-38.pyc
+pytorch3d 0.7.4 is already the active version in easy-install.pth
+Installing pytorch3d_implicitron_runner script to /opt/conda/envs/py38/bin
+Installing pytorch3d_implicitron_visualizer script to /opt/conda/envs/py38/bin
+
+Installed /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg
+Processing dependencies for pytorch3d==0.7.4
+Searching for iopath==0.1.10
+Best match: iopath 0.1.10
+Adding iopath 0.1.10 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for fvcore==0.1.5.post20221221
+Best match: fvcore 0.1.5.post20221221
+Adding fvcore 0.1.5.post20221221 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for tqdm==4.65.0
+Best match: tqdm 4.65.0
+Adding tqdm 4.65.0 to easy-install.pth file
+Installing tqdm script to /opt/conda/envs/py38/bin
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for portalocker==2.7.0
+Best match: portalocker 2.7.0
+Adding portalocker 2.7.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for typing-extensions==4.3.0
+Best match: typing-extensions 4.3.0
+Adding typing-extensions 4.3.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for tabulate==0.9.0
+Best match: tabulate 0.9.0
+Adding tabulate 0.9.0 to easy-install.pth file
+Installing tabulate script to /opt/conda/envs/py38/bin
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for numpy==1.23.5
+Best match: numpy 1.23.5
+Adding numpy 1.23.5 to easy-install.pth file
+Installing f2py script to /opt/conda/envs/py38/bin
+Installing f2py3 script to /opt/conda/envs/py38/bin
+Installing f2py3.8 script to /opt/conda/envs/py38/bin
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for PyYAML==6.0
+Best match: PyYAML 6.0
+Adding PyYAML 6.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for Pillow==9.5.0
+Best match: Pillow 9.5.0
+Adding Pillow 9.5.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for yacs==0.1.8
+Best match: yacs 0.1.8
+Adding yacs 0.1.8 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for termcolor==2.3.0
+Best match: termcolor 2.3.0
+Adding termcolor 2.3.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Finished processing dependencies for pytorch3d==0.7.4

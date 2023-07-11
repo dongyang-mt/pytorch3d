@@ -15,6 +15,8 @@ from typing import List, Optional
 import torch
 from setuptools import find_packages, setup
 from torch.utils.cpp_extension import CppExtension, CUDA_HOME, CUDAExtension
+# from musa_extension import MUSAExtension, musa_build_ext, MUSA_BuildExtension
+import torch_utils_cpp_extension
 
 
 def get_existing_ccbin(nvcc_args: List[str]) -> Optional[str]:
@@ -47,14 +49,20 @@ def get_extensions():
     extensions_dir = os.path.join(this_dir, "pytorch3d", "csrc")
     sources = glob.glob(os.path.join(extensions_dir, "**", "*.cpp"), recursive=True)
     source_cuda = glob.glob(os.path.join(extensions_dir, "**", "*.cu"), recursive=True)
+    source_musa = glob.glob(os.path.join(extensions_dir, "**", "*.mu"), recursive=True)
     extension = CppExtension
 
     extra_compile_args = {"cxx": ["-std=c++14"]}
+    # extra_compile_args = {"gcc": ["-std=c++14", "-fPIC"]}
+    # extra_compile_args["gcc"] += '-D_GLIBCXX_USE_CXX11_ABI=' + str(int(torch._C._GLIBCXX_USE_CXX11_ABI))
     define_macros = []
     include_dirs = [extensions_dir]
 
     force_cuda = os.getenv("FORCE_CUDA", "0") == "1"
+    force_musa = os.getenv("FORCE_MUSA", "0") == "1"
+    # force_musa = True
     force_no_cuda = os.getenv("PYTORCH3D_FORCE_NO_CUDA", "0") == "1"
+    force_no_musa = os.getenv("PYTORCH3D_FORCE_NO_MUSA", "0") == "1"
     if (
         not force_no_cuda and torch.cuda.is_available() and CUDA_HOME is not None
     ) or force_cuda:
@@ -110,7 +118,15 @@ def get_extensions():
                     raise ValueError(msg)
 
         extra_compile_args["nvcc"] = nvcc_args
+    elif force_musa:
+        print("== build for MUSA ==")
+        sources += source_musa
+        define_macros += [("WITH_MUSA", None)]
+        extension = torch_utils_cpp_extension.MUSAExtension
+    else:
+        print("== build for CPU ==")
 
+    print("== start building ==")
     sources = [os.path.join(extensions_dir, s) for s in sources]
 
     ext_modules = [
@@ -131,12 +147,13 @@ __version__ = runpy.run_path("pytorch3d/__init__.py")["__version__"]
 
 
 if os.getenv("PYTORCH3D_NO_NINJA", "0") == "1":
-
+    print("== use custom use_ninja=False BuildExtension ==")
     class BuildExtension(torch.utils.cpp_extension.BuildExtension):
         def __init__(self, *args, **kwargs):
             super().__init__(use_ninja=False, *args, **kwargs)
 
 else:
+    print("== use torch.utils.cpp_extension.BuildExtension ==")
     BuildExtension = torch.utils.cpp_extension.BuildExtension
 
 trainer = "pytorch3d.implicitron_trainer"
@@ -174,7 +191,7 @@ setup(
         ]
     },
     ext_modules=get_extensions(),
-    cmdclass={"build_ext": BuildExtension},
+    cmdclass={"build_ext": torch_utils_cpp_extension.BuildExtension},
     package_data={
         "": ["*.json"],
     },
