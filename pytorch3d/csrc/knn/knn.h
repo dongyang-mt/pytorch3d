@@ -55,6 +55,16 @@ std::tuple<at::Tensor, at::Tensor> KNearestNeighborIdxCuda(
     const int K,
     const int version);
 
+// MUSA implementation
+std::tuple<at::Tensor, at::Tensor> KNearestNeighborIdxMusa(
+    const at::Tensor& p1,
+    const at::Tensor& p2,
+    const at::Tensor& lengths1,
+    const at::Tensor& lengths2,
+    const int norm,
+    const int K,
+    const int version);
+
 // Implementation which is exposed.
 std::tuple<at::Tensor, at::Tensor> KNearestNeighborIdx(
     const at::Tensor& p1,
@@ -69,6 +79,11 @@ std::tuple<at::Tensor, at::Tensor> KNearestNeighborIdx(
     CHECK_CUDA(p1);
     CHECK_CUDA(p2);
     return KNearestNeighborIdxCuda(
+        p1, p2, lengths1, lengths2, norm, K, version);
+#elseif WITH_MUSA
+    CHECK_MUSA(p1);
+    CHECK_MUSA(p2);
+    return KNearestNeighborIdxMusa(
         p1, p2, lengths1, lengths2, norm, K, version);
 #else
     AT_ERROR("Not compiled with GPU support.");
