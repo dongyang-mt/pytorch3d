@@ -1,0 +1,82 @@
+VAR ORIGIN: 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/pytorch3d/build
+[  2%] Building MCC (Device) object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o
+-- Removing /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/./pytorch3d_musa_generated_knn.mu.o
+/opt/conda/envs/py38/lib/python3.8/site-packages/cmake/data/bin/cmake -E remove /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/./pytorch3d_musa_generated_knn.mu.o
+-- Generating dependency file: /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.MCC-depend
+/usr/local/musa/bin/mcc -M -x c++ /home/pytorch3d/pytorch3d/csrc/knn/knn.mu -o /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.MCC-depend -fPIC -m64 -Dpytorch3d_musa_EXPORTS -DWITH_MUSA -O2 -fPIC -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-sign-compare -Wno-missing-field-initializers -Wno-non-template-friend -Wno-comment -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-unused-parameter -Wno-unused-variable -Wno-sign-compare -w -fPIC -O3 -DNDEBUG -I/home/torch_musa -I/usr/local/musa/include -I/home/torch_musa/build/generated_cuda_compatible/include -I/home/torch_musa/build/generated_cuda_compatible/aten/src -I/home/torch_musa/build/generated_cuda_compatible/include/torch/csrc/api/include -I/opt/conda/envs/py38/include/python3.8 -I/home/pytorch3d/pytorch3d/csrc
+-- Generating temporary cmake readable file: /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.depend.tmp
+/opt/conda/envs/py38/lib/python3.8/site-packages/cmake/data/bin/cmake -D input_file:FILEPATH=/home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.MCC-depend -D output_file:FILEPATH=/home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.depend.tmp -D verbose=ON -P /usr/local/musa/cmake/FindMUSA/make2cmake.cmake
+-- Copy if different /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.depend.tmp to /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.depend
+/opt/conda/envs/py38/lib/python3.8/site-packages/cmake/data/bin/cmake -E copy_if_different /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.depend.tmp /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.depend
+-- Removing /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.depend.tmp and /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.MCC-depend
+/opt/conda/envs/py38/lib/python3.8/site-packages/cmake/data/bin/cmake -E remove /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.depend.tmp /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/pytorch3d_musa_generated_knn.mu.o.MCC-depend
+-- Generating /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/./pytorch3d_musa_generated_knn.mu.o
+/usr/local/musa/bin/mcc /home/pytorch3d/pytorch3d/csrc/knn/knn.mu -c -o /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/./pytorch3d_musa_generated_knn.mu.o -fPIC -m64 -Dpytorch3d_musa_EXPORTS -DWITH_MUSA -O2 -fPIC -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-sign-compare -Wno-missing-field-initializers -Wno-non-template-friend -Wno-comment -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-unused-parameter -Wno-unused-variable -Wno-sign-compare -w -fPIC -O3 -DNDEBUG -U__CUDA__ -O0 -DDEBUG=1 -ggdb -I/home/torch_musa -I/usr/local/musa/include -I/home/torch_musa/build/generated_cuda_compatible/include -I/home/torch_musa/build/generated_cuda_compatible/aten/src -I/home/torch_musa/build/generated_cuda_compatible/include/torch/csrc/api/include -I/opt/conda/envs/py38/include/python3.8 -I/home/pytorch3d/pytorch3d/csrc
+Generated /home/pytorch3d/build/CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/./pytorch3d_musa_generated_knn.mu.o successfully.
+[  5%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/ball_query/ball_query_cpu.cpp.o
+[  7%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/blending/sigmoid_alpha_blend_cpu.cpp.o
+[ 10%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/compositing/weighted_sum_cpu.cpp.o
+[ 18%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/compositing/norm_weighted_sum_cpu.cpp.o
+[ 18%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/gather_scatter/gather_scatter_cpu.cpp.o
+[ 18%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/compositing/alpha_composite_cpu.cpp.o
+[ 26%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/knn/knn_cpu.cpp.o
+[ 26%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/ext.cpp.o
+[ 26%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/face_areas_normals/face_areas_normals_cpu.cpp.o
+[ 28%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/marching_cubes/marching_cubes_cpu.cpp.o
+[ 31%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.cpp.o
+[ 34%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.cpp.o
+[ 36%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/packed_to_padded_tensor/packed_to_padded_tensor_cpu.cpp.o
+[ 39%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.cpp.o
+[ 42%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.cpp.o
+[ 47%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/point_mesh/point_mesh_cpu.cpp.o
+[ 47%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/points_to_volumes/points_to_volumes_cpu.cpp.o
+[ 50%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.cpp.o
+[ 52%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.cpp.o
+[ 57%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.cpp.o
+[ 57%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.cpp.o
+[ 60%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.cpp.o
+[ 63%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.cpp.o
+[ 68%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.cpp.o
+[ 68%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.cpp.o
+[ 71%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/pytorch/camera.cpp.o
+[ 73%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.cpp.o
+[ 76%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/pytorch/renderer.cpp.o
+[ 78%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/host/renderer.render.cpu.cpp.o
+[ 81%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/pytorch/tensor_util.cpp.o
+[ 84%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/rasterize_points/rasterize_points_cpu.cpp.o
+[ 86%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/rasterize_meshes/rasterize_meshes_cpu.cpp.o
+[ 92%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/sample_farthest_points/sample_farthest_points_cpu.cpp.o
+[ 92%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/pytorch/util.cpp.o
+[ 94%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/sample_pdf/sample_pdf_cpu.cpp.o
+[ 97%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/pulsar/warnings.cpp.o
+[100%] Linking CXX shared library lib64/libpytorch3d_musa.so
+[100%] Built target pytorch3d_musa
+Install the project...
+-- Install configuration: "Release"
+-- Set runtime path of "/home/pytorch3d/torch_musa/lib/libpytorch3d_musa.so" to ""
+== build for MUSA ==
+cmake -DBUILD_TEST=True -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/pytorch3d/torch_musa -DCMAKE_PREFIX_PATH=/opt/conda/envs/py38/lib/python3.8/site-packages;/opt/conda/envs/py38 -DENABLE_COMPILE_FP64=1 -DGENERATED_PORTING_DIR=generated_cuda_compatible -DPYTHON_INCLUDE_DIR=/opt/conda/envs/py38/include/python3.8 -DUSE_PYTHON=True /home/pytorch3d
+cmake --build . --target install --config Release -- -j 64
+== start building ==
+running install
+running bdist_egg
+running egg_info
+writing manifest file 'pytorch3d.egg-info/SOURCES.txt'
+running install_lib
+running build_py
+running build_ext
+/opt/conda/envs/py38/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/opt/conda/envs/py38/lib/python3.8/site-packages/setuptools/command/easy_install.py:156: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+Emitting ninja build file /home/pytorch3d/build/temp.linux-x86_64-3.8/build.ninja...
+Compiling objects...
+Using envvar MAX_JOBS (64) as the number of workers...
+ninja: no work to do.
+g++ -pthread -shared -B /opt/conda/envs/py38/compiler_compat -L/opt/conda/envs/py38/lib -Wl,-rpath=/opt/conda/envs/py38/lib -Wl,--no-as-needed -Wl,--sysroot=/ /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/ball_query/ball_query_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/blending/sigmoid_alpha_blend_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/alpha_composite_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/norm_weighted_sum_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/weighted_sum_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/ext.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/face_areas_normals/face_areas_normals_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/gather_scatter/gather_scatter_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/knn/knn_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/marching_cubes/marching_cubes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/packed_to_padded_tensor/packed_to_padded_tensor_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/tensor_util.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/util.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/warnings.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/sample_farthest_points/sample_farthest_points_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/sample_pdf/sample_pdf_cpu.o -L/opt/conda/envs/py38/lib/python3.8/site-packages/torch/lib -lpytorch3d_musa -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/lib.linux-x86_64-3.8/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+/opt/conda/envs/py38/compiler_compat/ld: cannot find -lpytorch3d_musa: No such file or directory
+collect2: error: ld returned 1 exit status
+error: command '/usr/bin/g++' failed with exit code 1

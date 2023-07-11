@@ -53,6 +53,7 @@ def get_extensions():
     extra_compile_args = {"gcc": ["-std=c++14", "-fPIC"]}
     define_macros = []
     include_dirs = [extensions_dir]
+    library_dirs = []
 
     force_cuda = os.getenv("FORCE_CUDA", "0") == "1"
     force_musa = os.getenv("FORCE_MUSA", "0") == "1"
@@ -206,8 +207,8 @@ def get_extensions():
                 extra_link_args += ["-fsanitize=address"]
 
             extra_link_args=extra_link_args + ["-Wl,-rpath,$ORIGIN/lib"]
-            library_dirs=["/home/mmcv/torch_musa/lib"]
-            libraries=["mmcv_musa"]
+            library_dirs=["/home/pytorch3d/torch_musa/lib"]
+            libraries=["pytorch3d_musa"]
             extension = CppExtension
         except ImportError:
             raise
@@ -221,6 +222,8 @@ def get_extensions():
         extension(
             "pytorch3d._C",
             sources,
+            libraries=libraries,
+            library_dirs=library_dirs,
             include_dirs=include_dirs,
             define_macros=define_macros,
             extra_compile_args=extra_compile_args,

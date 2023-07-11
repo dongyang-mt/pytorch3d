@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
-project(pytorch3d CXX C)
+project(pytorch3d_musa CXX C)
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
   set(LINUX TRUE)
@@ -59,7 +59,7 @@ include(${PROJECT_SOURCE_DIR}/cmake/utils.cmake)
 # Set default build type
 if(NOT CMAKE_BUILD_TYPE)
     message(STATUS "Build type not set - defaulting to Release")
-    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build from: Debug Release RelWithDebInfo MinSizeRel Coverage." FORCE)
+    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build from: Debug Release RelWithDebInfo MinSizeRel Coverage." FORCE)
 endif()
 
 string(APPEND CMAKE_CXX_FLAGS " -O2 -fPIC")
@@ -133,7 +133,7 @@ endif()
 
 #=============================================================
 
-set(PLUGIN_NAME "pytorch3d")
+set(PLUGIN_NAME "pytorch3d_musa")
 set(MUSA_CSRCS)
 set(PYTORCH3D_MUSA_CSRCS)
 
@@ -188,7 +188,7 @@ LIST(APPEND PYTORCH3D_MUSA_CSRCS ${_CSRCS})
 list(APPEND CMAKE_MODULE_PATH $ENV{MUSA_HOME}/cmake)
 find_package(MUSA REQUIRED)
 
-FILE(GLOB MU_SRCS pytorch3d/csrc/*.mu)
+FILE(GLOB_RECURSE MU_SRCS pytorch3d/csrc/*.mu)
 
 include(cmake/utils.cmake)
 append_cxx_flag_if_supported("-Wno-unused-parameter" CMAKE_CXX_FLAGS)
