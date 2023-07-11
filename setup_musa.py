@@ -1,534 +1,285 @@
+#!/usr/bin/env python
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the BSD-style license found in the
+# LICENSE file in the root directory of this source tree.
+
 import glob
 import os
-import platform
-import re
-from pkg_resources import DistributionNotFound, get_distribution, parse_version
+import runpy
+import sys
+import warnings
+from typing import List, Optional
+
+import torch
 from setuptools import find_packages, setup
+from torch.utils.cpp_extension import CppExtension, CUDA_HOME, CUDAExtension
 
 
-EXT_TYPE = ''
-try:
-    import torch
-    if torch.__version__ == 'parrots':
-        from parrots.utils.build_extension import BuildExtension
-        EXT_TYPE = 'parrots'
-    elif (hasattr(torch, 'is_mlu_available') and torch.is_mlu_available()) or \
-            os.getenv('FORCE_MLU', '0') == '1':
-        from torch_mlu.utils.cpp_extension import BuildExtension
-        EXT_TYPE = 'pytorch'
-    else:
-        from torch.utils.cpp_extension import BuildExtension
-        EXT_TYPE = 'pytorch'
-    cmd_class = {'build_ext': BuildExtension}
-except ModuleNotFoundError:
-    cmd_class = {}
-    print('Skip building ext ops due to the absence of torch.')
-
-
-def choose_requirement(primary, secondary):
-    """If some version of primary requirement installed, return primary, else
-    return secondary."""
-    try:
-        name = re.split(r'[!<>=]', primary)[0]
-        get_distribution(name)
-    except DistributionNotFound:
-        return secondary
-
-    return str(primary)
-
-
-def get_version():
-    version_file = 'mmcv/version.py'
-    with open(version_file, encoding='utf-8') as f:
-        exec(compile(f.read(), version_file, 'exec'))
-    return locals()['__version__']
-
-
-def parse_requirements(fname='requirements/runtime.txt', with_version=True):
-    """Parse the package dependencies listed in a requirements file but strips
-    specific versioning information.
-
-    Args:
-        fname (str): path to requirements file
-        with_version (bool, default=False): if True include version specs
-
-    Returns:
-        List[str]: list of requirements items
-
-    CommandLine:
-        python -c "import setup; print(setup.parse_requirements())"
+def get_existing_ccbin(nvcc_args: List[str]) -> Optional[str]:
     """
-    import sys
-    from os.path import exists
-    require_fpath = fname
+    Given a list of nvcc arguments, return the compiler if specified.
 
-    def parse_line(line):
-        """Parse information from a line in a requirements text file."""
-        if line.startswith('-r '):
-            # Allow specifying requirements in other files
-            target = line.split(' ')[1]
-            for info in parse_require_file(target):
-                yield info
-        else:
-            info = {'line': line}
-            if line.startswith('-e '):
-                info['package'] = line.split('#egg=')[1]
-            else:
-                # Remove versioning from the package
-                pat = '(' + '|'.join(['>=', '==', '>']) + ')'
-                parts = re.split(pat, line, maxsplit=1)
-                parts = [p.strip() for p in parts]
-
-                info['package'] = parts[0]
-                if len(parts) > 1:
-                    op, rest = parts[1:]
-                    if ';' in rest:
-                        # Handle platform specific dependencies
-                        # http://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-platform-specific-dependencies
-                        version, platform_deps = map(str.strip,
-                                                     rest.split(';'))
-                        info['platform_deps'] = platform_deps
-                    else:
-                        version = rest  # NOQA
-                    info['version'] = (op, version)
-            yield info
-
-    def parse_require_file(fpath):
-        with open(fpath) as f:
-            for line in f.readlines():
-                line = line.strip()
-                if line and not line.startswith('#'):
-                    yield from parse_line(line)
-
-    def gen_packages_items():
-        if exists(require_fpath):
-            for info in parse_require_file(require_fpath):
-                parts = [info['package']]
-                if with_version and 'version' in info:
-                    parts.extend(info['version'])
-                if not sys.version.startswith('3.4'):
-                    # apparently package_deps are broken in 3.4
-                    platform_deps = info.get('platform_deps')
-                    if platform_deps is not None:
-                        parts.append(';' + platform_deps)
-                item = ''.join(parts)
-                yield item
-
-    packages = list(gen_packages_items())
-    return packages
-
-
-install_requires = parse_requirements()
-
-try:
-    # OpenCV installed via conda.
-    import cv2  # NOQA: F401
-    major, minor, *rest = cv2.__version__.split('.')
-    if int(major) < 3:
-        raise RuntimeError(
-            f'OpenCV >=3 is required but {cv2.__version__} is installed')
-except ImportError:
-    # If first not installed install second package
-    CHOOSE_INSTALL_REQUIRES = [('opencv-python-headless>=3',
-                                'opencv-python>=3')]
-    for main, secondary in CHOOSE_INSTALL_REQUIRES:
-        install_requires.append(choose_requirement(main, secondary))
+    Note from CUDA doc: Single value options and list options must have
+    arguments, which must follow the name of the option itself by either
+    one of more spaces or an equals character.
+    """
+    last_arg = None
+    for arg in reversed(nvcc_args):
+        if arg == "-ccbin":
+            return last_arg
+        if arg.startswith("-ccbin="):
+            return arg[7:]
+        last_arg = arg
+    return None
 
 
 def get_extensions():
-    extensions = []
+    no_extension = os.getenv("PYTORCH3D_NO_EXTENSION", "0") == "1"
+    if no_extension:
+        msg = "SKIPPING EXTENSION BUILD. PYTORCH3D WILL NOT WORK!"
+        print(msg, file=sys.stderr)
+        warnings.warn(msg)
+        return []
 
-    if os.getenv('MMCV_WITH_OPS', '1') == '0':
-        return extensions
+    this_dir = os.path.dirname(os.path.abspath(__file__))
+    extensions_dir = os.path.join(this_dir, "pytorch3d", "csrc")
+    sources = glob.glob(os.path.join(extensions_dir, "**", "*.cpp"), recursive=True)
+    source_cuda = glob.glob(os.path.join(extensions_dir, "**", "*.cu"), recursive=True)
+    source_musa = glob.glob(os.path.join(extensions_dir, "**", "*.mu"), recursive=True)
+    extension = CppExtension
 
-    if EXT_TYPE == 'parrots':
-        ext_name = 'mmcv._ext'
-        from parrots.utils.build_extension import Extension
+    extra_compile_args = {"gcc": ["-std=c++14", "-fPIC"]}
+    define_macros = []
+    include_dirs = [extensions_dir]
 
-        # new parrots op impl do not use MMCV_USE_PARROTS
-        # define_macros = [('MMCV_USE_PARROTS', None)]
-        define_macros = []
-        include_dirs = []
-        op_files = glob.glob('./mmcv/ops/csrc/pytorch/cuda/*.cu') +\
-            glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp') +\
-            glob.glob('./mmcv/ops/csrc/parrots/*.cpp')
+    force_cuda = os.getenv("FORCE_CUDA", "0") == "1"
+    force_musa = os.getenv("FORCE_MUSA", "0") == "1"
+    # force_musa = True
+    force_no_cuda = os.getenv("PYTORCH3D_FORCE_NO_CUDA", "0") == "1"
+    force_no_musa = os.getenv("PYTORCH3D_FORCE_NO_MUSA", "0") == "1"
+    if (
+        not force_no_cuda and torch.cuda.is_available() and CUDA_HOME is not None
+    ) or force_cuda:
+        extension = CUDAExtension
+        sources += source_cuda
+        define_macros += [("WITH_CUDA", None)]
+        # Thrust is only used for its tuple objects.
+        # With CUDA 11.0 we can't use the cudatoolkit's version of cub.
+        # We take the risk that CUB and Thrust are incompatible, because
+        # we aren't using parts of Thrust which actually use CUB.
+        define_macros += [("THRUST_IGNORE_CUB_VERSION_CHECK", None)]
+        cub_home = os.environ.get("CUB_HOME", None)
+        nvcc_args = [
+            "-DCUDA_HAS_FP16=1",
+            "-D__CUDA_NO_HALF_OPERATORS__",
+            "-D__CUDA_NO_HALF_CONVERSIONS__",
+            "-D__CUDA_NO_HALF2_OPERATORS__",
+        ]
+        if os.name != "nt":
+            nvcc_args.append("-std=c++14")
+        if cub_home is None:
+            prefix = os.environ.get("CONDA_PREFIX", None)
+            if prefix is not None and os.path.isdir(prefix + "/include/cub"):
+                cub_home = prefix + "/include"
+
+        if cub_home is None:
+            warnings.warn(
+                "The environment variable `CUB_HOME` was not found. "
+                "NVIDIA CUB is required for compilation and can be downloaded "
+                "from `https://github.com/NVIDIA/cub/releases`. You can unpack "
+                "it to a location of your choice and set the environment variable "
+                "`CUB_HOME` to the folder containing the `CMakeListst.txt` file."
+            )
+        else:
+            include_dirs.append(os.path.realpath(cub_home).replace("\\ ", " "))
+        nvcc_flags_env = os.getenv("NVCC_FLAGS", "")
+        if nvcc_flags_env != "":
+            nvcc_args.extend(nvcc_flags_env.split(" "))
+
+        # This is needed for pytorch 1.6 and earlier. See e.g.
+        # https://github.com/facebookresearch/pytorch3d/issues/436
+        # It is harmless after https://github.com/pytorch/pytorch/pull/47404 .
+        # But it can be problematic in torch 1.7.0 and 1.7.1
+        if torch.__version__[:4] != "1.7.":
+            CC = os.environ.get("CC", None)
+            if CC is not None:
+                existing_CC = get_existing_ccbin(nvcc_args)
+                if existing_CC is None:
+                    CC_arg = "-ccbin={}".format(CC)
+                    nvcc_args.append(CC_arg)
+                elif existing_CC != CC:
+                    msg = f"Inconsistent ccbins: {CC} and {existing_CC}"
+                    raise ValueError(msg)
+
+        extra_compile_args["nvcc"] = nvcc_args
+    elif force_musa:
+        print("== build for MUSA ==")
+        # sources += source_musa
+        # define_macros += [("WITH_MUSA", None)]
+        # op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
+        #     glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp') + \
+        #     glob.glob('./mmcv/ops/csrc/pytorch/musa/*.cpp')
+        # include_dirs.append(os.path.abspath('./mmcv/ops/csrc/pytorch'))
+        # include_dirs.append(os.path.abspath('./'))
+        include_dirs.append(os.path.abspath('/usr/local/musa/include'))
+        # include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
+        # include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common/musa'))
+        include_dirs.append(os.path.abspath('/home/torch_musa'))
+        # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/core'))
+        # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/musa'))
+        # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/mudnn'))
+        # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/ops'))
+        # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/ops/musa'))
+        # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/utils'))
+        # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/utils'))
+        op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
+            glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp')
         include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
-        include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common/cuda'))
-        op_files.remove('./mmcv/ops/csrc/pytorch/cuda/iou3d_cuda.cu')
-        op_files.remove('./mmcv/ops/csrc/pytorch/cpu/bbox_overlaps_cpu.cpp')
-        op_files.remove('./mmcv/ops/csrc/pytorch/cuda/bias_act_cuda.cu')
-        cuda_args = os.getenv('MMCV_CUDA_ARGS')
-        extra_compile_args = {
-            'nvcc': [cuda_args, '-std=c++14'] if cuda_args else ['-std=c++14'],
-            'cxx': ['-std=c++14'],
-        }
-        if torch.cuda.is_available() or os.getenv('FORCE_CUDA', '0') == '1':
-            define_macros += [('MMCV_WITH_CUDA', None)]
-            extra_compile_args['nvcc'] += [
-                '-D__CUDA_NO_HALF_OPERATORS__',
-                '-D__CUDA_NO_HALF_CONVERSIONS__',
-                '-D__CUDA_NO_HALF2_OPERATORS__',
-            ]
-        ext_ops = Extension(
-            name=ext_name,
-            sources=op_files,
-            include_dirs=include_dirs,
-            define_macros=define_macros,
-            extra_compile_args=extra_compile_args,
-            cuda=True,
-            pytorch=True)
-        extensions.append(ext_ops)
-    elif EXT_TYPE == 'pytorch':
-        ext_name = 'mmcv._ext'
-        from torch.utils.cpp_extension import CppExtension, CUDAExtension
-
-        # prevent ninja from using too many resources
         try:
-            import psutil
-            num_cpu = len(psutil.Process().cpu_affinity())
-            cpu_use = max(4, num_cpu - 1)
-        except (ModuleNotFoundError, AttributeError):
-            cpu_use = 4
+            import sys
+            import sysconfig
+            sys.path.append(os.path.join("/home/pytorch", "tools"))
+            from setup_helpers.env import build_type, check_negative_env_flag
+            from tools.setup_helper.cmake_manager import CMakeManager
 
-        os.environ.setdefault('MAX_JOBS', str(cpu_use))
-        define_macros = [('DEBUG', 1)]
+            BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+            RERUN_CMAKE = False
 
-        # Before PyTorch1.8.0, when compiling CUDA code, `cxx` is a
-        # required key passed to PyTorch. Even if there is no flag passed
-        # to cxx, users also need to pass an empty list to PyTorch.
-        # Since PyTorch1.8.0, it has a default value so users do not need
-        # to pass an empty list anymore.
-        # More details at https://github.com/pytorch/pytorch/pull/45956
-        extra_compile_args = {'cxx': []}
-
-        if platform.system() != 'Windows':
-            extra_compile_args['cxx'] = ['-std=c++14']
-        else:
-            # TODO: In Windows, C++17 is chosen to compile extensions in
-            # PyTorch2.0 , but a compile error will be reported.
-            # As a temporary solution, force the use of C++14.
-            if parse_version(torch.__version__) >= parse_version('2.0.0'):
-                extra_compile_args['cxx'] = ['/std:c++14']
-
-        include_dirs = []
-        library_dirs = []
-        libraries = []
-        extra_objects = []
-        extra_link_args = []
-        is_rocm_pytorch = False
-        try:
-            from torch.utils.cpp_extension import ROCM_HOME
-            is_rocm_pytorch = True if ((torch.version.hip is not None) and
-                                       (ROCM_HOME is not None)) else False
-        except ImportError:
-            pass
-
-        if is_rocm_pytorch or torch.cuda.is_available() or os.getenv(
-                'FORCE_CUDA', '0') == '1':
-            if is_rocm_pytorch:
-                define_macros += [('MMCV_WITH_HIP', None)]
-            define_macros += [('MMCV_WITH_CUDA', None)]
-            cuda_args = os.getenv('MMCV_CUDA_ARGS')
-            extra_compile_args['nvcc'] = [cuda_args] if cuda_args else []
-            op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/cuda/*.cu') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/cuda/*.cpp')
-            extension = CUDAExtension
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/pytorch'))
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common/cuda'))
-        elif (hasattr(torch, 'is_mlu_available') and
-                torch.is_mlu_available()) or \
-                os.getenv('FORCE_MLU', '0') == '1':
-            from torch_mlu.utils.cpp_extension import MLUExtension
-
-            def get_mluops_version(file_path):
-                with open(file_path) as f:
-                    for line in f:
-                        if re.search('MLUOP_MAJOR', line):
-                            major = line.strip().split(' ')[2]
-                        if re.search('MLUOP_MINOR', line):
-                            minor = line.strip().split(' ')[2]
-                        if re.search('MLUOP_PATCHLEVEL', line):
-                            patchlevel = line.strip().split(' ')[2]
-                mluops_version = f'v{major}.{minor}.{patchlevel}'
-                return mluops_version
-
-            mmcv_mluops_version = get_mluops_version(
-                './mmcv/ops/csrc/pytorch/mlu/mlu_common_helper.h')
-            mlu_ops_path = os.getenv('MMCV_MLU_OPS_PATH')
-            if mlu_ops_path:
-                exists_mluops_version = get_mluops_version(
-                    mlu_ops_path + '/bangc-ops/mlu_op.h')
-                if exists_mluops_version != mmcv_mluops_version:
-                    print('the version of mlu-ops provided is %s,'
-                          ' while %s is needed.' %
-                          (exists_mluops_version, mmcv_mluops_version))
-                    exit()
+            def get_pytorch_install_path():
                 try:
-                    if os.path.exists('mlu-ops'):
-                        if os.path.islink('mlu-ops'):
-                            os.remove('mlu-ops')
-                            os.symlink(mlu_ops_path, 'mlu-ops')
-                        elif os.path.abspath('mlu-ops') != mlu_ops_path:
-                            os.symlink(mlu_ops_path, 'mlu-ops')
-                    else:
-                        os.symlink(mlu_ops_path, 'mlu-ops')
+                    import torch
+
+                    pytorch_install_root = os.path.dirname(os.path.abspath(torch.__file__))
                 except Exception:
-                    raise FileExistsError(
-                        'mlu-ops already exists, please move it out,'
-                        'or rename or remove it.')
-            else:
-                if not os.path.exists('mlu-ops'):
-                    import requests
-                    mluops_url = 'https://github.com/Cambricon/mlu-ops/' + \
-                        'archive/refs/tags/' + mmcv_mluops_version + '.zip'
-                    req = requests.get(mluops_url)
-                    with open('./mlu-ops.zip', 'wb') as f:
-                        try:
-                            f.write(req.content)
-                        except Exception:
-                            raise ImportError('failed to download mlu-ops')
+                    raise RuntimeError("Building error: import torch failed when building!")
+                return pytorch_install_root
 
-                    from zipfile import BadZipFile, ZipFile
-                    with ZipFile('./mlu-ops.zip', 'r') as archive:
-                        try:
-                            archive.extractall()
-                            dir_name = archive.namelist()[0].split('/')[0]
-                            os.rename(dir_name, 'mlu-ops')
-                        except BadZipFile:
-                            print('invalid mlu-ops.zip file')
-                else:
-                    exists_mluops_version = get_mluops_version(
-                        './mlu-ops/bangc-ops/mlu_op.h')
-                    if exists_mluops_version != mmcv_mluops_version:
-                        print('the version of provided mlu-ops is %s,'
-                              ' while %s is needed.' %
-                              (exists_mluops_version, mmcv_mluops_version))
-                        exit()
 
-            define_macros += [('MMCV_WITH_MLU', None)]
-            mlu_args = os.getenv('MMCV_MLU_ARGS', '-DNDEBUG ')
-            mluops_includes = []
-            mluops_includes.append('-I' +
-                                   os.path.abspath('./mlu-ops/bangc-ops'))
-            mluops_includes.append(
-                '-I' + os.path.abspath('./mlu-ops/bangc-ops/kernels'))
-            extra_compile_args['cncc'] = [mlu_args] + \
-                mluops_includes if mlu_args else mluops_includes
-            extra_compile_args['cxx'] += ['-fno-gnu-unique']
-            op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/mlu/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/common/mlu/*.mlu') + \
-                glob.glob(
-                    './mlu-ops/bangc-ops/core/**/*.cpp', recursive=True) + \
-                glob.glob(
-                    './mlu-ops/bangc-ops/kernels/**/*.cpp', recursive=True) + \
-                glob.glob(
-                    './mlu-ops/bangc-ops/kernels/**/*.mlu', recursive=True)
-            extra_link_args = [
-                '-Wl,--whole-archive',
-                './mlu-ops/bangc-ops/kernels/kernel_wrapper/lib/libextops.a',
-                '-Wl,--no-whole-archive'
+            def build_musa_lib():
+                # generate code for CUDA porting
+                build_dir = "build"
+                gen_porting_dir = "generated_cuda_compatible"
+                cuda_compatiable_path = os.path.join(BASE_DIR, build_dir, gen_porting_dir)
+                # if not os.path.isdir(cuda_compatiable_path):
+                #     port_cuda(pytorch_root, get_pytorch_install_path(), cuda_compatiable_path)
+
+                cmake = CMakeManager(build_dir)
+                env = os.environ.copy()
+                env["GENERATED_PORTING_DIR"] = gen_porting_dir
+                build_test = not check_negative_env_flag("BUILD_TEST")
+                cmake_python_library = "{}/{}".format(
+                    sysconfig.get_config_var("LIBDIR"), sysconfig.get_config_var("INSTSONAME")
+                )
+                cmake.generate("unknown", cmake_python_library, True, build_test, env, RERUN_CMAKE)
+                cmake.build(env)
+
+            build_musa_lib()
+            extra_link_args = []
+            extra_compile_args = [
+                "-std=c++14",
+                "-Wall", 
+                "-Wextra",
+                "-fno-strict-aliasing",
+                "-fstack-protector-all",
             ]
-            extension = MLUExtension
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common/mlu'))
-            include_dirs.append(os.path.abspath('./mlu-ops/bangc-ops'))
-        elif (hasattr(torch.backends, 'mps')
-              and torch.backends.mps.is_available()) or os.getenv(
-                  'FORCE_MPS', '0') == '1':
-            # objc compiler support
-            from distutils.unixccompiler import UnixCCompiler
-            if '.mm' not in UnixCCompiler.src_extensions:
-                UnixCCompiler.src_extensions.append('.mm')
-                UnixCCompiler.language_map['.mm'] = 'objc'
 
-            define_macros += [('MMCV_WITH_MPS', None)]
-            extra_compile_args = {}
-            extra_compile_args['cxx'] = ['-Wall', '-std=c++17']
-            extra_compile_args['cxx'] += [
-                '-framework', 'Metal', '-framework', 'Foundation'
+            # if build_type.is_debug():
+            extra_compile_args += ["-O0", "-ggdb"]
+            extra_link_args += ["-O0", "-ggdb"]
+
+            if build_type.is_rel_with_deb_info():
+                extra_compile_args += ["-g"]
+                extra_link_args += ["-g"]
+
+            use_asan = os.getenv("USE_ASAN", default="").upper() in [
+                "ON",
+                "1",
+                "YES",
+                "TRUE",
+                "Y",
             ]
-            extra_compile_args['cxx'] += ['-ObjC++']
-            # src
-            op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/common/mps/*.mm') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/mps/*.mm')
+
+            if use_asan:
+                extra_compile_args += ["-fsanitize=address"]
+                extra_link_args += ["-fsanitize=address"]
+
+            extra_link_args=extra_link_args + ["-Wl,-rpath,$ORIGIN/lib"]
+            library_dirs=["/home/mmcv/torch_musa/lib"]
+            libraries=["mmcv_musa"]
             extension = CppExtension
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common/mps'))
-        elif (os.getenv('FORCE_NPU', '0') == '1'):
-            print(f'Compiling {ext_name} only with CPU and NPU')
-            try:
-                from torch_npu.utils.cpp_extension import NpuExtension
-                define_macros += [('MMCV_WITH_NPU', None)]
-                extension = NpuExtension
-            except Exception:
-                raise ImportError('can not find any torch_npu')
-            # src
-            op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/common/npu/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/npu/*.cpp')
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common/npu'))
-        elif os.getenv('FORCE_MUSA', '0') == '1':
-            # op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
-            #     glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp') + \
-            #     glob.glob('./mmcv/ops/csrc/pytorch/musa/*.cpp')
-            # include_dirs.append(os.path.abspath('./mmcv/ops/csrc/pytorch'))
-            # include_dirs.append(os.path.abspath('./'))
-            include_dirs.append(os.path.abspath('/usr/local/musa/include'))
-            # include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
-            # include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common/musa'))
-            include_dirs.append(os.path.abspath('/home/torch_musa'))
-            # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/core'))
-            # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/musa'))
-            # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/mudnn'))
-            # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/ops'))
-            # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/ops/musa'))
-            # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/aten/utils'))
-            # include_dirs.append(os.path.abspath('/home/torch_musa/torch_musa/csrc/utils'))
-            op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp')
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
-            try:
-                import sys
-                import sysconfig
-                sys.path.append(os.path.join("/home/pytorch", "tools"))
-                from setup_helpers.env import build_type, check_negative_env_flag
-                from tools.setup_helper.cmake_manager import CMakeManager
+        except ImportError:
+            raise
+    else:
+        print("== build for CPU ==")
 
-                BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-                RERUN_CMAKE = False
+    print("== start building ==")
+    sources = [os.path.join(extensions_dir, s) for s in sources]
 
-                def get_pytorch_install_path():
-                    try:
-                        import torch
-
-                        pytorch_install_root = os.path.dirname(os.path.abspath(torch.__file__))
-                    except Exception:
-                        raise RuntimeError("Building error: import torch failed when building!")
-                    return pytorch_install_root
-
-
-                def build_musa_lib():
-                    # generate code for CUDA porting
-                    build_dir = "build"
-                    gen_porting_dir = "generated_cuda_compatible"
-                    cuda_compatiable_path = os.path.join(BASE_DIR, build_dir, gen_porting_dir)
-                    # if not os.path.isdir(cuda_compatiable_path):
-                    #     port_cuda(pytorch_root, get_pytorch_install_path(), cuda_compatiable_path)
-
-                    cmake = CMakeManager(build_dir)
-                    env = os.environ.copy()
-                    env["GENERATED_PORTING_DIR"] = gen_porting_dir
-                    build_test = not check_negative_env_flag("BUILD_TEST")
-                    cmake_python_library = "{}/{}".format(
-                        sysconfig.get_config_var("LIBDIR"), sysconfig.get_config_var("INSTSONAME")
-                    )
-                    cmake.generate("unknown", cmake_python_library, True, build_test, env, RERUN_CMAKE)
-                    cmake.build(env)
-
-                build_musa_lib()
-                extra_link_args = []
-                extra_compile_args = [
-                    "-std=c++14",
-                    "-Wall", 
-                    "-Wextra",
-                    "-fno-strict-aliasing",
-                    "-fstack-protector-all",
-                ]
-
-                # if build_type.is_debug():
-                extra_compile_args += ["-O0", "-ggdb"]
-                extra_link_args += ["-O0", "-ggdb"]
-
-                if build_type.is_rel_with_deb_info():
-                    extra_compile_args += ["-g"]
-                    extra_link_args += ["-g"]
-
-                use_asan = os.getenv("USE_ASAN", default="").upper() in [
-                    "ON",
-                    "1",
-                    "YES",
-                    "TRUE",
-                    "Y",
-                ]
-
-                if use_asan:
-                    extra_compile_args += ["-fsanitize=address"]
-                    extra_link_args += ["-fsanitize=address"]
-
-                extra_link_args=extra_link_args + ["-Wl,-rpath,$ORIGIN/lib"]
-                library_dirs=["/home/mmcv/torch_musa/lib"]
-                libraries=["mmcv_musa"]
-                extension = CppExtension
-            except ImportError:
-                raise
-        else:
-            print(f'Compiling {ext_name} only with CPU')
-            op_files = glob.glob('./mmcv/ops/csrc/pytorch/*.cpp') + \
-                glob.glob('./mmcv/ops/csrc/pytorch/cpu/*.cpp')
-            extension = CppExtension
-            include_dirs.append(os.path.abspath('./mmcv/ops/csrc/common'))
-        # Since the PR (https://github.com/open-mmlab/mmcv/pull/1463) uses
-        # c++14 features, the argument ['std=c++14'] must be added here.
-        # However, in the windows environment, some standard libraries
-        # will depend on c++17 or higher. In fact, for the windows
-        # environment, the compiler will choose the appropriate compiler
-        # to compile those cpp files, so there is no need to add the
-        # argument
-        if 'nvcc' in extra_compile_args and platform.system() != 'Windows':
-            extra_compile_args['nvcc'] += ['-std=c++14']
-
-        ext_ops = extension(
-            name=ext_name,
-            sources=op_files,
+    ext_modules = [
+        extension(
+            "pytorch3d._C",
+            sources,
             include_dirs=include_dirs,
-            libraries=libraries,
-            library_dirs=library_dirs,
             define_macros=define_macros,
-            extra_objects=extra_objects,
             extra_compile_args=extra_compile_args,
-            extra_link_args=extra_link_args + ["-Wl,-rpath,$ORIGIN/lib"] + ["-L/home/mmcv/torch_musa/lib/"])
-        extensions.append(ext_ops)
-    return extensions
+        )
+    ]
 
+    return ext_modules
+
+
+# Retrieve __version__ from the package.
+__version__ = runpy.run_path("pytorch3d/__init__.py")["__version__"]
+
+
+if os.getenv("PYTORCH3D_NO_NINJA", "0") == "1":
+
+    class BuildExtension(torch.utils.cpp_extension.BuildExtension):
+        def __init__(self, *args, **kwargs):
+            super().__init__(use_ninja=False, *args, **kwargs)
+
+else:
+    BuildExtension = torch.utils.cpp_extension.BuildExtension
+
+trainer = "pytorch3d.implicitron_trainer"
 
 setup(
-    name='mmcv' if os.getenv('MMCV_WITH_OPS', '1') == '1' else 'mmcv-lite',
-    version=get_version(),
-    description='OpenMMLab Computer Vision Foundation',
-    keywords='computer vision',
-    packages=find_packages(),
-    include_package_data=True,
-    classifiers=[
-        'Development Status :: 4 - Beta',
-        'License :: OSI Approved :: Apache Software License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
-        'Topic :: Utilities',
-    ],
-    url='https://github.com/open-mmlab/mmcv',
-    author='MMCV Contributors',
-    author_email='openmmlab@gmail.com',
-    install_requires=install_requires,
+    name="pytorch3d",
+    version=__version__,
+    author="FAIR",
+    url="https://github.com/facebookresearch/pytorch3d",
+    description="PyTorch3D is FAIR's library of reusable components "
+    "for deep Learning with 3D data.",
+    packages=find_packages(
+        exclude=("configs", "tests", "tests.*", "docs.*", "projects.*")
+    )
+    + [trainer],
+    package_dir={trainer: "projects/implicitron_trainer"},
+    install_requires=["fvcore", "iopath"],
     extras_require={
-        'all': parse_requirements('requirements.txt'),
-        'tests': parse_requirements('requirements/test.txt'),
-        'build': parse_requirements('requirements/build.txt'),
-        'optional': parse_requirements('requirements/optional.txt'),
+        "all": ["matplotlib", "tqdm>4.29.0", "imageio", "ipywidgets"],
+        "dev": ["flake8", "usort"],
+        "implicitron": [
+            "hydra-core>=1.1",
+            "visdom",
+            "lpips",
+            "tqdm>4.29.0",
+            "matplotlib",
+            "accelerate",
+            "sqlalchemy>=2.0",
+        ],
     },
-    python_requires='>=3.7',
+    entry_points={
+        "console_scripts": [
+            f"pytorch3d_implicitron_runner={trainer}.experiment:experiment",
+            f"pytorch3d_implicitron_visualizer={trainer}.visualize_reconstruction:main",
+        ]
+    },
     ext_modules=get_extensions(),
-    cmdclass=cmd_class,
-    zip_safe=False)
+    cmdclass={"build_ext": BuildExtension},
+    package_data={
+        "": ["*.json"],
+    },
+)

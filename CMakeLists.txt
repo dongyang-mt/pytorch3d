@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
-project(MMCV_MUSA CXX C)
+project(pytorch3d CXX C)
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
   set(LINUX TRUE)
 else()
-  message(FATAL_ERROR, "MMCV_MUSA could be built only on Linux now!")
+  message(FATAL_ERROR, "pytorch3d could be built only on Linux now!")
 endif()
 
 set(CMAKE_INSTALL_MESSAGE NEVER)
@@ -36,6 +36,8 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 option(USE_ASAN "Use Address Sanitizer" OFF)
 option(USE_TSAN "Use Thread Sanitizer" OFF)
 option(USE_MUSA "Use MUSA" ON)
+add_definitions(-DWITH_MUSA)
+
 include(CMakeDependentOption)
 cmake_dependent_option(
 	USE_MUDNN "Use muDNN" ON
@@ -131,9 +133,9 @@ endif()
 
 #=============================================================
 
-set(PLUGIN_NAME "mmcv_musa")
+set(PLUGIN_NAME "pytorch3d")
 set(MUSA_CSRCS)
-set(MMCV_MUSA_CSRCS)
+set(PYTORCH3D_MUSA_CSRCS)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/modules)
 set(DEPENDENT_LIBRARIES "")
@@ -165,18 +167,7 @@ else()
   set(MUSAToolkits_LIBRARIES "/usr/local/musa/lib/")
 endif()
 
-# include_directories(${PROJECT_SOURCE_DIR})
 include_directories(/home/torch_musa)
-# include_directories(${PROJECT_SOURCE_DIR}/torch_musa/csrc/aten/core)
-# include_directories(${PROJECT_SOURCE_DIR}/torch_musa/csrc/aten/utils)
-# include_directories(${PROJECT_SOURCE_DIR}/torch_musa/csrc/aten/ops)
-# include_directories(${PROJECT_SOURCE_DIR}/torch_musa/csrc/aten/ops/musa)
-include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/common)
-# include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/common/musa)
-# include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/common/utils)
-# include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/pytorch)
-# include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/pytorch/musa)
-# include_directories(${DEPENDENT_INCLUDE_DIRS})
 
 ## Set PyTorch headers dir
 include_directories(/home/torch_musa/build/generated_cuda_compatible/include)
@@ -190,41 +181,16 @@ else()
   message(FATAL_ERROR, "Cannot find installed Python head file directory")
 endif()
 
-FILE(GLOB _CSRCS
-# /home/torch_musa/torch_musa/csrc/utils/*.cpp
-# /home/torch_musa/torch_musa/csrc/aten/utils/*.cpp
-# /home/torch_musa/torch_musa/csrc/aten/ops/TensorFactory.cpp
-# /home/torch_musa/torch_musa/csrc/aten/musa/*.cpp
-# /home/torch_musa/torch_musa/csrc/aten/mudnn/*.cpp
-# /home/torch_musa/torch_musa/csrc/core/*.cpp
-/home/mmcv/mmcv/ops/csrc/pytorch/nms.cpp
-/home/mmcv/mmcv/ops/csrc/pytorch/roi_align.cpp
-# /home/torch_musa/torch_musa/aten/ops/*.cpp
-# /home/torch_musa/torch_musa/aten/utils/*.cpp
-# /home/torch_musa/torch_musa/aten/mudnn/*.cpp
-# /home/torch_musa/torch_musa/core/*.cpp
-# /home/torch_musa/torch_musa/utils/*.cpp
-# /home/torch_musa/torch_musa/csrc/aten/musa/*.cpp
-# /home/torch_musa/torch_musa/csrc/aten/ops/musa/*.cpp
-    )
+FILE(GLOB_RECURSE _CSRCS pytorch3d/csrc/*.cpp)
 
-LIST(APPEND MMCV_MUSA_CSRCS ${_CSRCS})
+LIST(APPEND PYTORCH3D_MUSA_CSRCS ${_CSRCS})
 
 list(APPEND CMAKE_MODULE_PATH $ENV{MUSA_HOME}/cmake)
 find_package(MUSA REQUIRED)
 
-FILE(GLOB ATEN_MUSA_CSRCS /home/mmcv/mmcv/ops/csrc/pytorch/musa/*.cpp)
+FILE(GLOB MU_SRCS pytorch3d/csrc/*.mu)
 
-FILE(GLOB PORTING_CSRCS
-/home/mmcv/mmcv/ops/csrc/pytorch/musa/*.cpp)
-
-FILE(GLOB MU_SRCS
-/home/mmcv/mmcv/ops/csrc/pytorch/musa/*.mu
-# /home/torch_musa/torch_musa/csrc/core/Sleep.mu
-    )
-
-
-include(/home/mmcv/cmake/utils.cmake)
+include(cmake/utils.cmake)
 append_cxx_flag_if_supported("-Wno-unused-parameter" CMAKE_CXX_FLAGS)
 append_cxx_flag_if_supported("-Wno-unused-variable" CMAKE_CXX_FLAGS)
 append_cxx_flag_if_supported("-Wno-sign-compare" CMAKE_CXX_FLAGS)
@@ -238,24 +204,14 @@ if(NOT ENABLE_COMPILE_FP64)
     string(APPEND MUSA_MCC_FLAGS " -mathx-disable-fp64")  # disable fp64
 endif()
 
+include_directories(pytorch3d/csrc/)
+
 set(MUSA_VERBOSE_BUILD ON)
 # TODO(@caizhi): Use FindOpenMP.cmake to replace absolute paths
 musa_include_directories(
-# ${CMAKE_CURRENT_SOURCE_DIR}/aten/ops/musa
-# /usr/lib/llvm-11/include/openmp/
-# /home/torch_musa/torch_musa/csrc/core
-# /home/torch_musa/torch_musa/csrc/aten/musa
-# /home/torch_musa/torch_musa/csrc/aten/mudnn
-# /home/torch_musa/torch_musa/csrc/aten/ops
-# /home/torch_musa/torch_musa/csrc/aten/ops/musa
-# /home/torch_musa/torch_musa/csrc/aten/utils
-# /home/torch_musa/torch_musa/csrc/utils
-/home/torch_musa
-/home/mmcv/mmcv/ops/csrc/common
-# /home/mmcv
-/home/mmcv/mmcv/ops/csrc/common/musa
+  /home/torch_musa
 )
-musa_add_library(${PLUGIN_NAME} SHARED ${MMCV_MUSA_CSRCS} ${MU_SRCS} ${PORTING_CSRCS} ${ATEN_MUSA_CSRCS})
+musa_add_library(${PLUGIN_NAME} SHARED ${PYTORCH3D_MUSA_CSRCS} ${MU_SRCS})
 
 set(INSTALL_BIN_DIR "bin")
 set(INSTALL_LIB_DIR "lib64")
