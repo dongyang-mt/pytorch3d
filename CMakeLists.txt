@@ -1,0 +1,285 @@
+cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
+
+project(MMCV_MUSA CXX C)
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+  set(LINUX TRUE)
+else()
+  message(FATAL_ERROR, "MMCV_MUSA could be built only on Linux now!")
+endif()
+
+set(CMAKE_INSTALL_MESSAGE NEVER)
+
+# check and set CMAKE_CXX_STANDARD
+string(FIND "${CMAKE_CXX_FLAGS}" "-std=c++" env_cxx_standard)
+if(env_cxx_standard GREATER -1)
+  message(
+      WARNING "C++ standard version definition detected in environment variable."
+      "PyTorch requires -std=c++17. Please remove -std=c++ settings in your environment.")
+endif()
+set(CMAKE_CXX_STANDARD 17 CACHE STRING "The C++ standard whose features are requested to build this target.")
+set(CMAKE_C_STANDARD   11 CACHE STRING "The C standard whose features are requested to build this target.")
+
+if(DEFINED GLIBCXX_USE_CXX11_ABI)
+  if(${GLIBCXX_USE_CXX11_ABI} EQUAL 1)
+    set(CXX_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_GLIBCXX_USE_CXX11_ABI=1")
+  endif()
+endif()
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Googletest's cmake files are going to set it on once they are processed. Let's
+# set it at the very beginning so that the entire build is deterministic.
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+
+option(USE_ASAN "Use Address Sanitizer" OFF)
+option(USE_TSAN "Use Thread Sanitizer" OFF)
+option(USE_MUSA "Use MUSA" ON)
+include(CMakeDependentOption)
+cmake_dependent_option(
+	USE_MUDNN "Use muDNN" ON
+	"USE_MUSA" OFF)
+
+cmake_dependent_option(USE_CCACHE "Attempt using CCache to wrap the compilation" ON "UNIX" OFF)
+if(USE_CCACHE)
+  find_program(CCACHE_PROGRAM ccache)
+  if(CCACHE_PROGRAM)
+    set(CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" CACHE STRING "C compiler launcher")
+    set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}" CACHE STRING "CXX compiler launcher")
+  else()
+    message(STATUS "Could not find ccache. Consider installing ccache to speed up compilation.")
+  endif()
+endif()
+
+include(${PROJECT_SOURCE_DIR}/cmake/utils.cmake)
+
+# Set default build type
+if(NOT CMAKE_BUILD_TYPE)
+    message(STATUS "Build type not set - defaulting to Release")
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build from: Debug Release RelWithDebInfo MinSizeRel Coverage." FORCE)
+endif()
+
+string(APPEND CMAKE_CXX_FLAGS " -O2 -fPIC")
+string(APPEND CMAKE_CXX_FLAGS " -Wall")
+string(APPEND CMAKE_CXX_FLAGS " -Wextra")
+# string(APPEND CMAKE_CXX_FLAGS " -Werror")
+string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-parameter")
+string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-variable")
+string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-function")
+string(APPEND CMAKE_CXX_FLAGS " -Wno-sign-compare")
+string(APPEND CMAKE_CXX_FLAGS " -Wno-missing-field-initializers")
+string(APPEND CMAKE_CXX_FLAGS " -Wno-non-template-friend")  #TODO(MT-AI): remove this CXX_FLAG after https://jira.mthreads.com/browse/SW-22268 resolved.
+string(APPEND CMAKE_CXX_FLAGS " -Wno-comment") #TODO(MT-AI): remove this CXX_FLAG after https://jira.mthreads.com/browse/SW-22268 resolved.
+
+# Use ld.gold if available, fall back to ld.bfd (the default ld) if not
+if(USE_GOLD_LINKER)
+  if(USE_DISTRIBUTED AND USE_MPI)
+    message(WARNING "Refusing to use gold when USE_MPI=1")
+  else()
+    execute_process(
+      COMMAND
+      "${CMAKE_C_COMPILER}" -fuse-ld=gold -Wl,--version
+       ERROR_QUIET
+       OUTPUT_VARIABLE LD_VERSION)
+    if(NOT "${LD_VERSION}" MATCHES "GNU gold")
+      message(WARNING "USE_GOLD_LINKER was set but ld.gold isn't available, turning it off")
+      set(USE_GOLD_LINKER OFF)
+    else()
+      message(STATUS "ld.gold is available, using it to link")
+      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
+      set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=gold")
+      set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -fuse-ld=gold")
+    endif()
+  endif()
+endif()
+
+# These flags are not available in GCC-4.8.5. Set only when using clang.
+# Compared against https://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Option-Summary.html
+if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+  if(${COLORIZE_OUTPUT})
+    string(APPEND CMAKE_CXX_FLAGS " -fcolor-diagnostics")
+  endif()
+endif()
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9)
+  if(${COLORIZE_OUTPUT})
+    string(APPEND CMAKE_CXX_FLAGS " -fdiagnostics-color=always")
+  endif()
+endif()
+string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fno-omit-frame-pointer -O0")
+string(APPEND CMAKE_LINKER_FLAGS_DEBUG " -fno-omit-frame-pointer -O0")
+string(APPEND CMAKE_CXX_FLAGS " -fno-math-errno")
+string(APPEND CMAKE_CXX_FLAGS " -fno-trapping-math")
+include(CheckCXXCompilerFlag)
+check_cxx_compiler_flag("-Werror=format" HAS_WERROR_FORMAT)
+if(HAS_WERROR_FORMAT)
+  string(APPEND CMAKE_CXX_FLAGS " -Werror=format")
+endif()
+check_cxx_compiler_flag("-Werror=cast-function-type" HAS_WERROR_CAST_FUNCTION_TYPE)
+if(HAS_WERROR_CAST_FUNCTION_TYPE)
+  string(APPEND CMAKE_CXX_FLAGS " -Werror=cast-function-type")
+endif()
+check_cxx_compiler_flag("-Werror=sign-compare" HAS_WERROR_SIGN_COMPARE)
+if(USE_ASAN)
+  string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fsanitize=address")
+  string(APPEND CMAKE_LINKER_FLAGS_DEBUG " -fsanitize=address")
+endif()
+if(USE_TSAN)
+  string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fsanitize=thread")
+  string(APPEND CMAKE_LINKER_FLAGS_DEBUG " -fsanitize=thread")
+endif()
+
+#=============================================================
+
+set(PLUGIN_NAME "mmcv_musa")
+set(MUSA_CSRCS)
+set(MMCV_MUSA_CSRCS)
+
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/modules)
+set(DEPENDENT_LIBRARIES "")
+set(DEPENDENT_INCLUDE_DIRS "")
+find_package(MUDNN)
+if(MUDNN_FOUND)
+  list(APPEND DEPENDENT_INCLUDE_DIRS ${MUDNN_INCLUDE_DIRS})
+  list(APPEND DEPENDENT_LIBRARIES ${MUDNN_LIBRARIES})
+else()
+  # set default mudnn library path
+  message(WARNING " The environment variable MUSA_HOME may be not specified. Using default MUDNN PATH: /usr/local/musa")
+  list(APPEND DEPENDENT_INCLUDE_DIRS "/usr/local/musa/include")
+  list(APPEND DEPENDENT_LIBRARIES "/usr/local/musa/lib/libmudnn.so")
+  set(MUDNN_PATH "/usr/local/musa")
+  set(MUDNN_LIBRARIES "/usr/local/musa/lib/libmudnn.so")
+endif()
+
+find_package(MUSAToolkits)
+if(MUSAToolkits_FOUND)
+  list(APPEND DEPENDENT_INCLUDE_DIRS ${MUSAToolkits_INCLUDE_DIRS})
+  list(APPEND DEPENDENT_LIBRARIES ${MUSAToolkits_LIBRARIES})
+else()
+  # set default musa_toolkits path
+  message(WARNING " The environment variable MUSA_HOME may be not specified. Using default MUSATOOLKITS PATH: /usr/local/musa")
+  list(APPEND DEPENDENT_INCLUDE_DIRS "/usr/local/musa/include/")
+  list(APPEND DEPENDENT_LIBRARIES "/usr/local/musa/lib/libmusart.so")
+  set(ENV{MUSA_HOME} "/usr/local/musa")
+  set(MUSATOOLKITS_PATH "/usr/local/musa")
+  set(MUSAToolkits_LIBRARIES "/usr/local/musa/lib/")
+endif()
+
+# include_directories(${PROJECT_SOURCE_DIR})
+include_directories(/home/torch_musa)
+# include_directories(${PROJECT_SOURCE_DIR}/torch_musa/csrc/aten/core)
+# include_directories(${PROJECT_SOURCE_DIR}/torch_musa/csrc/aten/utils)
+# include_directories(${PROJECT_SOURCE_DIR}/torch_musa/csrc/aten/ops)
+# include_directories(${PROJECT_SOURCE_DIR}/torch_musa/csrc/aten/ops/musa)
+include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/common)
+# include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/common/musa)
+# include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/common/utils)
+# include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/pytorch)
+# include_directories(${PROJECT_SOURCE_DIR}/mmcv/ops/csrc/pytorch/musa)
+# include_directories(${DEPENDENT_INCLUDE_DIRS})
+
+## Set PyTorch headers dir
+include_directories(/home/torch_musa/build/generated_cuda_compatible/include)
+include_directories(/home/torch_musa/build/generated_cuda_compatible/aten/src)
+include_directories(/home/torch_musa/build/generated_cuda_compatible/include/torch/csrc/api/include)
+
+# Set Python include dir
+if(DEFINED PYTHON_INCLUDE_DIR)
+  include_directories(${PYTHON_INCLUDE_DIR})
+else()
+  message(FATAL_ERROR, "Cannot find installed Python head file directory")
+endif()
+
+FILE(GLOB _CSRCS
+# /home/torch_musa/torch_musa/csrc/utils/*.cpp
+# /home/torch_musa/torch_musa/csrc/aten/utils/*.cpp
+# /home/torch_musa/torch_musa/csrc/aten/ops/TensorFactory.cpp
+# /home/torch_musa/torch_musa/csrc/aten/musa/*.cpp
+# /home/torch_musa/torch_musa/csrc/aten/mudnn/*.cpp
+# /home/torch_musa/torch_musa/csrc/core/*.cpp
+/home/mmcv/mmcv/ops/csrc/pytorch/nms.cpp
+/home/mmcv/mmcv/ops/csrc/pytorch/roi_align.cpp
+# /home/torch_musa/torch_musa/aten/ops/*.cpp
+# /home/torch_musa/torch_musa/aten/utils/*.cpp
+# /home/torch_musa/torch_musa/aten/mudnn/*.cpp
+# /home/torch_musa/torch_musa/core/*.cpp
+# /home/torch_musa/torch_musa/utils/*.cpp
+# /home/torch_musa/torch_musa/csrc/aten/musa/*.cpp
+# /home/torch_musa/torch_musa/csrc/aten/ops/musa/*.cpp
+    )
+
+LIST(APPEND MMCV_MUSA_CSRCS ${_CSRCS})
+
+list(APPEND CMAKE_MODULE_PATH $ENV{MUSA_HOME}/cmake)
+find_package(MUSA REQUIRED)
+
+FILE(GLOB ATEN_MUSA_CSRCS /home/mmcv/mmcv/ops/csrc/pytorch/musa/*.cpp)
+
+FILE(GLOB PORTING_CSRCS
+/home/mmcv/mmcv/ops/csrc/pytorch/musa/*.cpp)
+
+FILE(GLOB MU_SRCS
+/home/mmcv/mmcv/ops/csrc/pytorch/musa/*.mu
+# /home/torch_musa/torch_musa/csrc/core/Sleep.mu
+    )
+
+
+include(/home/mmcv/cmake/utils.cmake)
+append_cxx_flag_if_supported("-Wno-unused-parameter" CMAKE_CXX_FLAGS)
+append_cxx_flag_if_supported("-Wno-unused-variable" CMAKE_CXX_FLAGS)
+append_cxx_flag_if_supported("-Wno-sign-compare" CMAKE_CXX_FLAGS)
+append_cxx_flag_if_supported("-w" CMAKE_CXX_FLAGS)
+string(APPEND MUSA_MCC_FLAGS " -U__CUDA__")
+string(APPEND MUSA_MCC_FLAGS " -O0")
+string(APPEND MUSA_MCC_FLAGS " -DDEBUG=1")
+string(APPEND MUSA_MCC_FLAGS " -ggdb")
+
+if(NOT ENABLE_COMPILE_FP64)
+    string(APPEND MUSA_MCC_FLAGS " -mathx-disable-fp64")  # disable fp64
+endif()
+
+set(MUSA_VERBOSE_BUILD ON)
+# TODO(@caizhi): Use FindOpenMP.cmake to replace absolute paths
+musa_include_directories(
+# ${CMAKE_CURRENT_SOURCE_DIR}/aten/ops/musa
+# /usr/lib/llvm-11/include/openmp/
+# /home/torch_musa/torch_musa/csrc/core
+# /home/torch_musa/torch_musa/csrc/aten/musa
+# /home/torch_musa/torch_musa/csrc/aten/mudnn
+# /home/torch_musa/torch_musa/csrc/aten/ops
+# /home/torch_musa/torch_musa/csrc/aten/ops/musa
+# /home/torch_musa/torch_musa/csrc/aten/utils
+# /home/torch_musa/torch_musa/csrc/utils
+/home/torch_musa
+/home/mmcv/mmcv/ops/csrc/common
+# /home/mmcv
+/home/mmcv/mmcv/ops/csrc/common/musa
+)
+musa_add_library(${PLUGIN_NAME} SHARED ${MMCV_MUSA_CSRCS} ${MU_SRCS} ${PORTING_CSRCS} ${ATEN_MUSA_CSRCS})
+
+set(INSTALL_BIN_DIR "bin")
+set(INSTALL_LIB_DIR "lib64")
+set(INSTALL_INC_DIR "include")
+set(INSTALL_SHARE_DIR "share")
+set(INSTALL_DOC_DIR "docs")
+
+set_target_properties(${PLUGIN_NAME} PROPERTIES
+  OUTPUT_NAME ${PLUGIN_NAME}
+  POSITION_INDEPENDENT_CODE true
+  INSTALL_RPATH_USE_LINK_PATH false
+  RUNTIME_OUTPUT_DIRECTORY ${INSTALL_BIN_DIR}
+  LIBRARY_OUTPUT_DIRECTORY ${INSTALL_LIB_DIR}
+  ARCHIVE_OUTPUT_DIRECTORY ${INSTALL_LIB_DIR}
+  )
+# set_target_properties(${PLUGIN_NAME} PROPERTIES LINK_FLAGS "-Wl,-rpath,$ORIGIN")
+
+target_link_libraries(${PLUGIN_NAME} ${DEPENDENT_LIBRARIES})
+set(CUBLAS_LIB $ENV{MUSA_HOME}/lib/libmublas.so)
+target_link_libraries(${PLUGIN_NAME} ${CUBLAS_LIB})
+target_link_libraries(${PLUGIN_NAME} "/home/torch_musa/build/lib64/libmusa_python.so")
+
+message("VAR ORIGIN: ${ORIGIN}")
+install(TARGETS ${PLUGIN_NAME})
+
+# include(${PROJECT_SOURCE_DIR}/cmake/summary.cmake)
+# torch_musa_build_configuration_summary()
