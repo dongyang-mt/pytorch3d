@@ -16,6 +16,7 @@ import torch
 from setuptools import find_packages, setup
 from torch.utils.cpp_extension import CppExtension, CUDA_HOME, CUDAExtension
 from musa_extension import MUSAExtension, musa_build_ext, MUSA_BuildExtension
+import torch_utils_cpp_extension
 
 
 def get_existing_ccbin(nvcc_args: List[str]) -> Optional[str]:
@@ -190,7 +191,7 @@ setup(
         ]
     },
     ext_modules=get_extensions(),
-    cmdclass={"build_ext": MUSA_BuildExtension},
+    cmdclass={"build_ext": torch_utils_cpp_extension.BuildExtension},
     package_data={
         "": ["*.json"],
     },
