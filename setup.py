@@ -15,7 +15,7 @@ from typing import List, Optional
 import torch
 from setuptools import find_packages, setup
 from torch.utils.cpp_extension import CppExtension, CUDA_HOME, CUDAExtension
-from musa_extension import MUSAExtension, musa_build_ext
+from musa_extension import MUSAExtension, musa_build_ext, MUSA_BuildExtension
 
 
 def get_existing_ccbin(nvcc_args: List[str]) -> Optional[str]:
@@ -51,7 +51,9 @@ def get_extensions():
     source_musa = glob.glob(os.path.join(extensions_dir, "**", "*.mu"), recursive=True)
     extension = CppExtension
 
+    # extra_compile_args = {"cxx": ["-std=c++14", "-fPIC"]}
     extra_compile_args = {"gcc": ["-std=c++14", "-fPIC"]}
+    # extra_compile_args["gcc"] += '-D_GLIBCXX_USE_CXX11_ABI=' + str(int(torch._C._GLIBCXX_USE_CXX11_ABI))
     define_macros = []
     include_dirs = [extensions_dir]
 
@@ -144,12 +146,13 @@ __version__ = runpy.run_path("pytorch3d/__init__.py")["__version__"]
 
 
 if os.getenv("PYTORCH3D_NO_NINJA", "0") == "1":
-
+    print("== use custom use_ninja=False BuildExtension ==")
     class BuildExtension(torch.utils.cpp_extension.BuildExtension):
         def __init__(self, *args, **kwargs):
             super().__init__(use_ninja=False, *args, **kwargs)
 
 else:
+    print("== use torch.utils.cpp_extension.BuildExtension ==")
     BuildExtension = torch.utils.cpp_extension.BuildExtension
 
 trainer = "pytorch3d.implicitron_trainer"
@@ -187,7 +190,7 @@ setup(
         ]
     },
     ext_modules=get_extensions(),
-    cmdclass={"build_ext": musa_build_ext},
+    cmdclass={"build_ext": MUSA_BuildExtension},
     package_data={
         "": ["*.json"],
     },
