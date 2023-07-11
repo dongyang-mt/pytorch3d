@@ -45,8 +45,8 @@
 //        face spanned by (v0, v1, v2)
 //
 //
-
-#ifdef WITH_CUDA
+#define WITH_MUSA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> PointFaceDistanceForwardCuda(
     const torch::Tensor& points,
@@ -71,12 +71,12 @@ std::tuple<torch::Tensor, torch::Tensor> PointFaceDistanceForward(
     const torch::Tensor& tris_first_idx,
     const int64_t max_points,
     const double min_triangle_area) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(points_first_idx);
-    CHECK_CUDA(tris);
-    CHECK_CUDA(tris_first_idx);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(points_first_idx);
+    CHECK_MUSA(tris);
+    CHECK_MUSA(tris_first_idx);
     return PointFaceDistanceForwardCuda(
         points,
         points_first_idx,
@@ -109,7 +109,7 @@ std::tuple<torch::Tensor, torch::Tensor> PointFaceDistanceForward(
 //    grad_tris: FloatTensor of shape (T, 3, 3)
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> PointFaceDistanceBackwardCuda(
     const torch::Tensor& points,
@@ -131,12 +131,12 @@ std::tuple<torch::Tensor, torch::Tensor> PointFaceDistanceBackward(
     const torch::Tensor& idx_points,
     const torch::Tensor& grad_dists,
     const double min_triangle_area) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(tris);
-    CHECK_CUDA(idx_points);
-    CHECK_CUDA(grad_dists);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(tris);
+    CHECK_MUSA(idx_points);
+    CHECK_MUSA(grad_dists);
     return PointFaceDistanceBackwardCuda(
         points, tris, idx_points, grad_dists, min_triangle_area);
 #else
@@ -179,7 +179,7 @@ std::tuple<torch::Tensor, torch::Tensor> PointFaceDistanceBackward(
 //        spanned by (v0, v1, v2)
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> FacePointDistanceForwardCuda(
     const torch::Tensor& points,
@@ -204,12 +204,12 @@ std::tuple<torch::Tensor, torch::Tensor> FacePointDistanceForward(
     const torch::Tensor& tris_first_idx,
     const int64_t max_tris,
     const double min_triangle_area) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(points_first_idx);
-    CHECK_CUDA(tris);
-    CHECK_CUDA(tris_first_idx);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(points_first_idx);
+    CHECK_MUSA(tris);
+    CHECK_MUSA(tris_first_idx);
     return FacePointDistanceForwardCuda(
         points,
         points_first_idx,
@@ -242,7 +242,7 @@ std::tuple<torch::Tensor, torch::Tensor> FacePointDistanceForward(
 //    grad_tris: FloatTensor of shape (T, 3, 3)
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> FacePointDistanceBackwardCuda(
     const torch::Tensor& points,
@@ -265,12 +265,12 @@ std::tuple<torch::Tensor, torch::Tensor> FacePointDistanceBackward(
     const torch::Tensor& idx_tris,
     const torch::Tensor& grad_dists,
     const double min_triangle_area) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(tris);
-    CHECK_CUDA(idx_tris);
-    CHECK_CUDA(grad_dists);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(tris);
+    CHECK_MUSA(idx_tris);
+    CHECK_MUSA(grad_dists);
     return FacePointDistanceBackwardCuda(
         points, tris, idx_tris, grad_dists, min_triangle_area);
 #else
@@ -311,7 +311,7 @@ std::tuple<torch::Tensor, torch::Tensor> FacePointDistanceBackward(
 //        (v0, v1).
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> PointEdgeDistanceForwardCuda(
     const torch::Tensor& points,
@@ -334,12 +334,12 @@ std::tuple<torch::Tensor, torch::Tensor> PointEdgeDistanceForward(
     const torch::Tensor& segms,
     const torch::Tensor& segms_first_idx,
     const int64_t max_points) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(points_first_idx);
-    CHECK_CUDA(segms);
-    CHECK_CUDA(segms_first_idx);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(points_first_idx);
+    CHECK_MUSA(segms);
+    CHECK_MUSA(segms_first_idx);
     return PointEdgeDistanceForwardCuda(
         points, points_first_idx, segms, segms_first_idx, max_points);
 #else
@@ -365,7 +365,7 @@ std::tuple<torch::Tensor, torch::Tensor> PointEdgeDistanceForward(
 //    grad_segms: FloatTensor of shape (S, 2, 3)
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> PointEdgeDistanceBackwardCuda(
     const torch::Tensor& points,
@@ -385,12 +385,12 @@ std::tuple<torch::Tensor, torch::Tensor> PointEdgeDistanceBackward(
     const torch::Tensor& segms,
     const torch::Tensor& idx_points,
     const torch::Tensor& grad_dists) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(segms);
-    CHECK_CUDA(idx_points);
-    CHECK_CUDA(grad_dists);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(segms);
+    CHECK_MUSA(idx_points);
+    CHECK_MUSA(grad_dists);
     return PointEdgeDistanceBackwardCuda(points, segms, idx_points, grad_dists);
 #else
     AT_ERROR("Not compiled with GPU support.");
@@ -429,7 +429,7 @@ std::tuple<torch::Tensor, torch::Tensor> PointEdgeDistanceBackward(
 //
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> EdgePointDistanceForwardCuda(
     const torch::Tensor& points,
@@ -452,12 +452,12 @@ std::tuple<torch::Tensor, torch::Tensor> EdgePointDistanceForward(
     const torch::Tensor& segms,
     const torch::Tensor& segms_first_idx,
     const int64_t max_segms) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(points_first_idx);
-    CHECK_CUDA(segms);
-    CHECK_CUDA(segms_first_idx);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(points_first_idx);
+    CHECK_MUSA(segms);
+    CHECK_MUSA(segms_first_idx);
     return EdgePointDistanceForwardCuda(
         points, points_first_idx, segms, segms_first_idx, max_segms);
 #else
@@ -483,7 +483,7 @@ std::tuple<torch::Tensor, torch::Tensor> EdgePointDistanceForward(
 //    grad_segms: FloatTensor of shape (S, 2, 3)
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> EdgePointDistanceBackwardCuda(
     const torch::Tensor& points,
@@ -503,12 +503,12 @@ std::tuple<torch::Tensor, torch::Tensor> EdgePointDistanceBackward(
     const torch::Tensor& segms,
     const torch::Tensor& idx_segms,
     const torch::Tensor& grad_dists) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(segms);
-    CHECK_CUDA(idx_segms);
-    CHECK_CUDA(grad_dists);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(segms);
+    CHECK_MUSA(idx_segms);
+    CHECK_MUSA(grad_dists);
     return EdgePointDistanceBackwardCuda(points, segms, idx_segms, grad_dists);
 #else
     AT_ERROR("Not compiled with GPU support.");
@@ -541,7 +541,7 @@ std::tuple<torch::Tensor, torch::Tensor> EdgePointDistanceBackward(
 // For example, a medium sized batch with N = 32 with P = 10000 and T = 5000
 // will require for the forward pass 5.8G of memory to store dists.
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 torch::Tensor PointFaceArrayDistanceForwardCuda(
     const torch::Tensor& points,
@@ -558,10 +558,10 @@ torch::Tensor PointFaceArrayDistanceForward(
     const torch::Tensor& points,
     const torch::Tensor& tris,
     const double min_triangle_area) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(tris);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(tris);
     return PointFaceArrayDistanceForwardCuda(points, tris, min_triangle_area);
 #else
     AT_ERROR("Not compiled with GPU support.");
@@ -584,7 +584,7 @@ torch::Tensor PointFaceArrayDistanceForward(
 //    grad_tris: FloatTensor of shape (T, 3, 3)
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 std::tuple<torch::Tensor, torch::Tensor> PointFaceArrayDistanceBackwardCuda(
     const torch::Tensor& points,
     const torch::Tensor& tris,
@@ -602,11 +602,11 @@ std::tuple<torch::Tensor, torch::Tensor> PointFaceArrayDistanceBackward(
     const torch::Tensor& tris,
     const torch::Tensor& grad_dists,
     const double min_triangle_area) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(tris);
-    CHECK_CUDA(grad_dists);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(tris);
+    CHECK_MUSA(grad_dists);
     return PointFaceArrayDistanceBackwardCuda(
         points, tris, grad_dists, min_triangle_area);
 #else
@@ -639,7 +639,7 @@ std::tuple<torch::Tensor, torch::Tensor> PointFaceArrayDistanceBackward(
 // For example, a medium sized batch with N = 32 with P = 10000 and S = 5000
 // will require for the forward pass 5.8G of memory to store dists.
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 torch::Tensor PointEdgeArrayDistanceForwardCuda(
     const torch::Tensor& points,
     const torch::Tensor& segms);
@@ -652,10 +652,10 @@ torch::Tensor PointEdgeArrayDistanceForwardCpu(
 torch::Tensor PointEdgeArrayDistanceForward(
     const torch::Tensor& points,
     const torch::Tensor& segms) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(segms);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(segms);
     return PointEdgeArrayDistanceForwardCuda(points, segms);
 #else
     AT_ERROR("Not compiled with GPU support.");
@@ -676,7 +676,7 @@ torch::Tensor PointEdgeArrayDistanceForward(
 //   grad_segms: FloatTensor of shape (S, 2, 3)
 //
 
-#ifdef WITH_CUDA
+#ifdef WITH_MUSA
 
 std::tuple<torch::Tensor, torch::Tensor> PointEdgeArrayDistanceBackwardCuda(
     const torch::Tensor& points,
@@ -693,11 +693,11 @@ std::tuple<torch::Tensor, torch::Tensor> PointEdgeArrayDistanceBackward(
     const torch::Tensor& points,
     const torch::Tensor& segms,
     const torch::Tensor& grad_dists) {
-  if (points.is_cuda()) {
-#ifdef WITH_CUDA
-    CHECK_CUDA(points);
-    CHECK_CUDA(segms);
-    CHECK_CUDA(grad_dists);
+  if (!points.is_cpu()) {
+#ifdef WITH_MUSA
+    CHECK_MUSA(points);
+    CHECK_MUSA(segms);
+    CHECK_MUSA(grad_dists);
     return PointEdgeArrayDistanceBackwardCuda(points, segms, grad_dists);
 #else
     AT_ERROR("Not compiled with GPU support.");
@@ -705,3 +705,5 @@ std::tuple<torch::Tensor, torch::Tensor> PointEdgeArrayDistanceBackward(
   }
   return PointEdgeArrayDistanceBackwardCpu(points, segms, grad_dists);
 }
+
+#undef WITH_MUSA

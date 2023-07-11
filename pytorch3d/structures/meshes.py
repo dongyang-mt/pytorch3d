@@ -371,8 +371,8 @@ class Meshes:
                     dtype=torch.bool,
                     device=self.device,
                 )
-                if (len(self._num_verts_per_mesh.unique()) == 1) and (
-                    len(self._num_faces_per_mesh.unique()) == 1
+                if (len(self._num_verts_per_mesh.to('cpu').unique()) == 1) and (
+                    len(self._num_faces_per_mesh.to('cpu').unique()) == 1
                 ):
                     self.equisized = True
 
@@ -403,7 +403,7 @@ class Meshes:
 
                 self.valid = self._num_faces_per_mesh > 0
                 self._F = int(self._num_faces_per_mesh.max())
-                if len(self._num_faces_per_mesh.unique()) == 1:
+                if len(self._num_faces_per_mesh.to('cpu').unique()) == 1:
                     self.equisized = True
 
                 self._num_verts_per_mesh = torch.full(
@@ -1082,7 +1082,9 @@ class Meshes:
 
         V = self._verts_packed.shape[0]
         edges_hash = V * edges[:, 0] + edges[:, 1]
-        u, inverse_idxs = torch.unique(edges_hash, return_inverse=True)
+        u, inverse_idxs = torch.unique(edges_hash.to('cpu'), return_inverse=True)
+        u = u.to(edges_hash.device)
+        inverse_idxs = inverse_idxs.to(edges_hash.device)
 
         # Find indices of unique elements.
         # TODO (nikhilar) remove following 4 lines when torch.unique has support
@@ -1104,10 +1106,10 @@ class Meshes:
         ones = torch.ones(1, dtype=torch.int32, device=self.device).expand(
             self._edges_packed_to_mesh_idx.shape
         )
-        num_edges_per_mesh = num_edges_per_mesh.scatter_add_(
-            0, self._edges_packed_to_mesh_idx, ones
+        num_edges_per_mesh = num_edges_per_mesh.to('cpu').scatter_add_(
+            0, self._edges_packed_to_mesh_idx.to('cpu'), ones.to('cpu')
         )
-        self._num_edges_per_mesh = num_edges_per_mesh
+        self._num_edges_per_mesh = num_edges_per_mesh.to(self.device)
 
         # Compute first idx for each mesh in edges_packed
         mesh_to_edges_packed_first_idx = torch.zeros(
@@ -1631,7 +1633,8 @@ class Meshes:
                 # faces_to_keep = [[0, 6, 4],
                 #                  [0, 2, 6]]
                 # Then we want verts_to_keep to contain only vertices [0, 2, 4, 6]:
-                vertex_ids_to_keep = torch.unique(faces_to_keep, sorted=True)
+                vertex_ids_to_keep = torch.unique(faces_to_keep.to('cpu'), sorted=True)
+                vertex_ids_to_keep = vertex_ids_to_keep.to(faces_to_keep.device)
                 sub_verts.append(verts[vertex_ids_to_keep])
                 sub_verts_ids[-1].append(vertex_ids_to_keep)
 
@@ -1644,8 +1647,10 @@ class Meshes:
                 #  [0, 1, 3]],
                 # as each point id got reduced to its sort rank.
                 _, ids_of_unique_ids_in_sorted = torch.unique(
-                    faces_to_keep, return_inverse=True
+                    faces_to_keep.to('cpu'), return_inverse=True
                 )
+                ids_of_unique_ids_in_sorted = ids_of_unique_ids_in_sorted.to(faces_to_keep.device)
+
                 sub_faces.append(ids_of_unique_ids_in_sorted)
 
         return self.__class__(

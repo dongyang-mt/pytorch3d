@@ -313,7 +313,7 @@ def point_mesh_edge_distance(meshes: Meshes, pcls: Pointclouds):
     # weight each example by the inverse of number of edges in the example
     segm_to_mesh_idx = meshes.edges_packed_to_mesh_idx()  # (sum(S_n),)
     num_segms_per_mesh = meshes.num_edges_per_mesh()  # (N,)
-    weights_s = num_segms_per_mesh.gather(0, segm_to_mesh_idx)
+    weights_s = num_segms_per_mesh.to('cpu').gather(0, segm_to_mesh_idx.to('cpu')).to(segm_to_mesh_idx.device)
     weights_s = 1.0 / weights_s.float()
     edge_to_point = edge_to_point * weights_s
     edge_dist = edge_to_point.sum() / N

@@ -206,7 +206,7 @@ class Pointclouds:
                     device=self.device,
                 )
 
-                if len(num_points_per_cloud.unique()) == 1:
+                if len(num_points_per_cloud.to('cpu').unique()) == 1:
                     self.equisized = True
                 self._num_points_per_cloud = num_points_per_cloud
             else:

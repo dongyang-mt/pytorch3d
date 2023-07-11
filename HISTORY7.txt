@@ -1,0 +1,1528 @@
+VAR ORIGIN: 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/pytorch3d/build
+[  2%] Building CXX object CMakeFiles/pytorch3d_musa.dir/pytorch3d/csrc/ext.cpp.o
+[  5%] Linking CXX shared library lib64/libpytorch3d_musa.so
+[100%] Built target pytorch3d_musa
+Install the project...
+-- Install configuration: "Release"
+-- Set runtime path of "/home/pytorch3d/torch_musa/lib/libpytorch3d_musa.so" to ""
+== build for MUSA ==
+cmake -DBUILD_TEST=True -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/pytorch3d/torch_musa -DCMAKE_PREFIX_PATH=/opt/conda/envs/py38/lib/python3.8/site-packages;/opt/conda/envs/py38 -DENABLE_COMPILE_FP64=1 -DGENERATED_PORTING_DIR=generated_cuda_compatible -DPYTHON_INCLUDE_DIR=/opt/conda/envs/py38/include/python3.8 -DUSE_PYTHON=True /home/pytorch3d
+cmake --build . --target install --config Release -- -j 64
+== start building ==
+running install
+running bdist_egg
+running egg_info
+writing manifest file 'pytorch3d.egg-info/SOURCES.txt'
+running install_lib
+running build_py
+running build_ext
+/opt/conda/envs/py38/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/opt/conda/envs/py38/lib/python3.8/site-packages/setuptools/command/easy_install.py:156: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+Emitting ninja build file /home/pytorch3d/build/temp.linux-x86_64-3.8/build.ninja...
+Compiling objects...
+Using envvar MAX_JOBS (64) as the number of workers...
+[1/1] c++ -MMD -MF /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/ext.o.d -pthread -B /opt/conda/envs/py38/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/pytorch3d/pytorch3d/csrc -I/usr/local/musa/include -I/home/torch_musa -I/home/pytorch3d/mmcv/ops/csrc/common -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/TH -I/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/THC -I/opt/conda/envs/py38/include/python3.8 -c -c /home/pytorch3d/pytorch3d/csrc/ext.cpp -o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/ext.o -std=c++14 -Wall -Wextra -fno-strict-aliasing -fstack-protector-all -O0 -ggdb -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=1
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+In file included from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:46: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   46 | #pragma clang diagnostic push
+      | 
+/home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:47: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   47 | #pragma clang diagnostic ignored "-Weverything"
+      | 
+In file included from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:49: warning: ignoring #pragma clang diagnostic [-Wunknown-pragmas]
+   49 | #pragma clang diagnostic pop
+      | 
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymFloat.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/Scalar.h:12,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/TensorBody.h:16,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::add(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:33:38: warning: unused parameter ‘other’ [-Wunused-parameter]
+   33 |   virtual SymNode add(const SymNode& other) {
+      |                       ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::sub(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:36:38: warning: unused parameter ‘other’ [-Wunused-parameter]
+   36 |   virtual SymNode sub(const SymNode& other) {
+      |                       ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::mul(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:39:38: warning: unused parameter ‘other’ [-Wunused-parameter]
+   39 |   virtual SymNode mul(const SymNode& other) {
+      |                       ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::truediv(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:42:42: warning: unused parameter ‘other’ [-Wunused-parameter]
+   42 |   virtual SymNode truediv(const SymNode& other) {
+      |                           ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::pow(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:45:38: warning: unused parameter ‘other’ [-Wunused-parameter]
+   45 |   virtual SymNode pow(const SymNode& other) {
+      |                       ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::floordiv(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:48:43: warning: unused parameter ‘other’ [-Wunused-parameter]
+   48 |   virtual SymNode floordiv(const SymNode& other) {
+      |                            ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::mod(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:51:38: warning: unused parameter ‘other’ [-Wunused-parameter]
+   51 |   virtual SymNode mod(const SymNode& other) {
+      |                       ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::eq(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:54:37: warning: unused parameter ‘other’ [-Wunused-parameter]
+   54 |   virtual SymNode eq(const SymNode& other) {
+      |                      ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::ne(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:57:37: warning: unused parameter ‘other’ [-Wunused-parameter]
+   57 |   virtual SymNode ne(const SymNode& other) {
+      |                      ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::gt(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:60:37: warning: unused parameter ‘other’ [-Wunused-parameter]
+   60 |   virtual SymNode gt(const SymNode& other) {
+      |                      ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::lt(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:63:37: warning: unused parameter ‘other’ [-Wunused-parameter]
+   63 |   virtual SymNode lt(const SymNode& other) {
+      |                      ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::le(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:66:37: warning: unused parameter ‘other’ [-Wunused-parameter]
+   66 |   virtual SymNode le(const SymNode& other) {
+      |                      ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::ge(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:69:37: warning: unused parameter ‘other’ [-Wunused-parameter]
+   69 |   virtual SymNode ge(const SymNode& other) {
+      |                      ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::sym_min(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:81:42: warning: unused parameter ‘other’ [-Wunused-parameter]
+   81 |   virtual SymNode sym_min(const SymNode& other) {
+      |                           ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::sym_max(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:84:42: warning: unused parameter ‘other’ [-Wunused-parameter]
+   84 |   virtual SymNode sym_max(const SymNode& other) {
+      |                           ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::sym_or(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:87:41: warning: unused parameter ‘other’ [-Wunused-parameter]
+   87 |   virtual SymNode sym_or(const SymNode& other) {
+      |                          ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::sym_and(const SymNode&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:90:42: warning: unused parameter ‘other’ [-Wunused-parameter]
+   90 |   virtual SymNode sym_and(const SymNode& other) {
+      |                           ~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::is_non_overlapping_and_dense(c10::ArrayRef<c10::intrusive_ptr<c10::SymNodeImpl> >, c10::ArrayRef<c10::intrusive_ptr<c10::SymNodeImpl> >)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:98:25: warning: unused parameter ‘sizes’ [-Wunused-parameter]
+   98 |       ArrayRef<SymNode> sizes,
+      |       ~~~~~~~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:99:25: warning: unused parameter ‘strides’ [-Wunused-parameter]
+   99 |       ArrayRef<SymNode> strides) {
+      |       ~~~~~~~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::wrap_int(int64_t)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:108:36: warning: unused parameter ‘num’ [-Wunused-parameter]
+  108 |   virtual SymNode wrap_int(int64_t num) {
+      |                            ~~~~~~~~^~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::wrap_float(double)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:111:37: warning: unused parameter ‘num’ [-Wunused-parameter]
+  111 |   virtual SymNode wrap_float(double num) {
+      |                              ~~~~~~~^~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual c10::SymNode c10::SymNodeImpl::wrap_bool(bool)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:114:34: warning: unused parameter ‘num’ [-Wunused-parameter]
+  114 |   virtual SymNode wrap_bool(bool num) {
+      |                             ~~~~~^~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual int64_t c10::SymNodeImpl::guard_int(const char*, int64_t)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:117:41: warning: unused parameter ‘file’ [-Wunused-parameter]
+  117 |   virtual int64_t guard_int(const char* file, int64_t line) {
+      |                             ~~~~~~~~~~~~^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:117:55: warning: unused parameter ‘line’ [-Wunused-parameter]
+  117 |   virtual int64_t guard_int(const char* file, int64_t line) {
+      |                                               ~~~~~~~~^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual bool c10::SymNodeImpl::guard_bool(const char*, int64_t)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:120:39: warning: unused parameter ‘file’ [-Wunused-parameter]
+  120 |   virtual bool guard_bool(const char* file, int64_t line) {
+      |                           ~~~~~~~~~~~~^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:120:53: warning: unused parameter ‘line’ [-Wunused-parameter]
+  120 |   virtual bool guard_bool(const char* file, int64_t line) {
+      |                                             ~~~~~~~~^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h: In member function ‘virtual double c10::SymNodeImpl::guard_float(const char*, int64_t)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:123:42: warning: unused parameter ‘file’ [-Wunused-parameter]
+  123 |   virtual double guard_float(const char* file, int64_t line) {
+      |                              ~~~~~~~~~~~~^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/SymNodeImpl.h:123:56: warning: unused parameter ‘line’ [-Wunused-parameter]
+  123 |   virtual double guard_float(const char* file, int64_t line) {
+      |                                                ~~~~~~~~^~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/util/Logging.h:28,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/TensorImpl.h:19,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/TensorBody.h:20,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/util/logging_is_not_google_glog.h: In member function ‘void c10::LoggerVoidify::operator&(const ostream&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/util/logging_is_not_google_glog.h:55:38: warning: unused parameter ‘s’ [-Wunused-parameter]
+   55 |   void operator&(const std::ostream& s) {}
+      |                  ~~~~~~~~~~~~~~~~~~~~^
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/TensorBody.h:20,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function_hook.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:2,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/variable.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/TensorImpl.h: In member function ‘void c10::TensorImpl::set_allow_tensor_metadata_change(bool)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/c10/core/TensorImpl.h:1766:46: warning: unused parameter ‘value’ [-Wunused-parameter]
+ 1766 |   void set_allow_tensor_metadata_change(bool value) {
+      |                                         ~~~~~^~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/ivalue_inl.h:12,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/ivalue.h:1467,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/List_inl.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/List.h:494,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/IListRef_inl.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/IListRef.h:632,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/WrapDimUtils.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorNames.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/NamedTensorUtils.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/variable.h:11,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/jit_type.h: In member function ‘virtual std::string c10::SymIntType::annotation_str_impl(c10::TypePrinter) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/jit_type.h:1355:47: warning: unused parameter ‘printer’ [-Wunused-parameter]
+ 1355 |   std::string annotation_str_impl(TypePrinter printer = nullptr) const override {
+      |                                   ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/jit_type.h: In member function ‘virtual std::string c10::SymFloatType::annotation_str_impl(c10::TypePrinter) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/jit_type.h:1375:47: warning: unused parameter ‘printer’ [-Wunused-parameter]
+ 1375 |   std::string annotation_str_impl(TypePrinter printer = nullptr) const override {
+      |                                   ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/library.h:62,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/autograd_not_implemented_fallback.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/op_registration/op_allowlist.h: In function ‘constexpr bool c10::impl::op_allowlist_check(c10::string_view)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/core/op_registration/op_allowlist.h:130:47: warning: unused parameter ‘op_name’ [-Wunused-parameter]
+  130 | constexpr bool op_allowlist_check(string_view op_name) {
+      |                                   ~~~~~~~~~~~~^~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function.h:11,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/custom_function.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:5,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/utils/variadic.h: In member function ‘void torch::CountTensors::operator()(const at::Tensor&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/utils/variadic.h:18:37: warning: unused parameter ‘x’ [-Wunused-parameter]
+   18 |   void operator()(const at::Tensor& x) {
+      |                   ~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/utils/variadic.h: In member function ‘void torch::CountVariables::operator()(const Variable&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/utils/variadic.h:36:45: warning: unused parameter ‘x’ [-Wunused-parameter]
+   36 |   void operator()(const autograd::Variable& x) {
+      |                   ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/custom_function.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:5,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function.h: In member function ‘uint32_t torch::autograd::Node::add_input_metadata(torch::autograd::Node::undefined_input)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/function.h:218:47: warning: unused parameter ‘u’ [-Wunused-parameter]
+  218 |   uint32_t add_input_metadata(undefined_input u) noexcept {
+      |                               ~~~~~~~~~~~~~~~~^
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorIterator.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/ops/_addmm_activation_meta.h:12,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/ops/_addmm_activation_native.h:15,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/NativeFunctions.h:37,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorIndexing.h:13,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/ATen.h:18,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:9,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h: In member function ‘virtual void at::impl::MetaBase::set_output_strided(int64_t, at::IntArrayRef, at::IntArrayRef, c10::TensorOptions, at::DimnameList)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:96:15: warning: unused parameter ‘output_idx’ [-Wunused-parameter]
+   96 |       int64_t output_idx,
+      |       ~~~~~~~~^~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:97:19: warning: unused parameter ‘sizes’ [-Wunused-parameter]
+   97 |       IntArrayRef sizes,
+      |       ~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:98:19: warning: unused parameter ‘strides’ [-Wunused-parameter]
+   98 |       IntArrayRef strides,
+      |       ~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:99:21: warning: unused parameter ‘options’ [-Wunused-parameter]
+   99 |       TensorOptions options,
+      |       ~~~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:100:19: warning: unused parameter ‘names’ [-Wunused-parameter]
+  100 |       DimnameList names = {}) {
+      |       ~~~~~~~~~~~~^~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h: In member function ‘virtual void at::impl::MetaBase::set_output_raw_strided(int64_t, at::IntArrayRef, at::IntArrayRef, c10::TensorOptions, at::DimnameList)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:108:15: warning: unused parameter ‘output_idx’ [-Wunused-parameter]
+  108 |       int64_t output_idx,
+      |       ~~~~~~~~^~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:109:19: warning: unused parameter ‘sizes’ [-Wunused-parameter]
+  109 |       IntArrayRef sizes,
+      |       ~~~~~~~~~~~~^~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:110:19: warning: unused parameter ‘strides_hint’ [-Wunused-parameter]
+  110 |       IntArrayRef strides_hint,
+      |       ~~~~~~~~~~~~^~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:111:21: warning: unused parameter ‘options’ [-Wunused-parameter]
+  111 |       TensorOptions options,
+      |       ~~~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/ATen/TensorMeta.h:112:19: warning: unused parameter ‘names’ [-Wunused-parameter]
+  112 |       DimnameList names = {}) {
+      |       ~~~~~~~~~~~~^~~~~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/ir/ir.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/function_impl.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/method.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/object.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/serialize/input-archive.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/serialize/archive.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/samplers/serialize.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/samplers.h:8,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets/chunk.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:9,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/runtime/operator.h: In lambda function:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/runtime/operator.h:148:35: warning: unused parameter ‘op’ [-Wunused-parameter]
+  148 |         [](const JitOnlyOperator& op) {
+      |            ~~~~~~~~~~~~~~~~~~~~~~~^~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/runtime/operator.h: In lambda function:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/runtime/operator.h:182:35: warning: unused parameter ‘op’ [-Wunused-parameter]
+  182 |         [](const JitOnlyOperator& op) {
+      |            ~~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/runtime/graph_executor.h:9,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/function_impl.h:5,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/method.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/object.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/serialize/input-archive.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/serialize/archive.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/samplers/serialize.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/samplers.h:8,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets/chunk.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:9,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/runtime/interpreter.h: In constructor ‘torch::jit::InterpreterContinuation::InterpreterContinuation(const torch::jit::InterpreterState&, torch::jit::Stack, int64_t, c10::optional<at::ThreadLocalState>)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/runtime/interpreter.h:135:15: warning: unused parameter ‘dist_autograd_context_id’ [-Wunused-parameter]
+  135 |       int64_t dist_autograd_context_id = 0,
+      |       ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:13,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/serialize/input-archive.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/serialize/archive.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/samplers/serialize.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/samplers.h:8,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets/chunk.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:9,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/compilation_unit.h: In member function ‘void torch::jit::CompilationUnit::set_optimized(bool)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/compilation_unit.h:75:27: warning: unused parameter ‘o’ [-Wunused-parameter]
+   75 |   void set_optimized(bool o) {
+      |                      ~~~~~^
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/serialize/input-archive.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/serialize/archive.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/samplers/serialize.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/samplers.h:8,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets/chunk.h:7,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/data.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:9,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h: In member function ‘void torch::jit::Module::set_optimized(bool)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:100:27: warning: unused parameter ‘o’ [-Wunused-parameter]
+  100 |   void set_optimized(bool o) {
+      |                      ~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h: In static member function ‘static torch::jit::detail::ModulePolicy::value_type torch::jit::detail::ModulePolicy::create(const std::vector<torch::jit::detail::SlotCursor>&, c10::IValue)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:577:46: warning: unused parameter ‘cursors’ [-Wunused-parameter]
+  577 |       const std::vector<detail::SlotCursor>& cursors,
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h: In static member function ‘static bool torch::jit::detail::ModulePolicy::valid(const ClassTypePtr&, size_t, const c10::IValue&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:583:70: warning: unused parameter ‘v’ [-Wunused-parameter]
+  583 |   static bool valid(const ClassTypePtr& typ, size_t i, const IValue& v) {
+      |                                                        ~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h: In static member function ‘static torch::jit::detail::ParameterPolicy::value_type torch::jit::detail::ParameterPolicy::create(const std::vector<torch::jit::detail::SlotCursor>&, c10::IValue)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:594:46: warning: unused parameter ‘cursors’ [-Wunused-parameter]
+  594 |       const std::vector<detail::SlotCursor>& cursors,
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h: In static member function ‘static torch::jit::detail::BufferPolicy::value_type torch::jit::detail::BufferPolicy::create(const std::vector<torch::jit::detail::SlotCursor>&, c10::IValue)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:607:46: warning: unused parameter ‘cursors’ [-Wunused-parameter]
+  607 |       const std::vector<detail::SlotCursor>& cursors,
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h: In static member function ‘static bool torch::jit::detail::BufferPolicy::valid(const ClassTypePtr&, size_t, const c10::IValue&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:611:70: warning: unused parameter ‘v’ [-Wunused-parameter]
+  611 |   static bool valid(const ClassTypePtr& typ, size_t i, const IValue& v) {
+      |                                                        ~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h: In static member function ‘static torch::jit::detail::AttributePolicy::value_type torch::jit::detail::AttributePolicy::create(const std::vector<torch::jit::detail::SlotCursor>&, c10::IValue)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:621:46: warning: unused parameter ‘cursors’ [-Wunused-parameter]
+  621 |       const std::vector<detail::SlotCursor>& cursors,
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h: In static member function ‘static bool torch::jit::detail::AttributePolicy::valid(const ClassTypePtr&, size_t, const c10::IValue&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:625:41: warning: unused parameter ‘typ’ [-Wunused-parameter]
+  625 |   static bool valid(const ClassTypePtr& typ, size_t i, const IValue& v) {
+      |                     ~~~~~~~~~~~~~~~~~~~~^~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:625:53: warning: unused parameter ‘i’ [-Wunused-parameter]
+  625 |   static bool valid(const ClassTypePtr& typ, size_t i, const IValue& v) {
+      |                                              ~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/api/module.h:625:70: warning: unused parameter ‘v’ [-Wunused-parameter]
+  625 |   static bool valid(const ClassTypePtr& typ, size_t i, const IValue& v) {
+      |                                                        ~~~~~~~~~~~~~~^
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:10,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kLinear&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:147:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  147 |   TORCH_ENUM_PRETTY_PRINT(Linear)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kConv1D&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:148:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  148 |   TORCH_ENUM_PRETTY_PRINT(Conv1D)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kConv2D&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:149:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  149 |   TORCH_ENUM_PRETTY_PRINT(Conv2D)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kConv3D&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:150:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  150 |   TORCH_ENUM_PRETTY_PRINT(Conv3D)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kConvTranspose1D&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:151:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  151 |   TORCH_ENUM_PRETTY_PRINT(ConvTranspose1D)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kConvTranspose2D&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:152:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  152 |   TORCH_ENUM_PRETTY_PRINT(ConvTranspose2D)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kConvTranspose3D&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:153:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  153 |   TORCH_ENUM_PRETTY_PRINT(ConvTranspose3D)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kSigmoid&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:154:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  154 |   TORCH_ENUM_PRETTY_PRINT(Sigmoid)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kTanh&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:155:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  155 |   TORCH_ENUM_PRETTY_PRINT(Tanh)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kReLU&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:156:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  156 |   TORCH_ENUM_PRETTY_PRINT(ReLU)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kGELU&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:157:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  157 |   TORCH_ENUM_PRETTY_PRINT(GELU)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kSiLU&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:158:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  158 |   TORCH_ENUM_PRETTY_PRINT(SiLU)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kMish&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:159:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  159 |   TORCH_ENUM_PRETTY_PRINT(Mish)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kLeakyReLU&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:160:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  160 |   TORCH_ENUM_PRETTY_PRINT(LeakyReLU)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kFanIn&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:161:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  161 |   TORCH_ENUM_PRETTY_PRINT(FanIn)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kFanOut&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:162:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  162 |   TORCH_ENUM_PRETTY_PRINT(FanOut)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kConstant&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:163:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  163 |   TORCH_ENUM_PRETTY_PRINT(Constant)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kReflect&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:164:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  164 |   TORCH_ENUM_PRETTY_PRINT(Reflect)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kReplicate&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:165:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  165 |   TORCH_ENUM_PRETTY_PRINT(Replicate)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kCircular&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:166:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  166 |   TORCH_ENUM_PRETTY_PRINT(Circular)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kNearest&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:167:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  167 |   TORCH_ENUM_PRETTY_PRINT(Nearest)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kBilinear&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:168:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  168 |   TORCH_ENUM_PRETTY_PRINT(Bilinear)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kBicubic&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:169:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  169 |   TORCH_ENUM_PRETTY_PRINT(Bicubic)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kTrilinear&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:170:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  170 |   TORCH_ENUM_PRETTY_PRINT(Trilinear)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kArea&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:171:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  171 |   TORCH_ENUM_PRETTY_PRINT(Area)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kNearestExact&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:172:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  172 |   TORCH_ENUM_PRETTY_PRINT(NearestExact)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kSum&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:173:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  173 |   TORCH_ENUM_PRETTY_PRINT(Sum)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kMean&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:174:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  174 |   TORCH_ENUM_PRETTY_PRINT(Mean)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kMax&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:175:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  175 |   TORCH_ENUM_PRETTY_PRINT(Max)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kNone&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:176:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  176 |   TORCH_ENUM_PRETTY_PRINT(None)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kBatchMean&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:177:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  177 |   TORCH_ENUM_PRETTY_PRINT(BatchMean)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kZeros&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:178:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  178 |   TORCH_ENUM_PRETTY_PRINT(Zeros)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kBorder&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:179:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  179 |   TORCH_ENUM_PRETTY_PRINT(Border)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kReflection&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:180:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  180 |   TORCH_ENUM_PRETTY_PRINT(Reflection)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kRNN_TANH&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:181:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  181 |   TORCH_ENUM_PRETTY_PRINT(RNN_TANH)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kRNN_RELU&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:182:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  182 |   TORCH_ENUM_PRETTY_PRINT(RNN_RELU)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kLSTM&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:183:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  183 |   TORCH_ENUM_PRETTY_PRINT(LSTM)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kGRU&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:184:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  184 |   TORCH_ENUM_PRETTY_PRINT(GRU)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kValid&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:185:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  185 |   TORCH_ENUM_PRETTY_PRINT(Valid)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h: In member function ‘std::string torch::enumtype::_compute_enum_name::operator()(const torch::enumtype::kSame&) const’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:34:51: warning: unused parameter ‘v’ [-Wunused-parameter]
+   34 |   std::string operator()(const enumtype::k##name& v) const { \
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:186:3: note: in expansion of macro ‘TORCH_ENUM_PRETTY_PRINT’
+  186 |   TORCH_ENUM_PRETTY_PRINT(Same)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/cloneable.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:3,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:15,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/module.h: In member function ‘virtual std::vector<torch::nn::AnyValue> torch::nn::Module::_forward_populate_default_args(std::vector<torch::nn::AnyValue>&&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/module.h:538:31: warning: unused parameter ‘arguments’ [-Wunused-parameter]
+  538 |       std::vector<AnyValue>&& arguments) {
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:10,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::L1LossOptions::L1LossOptions(torch::enumtype::kNone)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:21:50: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+   21 |   TORCH_OPTIONS_CTOR_VARIANT_ARG3(L1LossOptions, reduction, kNone, kMean, kSum)
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:90:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   90 |   OPTIONS_NAME(torch::enumtype::TYPE1 ARG_NAME) : ARG_NAME##_(torch::TYPE1) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::L1LossOptions::L1LossOptions(torch::enumtype::kMean)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:21:50: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+   21 |   TORCH_OPTIONS_CTOR_VARIANT_ARG3(L1LossOptions, reduction, kNone, kMean, kSum)
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:91:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   91 |   OPTIONS_NAME(torch::enumtype::TYPE2 ARG_NAME) : ARG_NAME##_(torch::TYPE2) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::L1LossOptions::L1LossOptions(torch::enumtype::kSum)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:21:50: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+   21 |   TORCH_OPTIONS_CTOR_VARIANT_ARG3(L1LossOptions, reduction, kNone, kMean, kSum)
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:92:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   92 |   OPTIONS_NAME(torch::enumtype::TYPE3 ARG_NAME) : ARG_NAME##_(torch::TYPE3) {}
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::KLDivLossOptions::KLDivLossOptions(torch::enumtype::kNone)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:60:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+   60 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:97:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG4’
+   97 |   OPTIONS_NAME(torch::enumtype::TYPE1 ARG_NAME) : ARG_NAME##_(torch::TYPE1) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::KLDivLossOptions::KLDivLossOptions(torch::enumtype::kBatchMean)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:60:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+   60 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:98:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG4’
+   98 |   OPTIONS_NAME(torch::enumtype::TYPE2 ARG_NAME) : ARG_NAME##_(torch::TYPE2) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::KLDivLossOptions::KLDivLossOptions(torch::enumtype::kSum)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:60:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+   60 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:99:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG4’
+   99 |   OPTIONS_NAME(torch::enumtype::TYPE3 ARG_NAME) : ARG_NAME##_(torch::TYPE3) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::KLDivLossOptions::KLDivLossOptions(torch::enumtype::kMean)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:60:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+   60 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:100:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG4’
+  100 |   OPTIONS_NAME(torch::enumtype::TYPE4 ARG_NAME) : ARG_NAME##_(torch::TYPE4) {}
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::MSELossOptions::MSELossOptions(torch::enumtype::kNone)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:101:51: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  101 |   TORCH_OPTIONS_CTOR_VARIANT_ARG3(MSELossOptions, reduction, kNone, kMean, kSum)
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:90:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   90 |   OPTIONS_NAME(torch::enumtype::TYPE1 ARG_NAME) : ARG_NAME##_(torch::TYPE1) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::MSELossOptions::MSELossOptions(torch::enumtype::kMean)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:101:51: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  101 |   TORCH_OPTIONS_CTOR_VARIANT_ARG3(MSELossOptions, reduction, kNone, kMean, kSum)
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:91:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   91 |   OPTIONS_NAME(torch::enumtype::TYPE2 ARG_NAME) : ARG_NAME##_(torch::TYPE2) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::MSELossOptions::MSELossOptions(torch::enumtype::kSum)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:101:51: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  101 |   TORCH_OPTIONS_CTOR_VARIANT_ARG3(MSELossOptions, reduction, kNone, kMean, kSum)
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:92:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   92 |   OPTIONS_NAME(torch::enumtype::TYPE3 ARG_NAME) : ARG_NAME##_(torch::TYPE3) {}
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::MultiLabelMarginLossOptions::MultiLabelMarginLossOptions(torch::enumtype::kNone)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:285:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  285 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:90:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   90 |   OPTIONS_NAME(torch::enumtype::TYPE1 ARG_NAME) : ARG_NAME##_(torch::TYPE1) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::MultiLabelMarginLossOptions::MultiLabelMarginLossOptions(torch::enumtype::kMean)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:285:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  285 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:91:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   91 |   OPTIONS_NAME(torch::enumtype::TYPE2 ARG_NAME) : ARG_NAME##_(torch::TYPE2) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::MultiLabelMarginLossOptions::MultiLabelMarginLossOptions(torch::enumtype::kSum)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:285:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  285 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:92:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   92 |   OPTIONS_NAME(torch::enumtype::TYPE3 ARG_NAME) : ARG_NAME##_(torch::TYPE3) {}
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::SoftMarginLossOptions::SoftMarginLossOptions(torch::enumtype::kNone)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:326:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  326 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:90:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   90 |   OPTIONS_NAME(torch::enumtype::TYPE1 ARG_NAME) : ARG_NAME##_(torch::TYPE1) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::SoftMarginLossOptions::SoftMarginLossOptions(torch::enumtype::kMean)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:326:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  326 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:91:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   91 |   OPTIONS_NAME(torch::enumtype::TYPE2 ARG_NAME) : ARG_NAME##_(torch::TYPE2) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::SoftMarginLossOptions::SoftMarginLossOptions(torch::enumtype::kSum)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:326:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  326 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:92:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   92 |   OPTIONS_NAME(torch::enumtype::TYPE3 ARG_NAME) : ARG_NAME##_(torch::TYPE3) {}
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::SmoothL1LossOptions::SmoothL1LossOptions(torch::enumtype::kNone)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:538:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  538 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:90:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   90 |   OPTIONS_NAME(torch::enumtype::TYPE1 ARG_NAME) : ARG_NAME##_(torch::TYPE1) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::SmoothL1LossOptions::SmoothL1LossOptions(torch::enumtype::kMean)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:538:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  538 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:91:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   91 |   OPTIONS_NAME(torch::enumtype::TYPE2 ARG_NAME) : ARG_NAME##_(torch::TYPE2) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::SmoothL1LossOptions::SmoothL1LossOptions(torch::enumtype::kSum)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:538:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  538 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:92:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   92 |   OPTIONS_NAME(torch::enumtype::TYPE3 ARG_NAME) : ARG_NAME##_(torch::TYPE3) {}
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::HuberLossOptions::HuberLossOptions(torch::enumtype::kNone)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:581:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  581 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:90:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   90 |   OPTIONS_NAME(torch::enumtype::TYPE1 ARG_NAME) : ARG_NAME##_(torch::TYPE1) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::HuberLossOptions::HuberLossOptions(torch::enumtype::kMean)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:581:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  581 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:91:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   91 |   OPTIONS_NAME(torch::enumtype::TYPE2 ARG_NAME) : ARG_NAME##_(torch::TYPE2) {} \
+      |                                       ^~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h: In constructor ‘torch::nn::HuberLossOptions::HuberLossOptions(torch::enumtype::kSum)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/options/loss.h:581:7: warning: unused parameter ‘reduction’ [-Wunused-parameter]
+  581 |       reduction,
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/enum.h:92:39: note: in definition of macro ‘TORCH_OPTIONS_CTOR_VARIANT_ARG3’
+   92 |   OPTIONS_NAME(torch::enumtype::TYPE3 ARG_NAME) : ARG_NAME##_(torch::TYPE3) {}
+      |                                       ^~~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/utils/python_numbers.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/python.h:15,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:6,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/frontend/tracer.h: In lambda function:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/frontend/tracer.h:60:26: warning: unused parameter ‘var’ [-Wunused-parameter]
+   60 |       [](const Variable& var) { return ""; };
+      |          ~~~~~~~~~~~~~~~~^~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/frontend/tracer.h: In function ‘void torch::jit::tracer::addInputs(torch::jit::Node*, const char*, const std::vector<bool>&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/frontend/tracer.h:348:11: warning: unused parameter ‘n’ [-Wunused-parameter]
+  348 |     Node* n,
+      |     ~~~~~~^
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/frontend/tracer.h:349:17: warning: unused parameter ‘name’ [-Wunused-parameter]
+  349 |     const char* name,
+      |     ~~~~~~~~~~~~^~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/jit/frontend/tracer.h:350:30: warning: unused parameter ‘value’ [-Wunused-parameter]
+  350 |     const std::vector<bool>& value) {
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+In file included from /home/pytorch3d/pytorch3d/csrc/ext.cpp:22:
+/home/pytorch3d/pytorch3d/csrc/interp_face_attrs/interp_face_attrs.h: In function ‘at::Tensor InterpFaceAttrsForwardCpu(const at::Tensor&, const at::Tensor&, const at::Tensor&)’:
+/home/pytorch3d/pytorch3d/csrc/interp_face_attrs/interp_face_attrs.h:31:23: warning: unused parameter ‘barycentric_coords’ [-Wunused-parameter]
+   31 |     const at::Tensor& barycentric_coords,
+      |     ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/interp_face_attrs/interp_face_attrs.h:32:23: warning: unused parameter ‘face_attrs’ [-Wunused-parameter]
+   32 |     const at::Tensor& face_attrs) {
+      |     ~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/interp_face_attrs/interp_face_attrs.h: In function ‘std::tuple<at::Tensor, at::Tensor> InterpFaceAttrsBackwardCpu(const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&)’:
+/home/pytorch3d/pytorch3d/csrc/interp_face_attrs/interp_face_attrs.h:80:23: warning: unused parameter ‘barycentric_coords’ [-Wunused-parameter]
+   80 |     const at::Tensor& barycentric_coords,
+      |     ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/interp_face_attrs/interp_face_attrs.h:81:23: warning: unused parameter ‘face_attrs’ [-Wunused-parameter]
+   81 |     const at::Tensor& face_attrs,
+      |     ~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/interp_face_attrs/interp_face_attrs.h:82:23: warning: unused parameter ‘grad_pix_attrs’ [-Wunused-parameter]
+   82 |     const at::Tensor& grad_pix_attrs) {
+      |     ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+In file included from /home/pytorch3d/pytorch3d/csrc/ext.cpp:28:
+/home/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cuda.h: In function ‘std::tuple<at::Tensor, at::Tensor> PointFaceDistanceForward(const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, int64_t, double)’:
+/home/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cuda.h:72:19: warning: unused parameter ‘max_points’ [-Wunused-parameter]
+   72 |     const int64_t max_points,
+      |     ~~~~~~~~~~~~~~^~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cuda.h: In function ‘std::tuple<at::Tensor, at::Tensor> FacePointDistanceForward(const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, int64_t, double)’:
+/home/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cuda.h:205:19: warning: unused parameter ‘max_tris’ [-Wunused-parameter]
+  205 |     const int64_t max_tris,
+      |     ~~~~~~~~~~~~~~^~~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/VariableTypeUtils.h:10,
+                 from /home/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes.h:10,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:29:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/functions/basic_ops.h: In member function ‘virtual torch::autograd::variable_list torch::autograd::GraphRoot::apply(torch::autograd::variable_list&&)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/functions/basic_ops.h:82:39: warning: unused parameter ‘inputs’ [-Wunused-parameter]
+   82 |   variable_list apply(variable_list&& inputs) override {
+      |                       ~~~~~~~~~~~~~~~~^~~~~~
+In file included from /home/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes.h:10,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:29:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/VariableTypeUtils.h: In member function ‘void torch::autograd::impl::{anonymous}::WrapperFunctor::operator()(const c10::OperatorHandle&, c10::DispatchKeySet, torch::jit::Stack*)’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/autograd/VariableTypeUtils.h:489:27: warning: unused parameter ‘ks’ [-Wunused-parameter]
+  489 |       c10::DispatchKeySet ks,
+      |       ~~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/pytorch3d/pytorch3d/csrc/ext.cpp:30:
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h: In function ‘std::tuple<at::Tensor, at::Tensor, at::Tensor, at::Tensor> RasterizeMeshesFine(const at::Tensor&, const at::Tensor&, const at::Tensor&, std::tuple<int, int>, float, int, int, bool, bool, bool)’:
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:398:26: warning: unused parameter ‘bin_faces’ [-Wunused-parameter]
+  398 |     const torch::Tensor& bin_faces,
+      |     ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:399:26: warning: unused parameter ‘clipped_faces_neighbor_idx’ [-Wunused-parameter]
+  399 |     const torch::Tensor& clipped_faces_neighbor_idx,
+      |     ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:400:32: warning: unused parameter ‘image_size’ [-Wunused-parameter]
+  400 |     const std::tuple<int, int> image_size,
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:401:17: warning: unused parameter ‘blur_radius’ [-Wunused-parameter]
+  401 |     const float blur_radius,
+      |     ~~~~~~~~~~~~^~~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:402:15: warning: unused parameter ‘bin_size’ [-Wunused-parameter]
+  402 |     const int bin_size,
+      |     ~~~~~~~~~~^~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:403:15: warning: unused parameter ‘faces_per_pixel’ [-Wunused-parameter]
+  403 |     const int faces_per_pixel,
+      |     ~~~~~~~~~~^~~~~~~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:404:16: warning: unused parameter ‘perspective_correct’ [-Wunused-parameter]
+  404 |     const bool perspective_correct,
+      |     ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:405:16: warning: unused parameter ‘clip_barycentric_coords’ [-Wunused-parameter]
+  405 |     const bool clip_barycentric_coords,
+      |     ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes.h:406:16: warning: unused parameter ‘cull_backfaces’ [-Wunused-parameter]
+  406 |     const bool cull_backfaces) {
+      |     ~~~~~~~~~~~^~~~~~~~~~~~~~
+In file included from /home/pytorch3d/pytorch3d/csrc/ext.cpp:31:
+/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points.h: In function ‘std::tuple<at::Tensor, at::Tensor, at::Tensor> RasterizePointsFine(const at::Tensor&, const at::Tensor&, std::tuple<int, int>, const at::Tensor&, int, int)’:
+/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points.h:220:26: warning: unused parameter ‘bin_points’ [-Wunused-parameter]
+  220 |     const torch::Tensor& bin_points,
+      |     ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points.h:221:32: warning: unused parameter ‘image_size’ [-Wunused-parameter]
+  221 |     const std::tuple<int, int> image_size,
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points.h:222:26: warning: unused parameter ‘radius’ [-Wunused-parameter]
+  222 |     const torch::Tensor& radius,
+      |     ~~~~~~~~~~~~~~~~~~~~~^~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points.h:223:15: warning: unused parameter ‘bin_size’ [-Wunused-parameter]
+  223 |     const int bin_size,
+      |     ~~~~~~~~~~^~~~~~~~
+/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points.h:224:15: warning: unused parameter ‘points_per_pixel’ [-Wunused-parameter]
+  224 |     const int points_per_pixel) {
+      |     ~~~~~~~~~~^~~~~~~~~~~~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/Exceptions.h:14,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/python.h:11,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:6,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h: In instantiation of ‘struct pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >::is_valid_class_option<std::shared_ptr<pulsar::pytorch::Renderer> >’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/detail/../detail/common.h:658:7:   required by substitution of ‘template<class ... Ts> using all_of = std::is_same<pybind11::detail::bools<Ts::value ..., true>, pybind11::detail::bools<true, Ts::value ...> > [with Ts = {pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >::is_valid_class_option<std::shared_ptr<pulsar::pytorch::Renderer> >}]’
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h:1494:11:   required from ‘class pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >’
+/home/pytorch3d/pytorch3d/csrc/ext.cpp:107:70:   required from here
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h:1488:12: warning: ‘pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >::is_valid_class_option<std::shared_ptr<pulsar::pytorch::Renderer> >’ declared with greater visibility than its base ‘pybind11::detail::negation<std::is_same<pybind11::detail::bools<false, true, true, true>, pybind11::detail::bools<true, false, true, true> > >’ [-Wattributes]
+ 1488 |     struct is_valid_class_option : detail::any_of<is_holder<T>, is_subtype<T>, is_base<T>> {};
+      |            ^~~~~~~~~~~~~~~~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h: In instantiation of ‘class pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >’:
+/home/pytorch3d/pytorch3d/csrc/ext.cpp:107:70:   required from here
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/pybind11/pybind11.h:1479:7: warning: ‘pybind11::class_<pulsar::pytorch::Renderer, std::shared_ptr<pulsar::pytorch::Renderer> >’ declared with greater visibility than its base ‘pybind11::detail::generic_type’ [-Wattributes]
+ 1479 | class class_ : public detail::generic_type {
+      |       ^~~~~~
+In file included from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional.h:6,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:4,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/all.h:15,
+                 from /opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/extension.h:4,
+                 from /home/pytorch3d/pytorch3d/csrc/./pulsar/global.h:48,
+                 from /home/pytorch3d/pytorch3d/csrc/ext.cpp:10:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/dropout.h: In instantiation of ‘at::Tensor torch::nn::functional::detail::_dropoutNd_helper(at::Tensor, double, bool, bool, const char*) [with long int unbatched_dim = 3; long int batched_dim = 4]’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/dropout.h:92:58:   required from here
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/dropout.h:57:17: warning: unused parameter ‘fn_name’ [-Wunused-parameter]
+   57 |     const char* fn_name) {
+      |     ~~~~~~~~~~~~^~~~~~~
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/dropout.h: In instantiation of ‘at::Tensor torch::nn::functional::detail::_dropoutNd_helper(at::Tensor, double, bool, bool, const char*) [with long int unbatched_dim = 4; long int batched_dim = 5]’:
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/dropout.h:124:58:   required from here
+/opt/conda/envs/py38/lib/python3.8/site-packages/torch/include/torch/csrc/api/include/torch/nn/functional/dropout.h:57:17: warning: unused parameter ‘fn_name’ [-Wunused-parameter]
+g++ -pthread -shared -B /opt/conda/envs/py38/compiler_compat -L/opt/conda/envs/py38/lib -Wl,-rpath=/opt/conda/envs/py38/lib -Wl,--no-as-needed -Wl,--sysroot=/ /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/ball_query/ball_query_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/blending/sigmoid_alpha_blend_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/alpha_composite_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/norm_weighted_sum_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/weighted_sum_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/ext.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/face_areas_normals/face_areas_normals_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/gather_scatter/gather_scatter_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/knn/knn_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/marching_cubes/marching_cubes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/packed_to_padded_tensor/packed_to_padded_tensor_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/tensor_util.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/util.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/warnings.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/sample_farthest_points/sample_farthest_points_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/sample_pdf/sample_pdf_cpu.o -L/home/pytorch3d/torch_musa/lib -L/opt/conda/envs/py38/lib/python3.8/site-packages/torch/lib -lpytorch3d_musa -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/lib.linux-x86_64-3.8/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/projects
+creating build/bdist.linux-x86_64/egg/pytorch3d
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/evaluation
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/feature_extractor
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/visualization
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/global_encoder
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/third_party
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools
+creating build/bdist.linux-x86_64/egg/pytorch3d/io
+creating build/bdist.linux-x86_64/egg/pytorch3d/datasets
+creating build/bdist.linux-x86_64/egg/pytorch3d/datasets/r2n2
+creating build/bdist.linux-x86_64/egg/pytorch3d/datasets/shapenet
+creating build/bdist.linux-x86_64/egg/pytorch3d/vis
+creating build/bdist.linux-x86_64/egg/pytorch3d/common
+creating build/bdist.linux-x86_64/egg/pytorch3d/common/workaround
+creating build/bdist.linux-x86_64/egg/pytorch3d/ops
+creating build/bdist.linux-x86_64/egg/pytorch3d/utils
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/opengl
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/points
+creating build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/pulsar
+creating build/bdist.linux-x86_64/egg/pytorch3d/implicitron_trainer
+creating build/bdist.linux-x86_64/egg/pytorch3d/transforms
+creating build/bdist.linux-x86_64/egg/pytorch3d/loss
+creating build/bdist.linux-x86_64/egg/pytorch3d/structures
+creating build/bdist.linux-x86_64/egg/tools
+creating build/bdist.linux-x86_64/egg/tools/cuda_porting
+creating build/bdist.linux-x86_64/egg/tools/ops_scanner
+creating build/bdist.linux-x86_64/egg/tools/setup_helper
+byte-compiling build/bdist.linux-x86_64/egg/projects/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/evaluation/evaluate_new_view_synthesis.py to evaluate_new_view_synthesis.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/evaluation/evaluator.py to evaluator.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/evaluation/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/eval_demo.py to eval_demo.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/load_llff.py to load_llff.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/blender_dataset_map_provider.py to blender_dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/data_loader_map_provider.py to data_loader_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/dataset_base.py to dataset_base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/single_sequence_dataset.py to single_sequence_dataset.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/dataset_map_provider.py to dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/scene_batch_sampler.py to scene_batch_sampler.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/types.py to types.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/sql_dataset_provider.py to sql_dataset_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/rendered_mesh_dataset_map_provider.py to rendered_mesh_dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/sql_dataset.py to sql_dataset.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/orm_types.py to orm_types.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/frame_data.py to frame_data.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/load_blender.py to load_blender.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/json_index_dataset_map_provider_v2.py to json_index_dataset_map_provider_v2.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/visualize.py to visualize.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/json_index_dataset_map_provider.py to json_index_dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/json_index_dataset.py to json_index_dataset.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/data_source.py to data_source.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/train_eval_data_loader_provider.py to train_eval_data_loader_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/dataset/llff_dataset_map_provider.py to llff_dataset_map_provider.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/metrics.py to metrics.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/feature_extractor/feature_extractor.py to feature_extractor.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/feature_extractor/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/feature_extractor/resnet_feature_extractor.py to resnet_feature_extractor.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/base_model.py to base_model.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler/view_sampler.py to view_sampler.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler/view_pooler.py to view_pooler.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/view_pooler/feature_aggregator.py to feature_aggregator.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/visualization/render_flyaround.py to render_flyaround.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/visualization/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/raymarcher.py to raymarcher.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/rgb_net.py to rgb_net.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/ray_sampler.py to ray_sampler.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/sdf_renderer.py to sdf_renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/ray_point_refiner.py to ray_point_refiner.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/base.py to base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/lstm_renderer.py to lstm_renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/ray_tracing.py to ray_tracing.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/renderer/multipass_ea.py to multipass_ea.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/overfit_model.py to overfit_model.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/model_dbir.py to model_dbir.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/global_encoder/autodecoder.py to autodecoder.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/global_encoder/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/global_encoder/global_encoder.py to global_encoder.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/generic_model.py to generic_model.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/scene_representation_networks.py to scene_representation_networks.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/idr_feature_field.py to idr_feature_field.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/decoding_functions.py to decoding_functions.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/voxel_grid.py to voxel_grid.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/voxel_grid_implicit_function.py to voxel_grid_implicit_function.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/base.py to base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/models/implicit_function/neural_radiance_field.py to neural_radiance_field.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/third_party/pytorch_prototyping.py to pytorch_prototyping.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/third_party/hyperlayers.py to hyperlayers.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/third_party/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/depth_cleanup.py to depth_cleanup.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/stats.py to stats.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/vis_utils.py to vis_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/model_io.py to model_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/rasterize_mc.py to rasterize_mc.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/config.py to config.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/eval_video_trajectory.py to eval_video_trajectory.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/point_cloud_utils.py to point_cloud_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/circle_fitting.py to circle_fitting.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/image_utils.py to image_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/metric_utils.py to metric_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/video_writer.py to video_writer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron/tools/camera_utils.py to camera_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/mtl_io.py to mtl_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/pluggable_formats.py to pluggable_formats.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/off_io.py to off_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/experimental_gltf_io.py to experimental_gltf_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/obj_io.py to obj_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/ply_io.py to ply_io.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/io/pluggable.py to pluggable.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/r2n2/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/r2n2/r2n2.py to r2n2.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/r2n2/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/shapenet_base.py to shapenet_base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/shapenet/shapenet_core.py to shapenet_core.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/datasets/shapenet/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/vis/plotly_vis.py to plotly_vis.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/vis/texture_vis.py to texture_vis.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/vis/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/linear_with_repeat.py to linear_with_repeat.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/workaround/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/workaround/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/workaround/symeig3x3.py to symeig3x3.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/compat.py to compat.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/datatypes.py to datatypes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/common/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/cubify.py to cubify.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/mesh_filtering.py to mesh_filtering.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/sample_points_from_meshes.py to sample_points_from_meshes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/mesh_face_areas_normals.py to mesh_face_areas_normals.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/sample_farthest_points.py to sample_farthest_points.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/points_alignment.py to points_alignment.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/points_normals.py to points_normals.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/points_to_volumes.py to points_to_volumes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/marching_cubes.py to marching_cubes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/perspective_n_points.py to perspective_n_points.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/interp_face_attrs.py to interp_face_attrs.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/cameras_alignment.py to cameras_alignment.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/knn.py to knn.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/iou_box3d.py to iou_box3d.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/packed_to_padded.py to packed_to_padded.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/laplacian_matrices.py to laplacian_matrices.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/graph_conv.py to graph_conv.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/subdivide_meshes.py to subdivide_meshes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/ball_query.py to ball_query.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/marching_cubes_data.py to marching_cubes_data.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/ops/vert_align.py to vert_align.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/checkerboard.py to checkerboard.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/torus.py to torus.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/ico_sphere.py to ico_sphere.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/utils/camera_conversions.py to camera_conversions.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/compositing.py to compositing.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/opengl/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/opengl/opengl_utils.py to opengl_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/opengl/rasterizer_opengl.py to rasterizer_opengl.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/sample_pdf.py to sample_pdf.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/raymarching.py to raymarching.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/renderer.py to renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/raysampling.py to raysampling.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/implicit/harmonic_embedding.py to harmonic_embedding.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/splatter_blend.py to splatter_blend.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/materials.py to materials.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/fisheyecameras.py to fisheyecameras.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/lighting.py to lighting.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/blending.py to blending.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/textures.py to textures.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/shading.py to shading.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/rasterize_meshes.py to rasterize_meshes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/rasterizer.py to rasterizer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/clip.py to clip.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/renderer.py to renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/mesh/shader.py to shader.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/camera_conversions.py to camera_conversions.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/rasterize_points.py to rasterize_points.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/rasterizer.py to rasterizer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/compositor.py to compositor.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/pulsar/unified.py to unified.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/pulsar/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/pulsar/renderer.py to renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/points/renderer.py to renderer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/camera_utils.py to camera_utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/renderer/cameras.py to cameras.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron_trainer/experiment.py to experiment.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron_trainer/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/implicitron_trainer/visualize_reconstruction.py to visualize_reconstruction.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/transform3d.py to transform3d.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/so3.py to so3.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/math.py to math.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/se3.py to se3.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/transforms/rotation_conversions.py to rotation_conversions.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/point_mesh_distance.py to point_mesh_distance.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/mesh_laplacian_smoothing.py to mesh_laplacian_smoothing.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/mesh_edge_loss.py to mesh_edge_loss.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/mesh_normal_consistency.py to mesh_normal_consistency.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/loss/chamfer.py to chamfer.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/utils.py to utils.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/volumes.py to volumes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/meshes.py to meshes.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/structures/pointclouds.py to pointclouds.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/cuda_porting/match_rewrite.py to match_rewrite.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/cuda_porting/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/cuda_porting/cuda_porting.py to cuda_porting.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/ops_scanner/scan_mudnn_support_ops.py to scan_mudnn_support_ops.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/ops_scanner/scan_musa_full_ops.py to scan_musa_full_ops.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/ops_scanner/check_cuda_ops_in_mudnn.py to check_cuda_ops_in_mudnn.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/ops_scanner/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/ops_scanner/ops_scanner_base.py to ops_scanner_base.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/ops_scanner/scan_cuda_full_ops.py to scan_cuda_full_ops.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/setup_helper/cmake_manager.py to cmake_manager.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/tools/setup_helper/__init__.py to __init__.cpython-38.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pytorch3d/_C.py to _C.cpython-38.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/entry_points.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/requires.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying pytorch3d.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+pytorch3d.__pycache__._C.cpython-38: module references __file__
+pytorch3d.datasets.r2n2.__pycache__.r2n2.cpython-38: module references __file__
+pytorch3d.datasets.shapenet.__pycache__.shapenet_core.cpython-38: module references __file__
+pytorch3d.implicitron.dataset.__pycache__.rendered_mesh_dataset_map_provider.cpython-38: module references __file__
+tools.cuda_porting.__pycache__.cuda_porting.cpython-38: module references __file__
+tools.setup_helper.__pycache__.cmake_manager.cpython-38: module references __file__
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+removing '/opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg' (and everything under it)
+creating /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg
+Extracting pytorch3d-0.7.4-py3.8-linux-x86_64.egg to /opt/conda/envs/py38/lib/python3.8/site-packages
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/projects/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/_C.py to _C.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/compat.py to compat.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/datatypes.py to datatypes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/linear_with_repeat.py to linear_with_repeat.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/workaround/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/workaround/symeig3x3.py to symeig3x3.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/common/workaround/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/shapenet_base.py to shapenet_base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/r2n2/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/r2n2/r2n2.py to r2n2.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/r2n2/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/shapenet/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/datasets/shapenet/shapenet_core.py to shapenet_core.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/eval_demo.py to eval_demo.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/blender_dataset_map_provider.py to blender_dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/data_loader_map_provider.py to data_loader_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/data_source.py to data_source.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/dataset_base.py to dataset_base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/dataset_map_provider.py to dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/frame_data.py to frame_data.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/json_index_dataset.py to json_index_dataset.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/json_index_dataset_map_provider.py to json_index_dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/json_index_dataset_map_provider_v2.py to json_index_dataset_map_provider_v2.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/llff_dataset_map_provider.py to llff_dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/load_blender.py to load_blender.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/load_llff.py to load_llff.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/orm_types.py to orm_types.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/rendered_mesh_dataset_map_provider.py to rendered_mesh_dataset_map_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/scene_batch_sampler.py to scene_batch_sampler.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/single_sequence_dataset.py to single_sequence_dataset.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/sql_dataset.py to sql_dataset.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/sql_dataset_provider.py to sql_dataset_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/train_eval_data_loader_provider.py to train_eval_data_loader_provider.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/types.py to types.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/dataset/visualize.py to visualize.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/evaluation/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/evaluation/evaluate_new_view_synthesis.py to evaluate_new_view_synthesis.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/evaluation/evaluator.py to evaluator.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/base_model.py to base_model.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/generic_model.py to generic_model.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/metrics.py to metrics.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/model_dbir.py to model_dbir.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/overfit_model.py to overfit_model.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/feature_extractor/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/feature_extractor/feature_extractor.py to feature_extractor.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/feature_extractor/resnet_feature_extractor.py to resnet_feature_extractor.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/global_encoder/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/global_encoder/autodecoder.py to autodecoder.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/global_encoder/global_encoder.py to global_encoder.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/base.py to base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/decoding_functions.py to decoding_functions.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/idr_feature_field.py to idr_feature_field.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/neural_radiance_field.py to neural_radiance_field.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/scene_representation_networks.py to scene_representation_networks.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/voxel_grid.py to voxel_grid.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/implicit_function/voxel_grid_implicit_function.py to voxel_grid_implicit_function.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/base.py to base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/lstm_renderer.py to lstm_renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/multipass_ea.py to multipass_ea.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/ray_point_refiner.py to ray_point_refiner.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/ray_sampler.py to ray_sampler.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/ray_tracing.py to ray_tracing.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/raymarcher.py to raymarcher.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/rgb_net.py to rgb_net.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/renderer/sdf_renderer.py to sdf_renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/view_pooler/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/view_pooler/feature_aggregator.py to feature_aggregator.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/view_pooler/view_pooler.py to view_pooler.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/view_pooler/view_sampler.py to view_sampler.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/visualization/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/models/visualization/render_flyaround.py to render_flyaround.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/third_party/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/third_party/hyperlayers.py to hyperlayers.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/third_party/pytorch_prototyping.py to pytorch_prototyping.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/camera_utils.py to camera_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/circle_fitting.py to circle_fitting.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/config.py to config.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/depth_cleanup.py to depth_cleanup.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/eval_video_trajectory.py to eval_video_trajectory.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/image_utils.py to image_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/metric_utils.py to metric_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/model_io.py to model_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/point_cloud_utils.py to point_cloud_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/rasterize_mc.py to rasterize_mc.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/stats.py to stats.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/video_writer.py to video_writer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron/tools/vis_utils.py to vis_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron_trainer/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron_trainer/experiment.py to experiment.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/implicitron_trainer/visualize_reconstruction.py to visualize_reconstruction.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/experimental_gltf_io.py to experimental_gltf_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/mtl_io.py to mtl_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/obj_io.py to obj_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/off_io.py to off_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/pluggable.py to pluggable.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/pluggable_formats.py to pluggable_formats.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/ply_io.py to ply_io.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/io/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/chamfer.py to chamfer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/mesh_edge_loss.py to mesh_edge_loss.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/mesh_laplacian_smoothing.py to mesh_laplacian_smoothing.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/mesh_normal_consistency.py to mesh_normal_consistency.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/loss/point_mesh_distance.py to point_mesh_distance.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/ball_query.py to ball_query.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/cameras_alignment.py to cameras_alignment.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/cubify.py to cubify.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/graph_conv.py to graph_conv.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/interp_face_attrs.py to interp_face_attrs.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/iou_box3d.py to iou_box3d.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/knn.py to knn.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/laplacian_matrices.py to laplacian_matrices.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/marching_cubes.py to marching_cubes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/marching_cubes_data.py to marching_cubes_data.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/mesh_face_areas_normals.py to mesh_face_areas_normals.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/mesh_filtering.py to mesh_filtering.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/packed_to_padded.py to packed_to_padded.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/perspective_n_points.py to perspective_n_points.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/points_alignment.py to points_alignment.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/points_normals.py to points_normals.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/points_to_volumes.py to points_to_volumes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/sample_farthest_points.py to sample_farthest_points.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/sample_points_from_meshes.py to sample_points_from_meshes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/subdivide_meshes.py to subdivide_meshes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/vert_align.py to vert_align.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/blending.py to blending.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/camera_conversions.py to camera_conversions.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/camera_utils.py to camera_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/cameras.py to cameras.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/compositing.py to compositing.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/fisheyecameras.py to fisheyecameras.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/lighting.py to lighting.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/materials.py to materials.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/splatter_blend.py to splatter_blend.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/harmonic_embedding.py to harmonic_embedding.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/raymarching.py to raymarching.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/raysampling.py to raysampling.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/renderer.py to renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/sample_pdf.py to sample_pdf.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/implicit/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/clip.py to clip.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/rasterize_meshes.py to rasterize_meshes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/rasterizer.py to rasterizer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/renderer.py to renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/shader.py to shader.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/shading.py to shading.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/textures.py to textures.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/mesh/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/opengl/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/opengl/opengl_utils.py to opengl_utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/opengl/rasterizer_opengl.py to rasterizer_opengl.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/compositor.py to compositor.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/rasterize_points.py to rasterize_points.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/rasterizer.py to rasterizer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/renderer.py to renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/pulsar/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/pulsar/renderer.py to renderer.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/renderer/points/pulsar/unified.py to unified.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/meshes.py to meshes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/pointclouds.py to pointclouds.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/utils.py to utils.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/structures/volumes.py to volumes.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/math.py to math.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/rotation_conversions.py to rotation_conversions.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/se3.py to se3.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/so3.py to so3.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/transforms/transform3d.py to transform3d.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/camera_conversions.py to camera_conversions.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/checkerboard.py to checkerboard.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/ico_sphere.py to ico_sphere.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/utils/torus.py to torus.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/vis/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/vis/plotly_vis.py to plotly_vis.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/vis/texture_vis.py to texture_vis.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/cuda_porting/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/cuda_porting/cuda_porting.py to cuda_porting.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/cuda_porting/match_rewrite.py to match_rewrite.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/ops_scanner/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/ops_scanner/check_cuda_ops_in_mudnn.py to check_cuda_ops_in_mudnn.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/ops_scanner/ops_scanner_base.py to ops_scanner_base.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/ops_scanner/scan_cuda_full_ops.py to scan_cuda_full_ops.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/ops_scanner/scan_mudnn_support_ops.py to scan_mudnn_support_ops.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/ops_scanner/scan_musa_full_ops.py to scan_musa_full_ops.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/setup_helper/__init__.py to __init__.cpython-38.pyc
+byte-compiling /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/tools/setup_helper/cmake_manager.py to cmake_manager.cpython-38.pyc
+pytorch3d 0.7.4 is already the active version in easy-install.pth
+Installing pytorch3d_implicitron_runner script to /opt/conda/envs/py38/bin
+Installing pytorch3d_implicitron_visualizer script to /opt/conda/envs/py38/bin
+
+Installed /opt/conda/envs/py38/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg
+Processing dependencies for pytorch3d==0.7.4
+Searching for iopath==0.1.10
+Best match: iopath 0.1.10
+Adding iopath 0.1.10 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for fvcore==0.1.5.post20221221
+Best match: fvcore 0.1.5.post20221221
+Adding fvcore 0.1.5.post20221221 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for tqdm==4.65.0
+Best match: tqdm 4.65.0
+Adding tqdm 4.65.0 to easy-install.pth file
+Installing tqdm script to /opt/conda/envs/py38/bin
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for portalocker==2.7.0
+Best match: portalocker 2.7.0
+Adding portalocker 2.7.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for typing-extensions==4.3.0
+Best match: typing-extensions 4.3.0
+Adding typing-extensions 4.3.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for Pillow==9.5.0
+Best match: Pillow 9.5.0
+Adding Pillow 9.5.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for numpy==1.23.5
+Best match: numpy 1.23.5
+Adding numpy 1.23.5 to easy-install.pth file
+Installing f2py script to /opt/conda/envs/py38/bin
+Installing f2py3 script to /opt/conda/envs/py38/bin
+Installing f2py3.8 script to /opt/conda/envs/py38/bin
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for PyYAML==6.0
+Best match: PyYAML 6.0
+Adding PyYAML 6.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for termcolor==2.3.0
+Best match: termcolor 2.3.0
+Adding termcolor 2.3.0 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for tabulate==0.9.0
+Best match: tabulate 0.9.0
+Adding tabulate 0.9.0 to easy-install.pth file
+Installing tabulate script to /opt/conda/envs/py38/bin
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Searching for yacs==0.1.8
+Best match: yacs 0.1.8
+Adding yacs 0.1.8 to easy-install.pth file
+
+Using /opt/conda/envs/py38/lib/python3.8/site-packages
+Finished processing dependencies for pytorch3d==0.7.4

@@ -12,8 +12,22 @@ from pytorch3d import _C
 from pytorch3d.loss import point_mesh_edge_distance, point_mesh_face_distance
 from pytorch3d.structures import Meshes, packed_to_list, Pointclouds
 
-from .common_testing import get_random_cuda_device, TestCaseMixin
+from .common_testing import TestCaseMixin
 
+def get_random_musa_device() -> str:
+    """
+    Function to get a random GPU device from the
+    available devices. This is useful for testing
+    that custom cuda kernels can support inputs on
+    any device without having to set the device explicitly.
+    """
+    num_devices = torch.musa.device_count()
+    device_id = (
+        torch.randint(high=num_devices, size=(1,)).item() if num_devices > 1 else 0
+    )
+    return "musa:%d" % device_id
+    # return "cpu"
+print(get_random_musa_device())
 
 class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
     def setUp(self) -> None:
