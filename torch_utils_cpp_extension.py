@@ -37,6 +37,10 @@ _HERE = os.path.abspath(__file__)
 _TORCH_PATH = os.path.dirname(os.path.dirname(_HERE))
 TORCH_LIB_PATH = os.path.join(_TORCH_PATH, 'lib')
 
+IS_MUSA_EXTENSION = True
+TORCH_MUSA_BASE_DIR = os.path.abspath('/home/torch_musa')
+TORCH_MUSA_LIB_PATH = "/opt/conda/envs/py38/lib/python3.8/site-packages/torch_musa-2.0.0-py3.8-linux-x86_64.egg/torch_musa/lib"
+
 
 SUBPROCESS_DECODE_ARGS = ('oem',) if IS_WINDOWS else ()
 MINIMUM_GCC_VERSION = (5, 0, 0)
@@ -70,6 +74,17 @@ CUDA_CLANG_VERSIONS: VersionMap = {
     '11.6': (MINIMUM_CLANG_VERSION, (14, 0)),
     '11.7': (MINIMUM_CLANG_VERSION, (14, 0)),
 }
+
+
+def find_in_path(name, path):
+    """Find a file in a search path"""
+    # Adapted fom http://code.activestate.com/recipes/52224
+    for dir in path.split(os.pathsep):
+        binpath = os.path.join(dir, name)
+        if os.path.exists(binpath):
+            return os.path.abspath(binpath)
+    return None
+
 
 def locate_musa():
     """Locate the MUSA environment on the system
@@ -257,6 +272,8 @@ MSVC_IGNORE_CUDAFE_WARNINGS = [
     'dll_interface_conflict_dllexport_assumed'
 ]
 
+COMMON_MCC_FLAGS = []
+
 COMMON_NVCC_FLAGS = [
     '-D__CUDA_NO_HALF_OPERATORS__',
     '-D__CUDA_NO_HALF_CONVERSIONS__',
@@ -264,6 +281,7 @@ COMMON_NVCC_FLAGS = [
     '-D__CUDA_NO_HALF2_OPERATORS__',
     '--expt-relaxed-constexpr'
 ]
+COMMON_NVCC_FLAGS = COMMON_MCC_FLAGS
 
 COMMON_HIP_FLAGS = [
     '-fPIC',
@@ -578,9 +596,7 @@ class BuildExtension(build_ext):
                 cflags.append(cpp_flag)
 
         def unix_cuda_flags(cflags):
-            cflags = (COMMON_NVCC_FLAGS +
-                      ['--compiler-options', "'-fPIC'"] +
-                      cflags)
+            cflags = (COMMON_NVCC_FLAGS + ["-fPIC"] + cflags)
 
             # NVCC does not allow multiple -ccbin/--compiler-bindir to be passed, so we avoid
             # overriding the option if the user explicitly passed it.
@@ -745,7 +761,7 @@ class BuildExtension(build_ext):
                     src = src_list[0]
                     obj = obj_list[0]
                     if _is_cuda_file(src):
-                        nvcc = _join_cuda_home('bin', 'nvcc')
+                        nvcc = _join_cuda_home('bin', 'mcc')
                         if isinstance(self.cflags, dict):
                             cflags = self.cflags['nvcc']
                         elif isinstance(self.cflags, list):
@@ -976,6 +992,86 @@ def CppExtension(name, sources, *args, **kwargs):
     kwargs['libraries'] = libraries
 
     kwargs['language'] = 'c++'
+    return setuptools.Extension(name, sources, *args, **kwargs)
+
+
+# reference https://github.com/dongyang-mt/pytorch3d/blob/dev-musa-porting/setup.py
+# TODO(dong.yang): need more comment for MUSAExtension
+def MUSAExtension(name, sources, *args, **kwargs):
+    library_dirs = kwargs.get('library_dirs', [])
+    library_dirs += torch.utils.cpp_extension.library_paths(cuda=False)
+    # library_dirs.append(os.path.join(BASE_DIR, "torch_musa/lib"))
+    library_dirs.append(TORCH_MUSA_LIB_PATH)
+    library_dirs.append(MUSA['lib'])
+
+    libraries = kwargs.get('libraries', [])
+    if IS_MUSA_EXTENSION:
+        libraries.append('musa_python')
+        # libraries.append('torch_musa')
+        libraries.append('mudnn')
+        libraries.append('mublas')
+        libraries.append('musart')
+    runtime_library_dirs = kwargs.get('runtime_library_dirs', [])
+    runtime_library_dirs.append(MUSA['lib'])
+
+    include_dirs = kwargs.get('include_dirs', [])
+    include_dirs.append(MUSA['include'])
+    include_dirs.append(TORCH_MUSA_BASE_DIR)
+    include_dirs.append(os.path.abspath('/usr/local/musa/include'))
+    build_dir = "build"
+    gen_porting_dir = "generated_cuda_compatible"
+    cuda_compatiable_include_path = os.path.join(TORCH_MUSA_BASE_DIR, build_dir, gen_porting_dir, "include")
+    include_dirs.append(os.path.abspath(cuda_compatiable_include_path))
+    include_dirs.append(os.path.join(TORCH_MUSA_BASE_DIR, build_dir, gen_porting_dir, "include/torch/csrc/api/include"))
+
+    extra_link_args = kwargs.get('extra_link_args', [])
+    extra_link_args += ["-O2", "-ggdb"]
+
+    extra_compile_args = kwargs.get('extra_compile_args', {})
+    if 'nvcc' not in extra_compile_args:
+        extra_compile_args['nvcc'] = []
+    extra_compile_args['nvcc'] += [
+        "-std=c++14",
+        "-Wall", 
+        "-Wextra",
+        "-fno-strict-aliasing",
+        "-fPIC"
+        ]
+    extra_compile_args['nvcc'] += ["-O2", "-ggdb"]
+    extra_compile_args['nvcc'] += ["--cuda-gpu-arch=mp_21", "-DTORCH_MUSA_ARCH=210"]
+
+    # if build_type.is_debug():
+    #     extra_compile_args['mcc'] += ["-O0", "-ggdb"]
+    #     extra_link_args += ["-O0", "-ggdb"]
+
+    # if build_type.is_rel_with_deb_info():
+    #     extra_compile_args['mcc'] += ["-g"]
+    #     extra_link_args += ["-g"]
+
+    use_asan = os.getenv("USE_ASAN", default="").upper() in [
+        "ON",
+        "1",
+        "YES",
+        "TRUE",
+        "Y",
+    ]
+
+    if use_asan:
+        extra_compile_args['nvcc'] += ["-fsanitize=address"]
+        extra_link_args += ["-fsanitize=address"]
+
+    extra_link_args += ["-Wl,-rpath,$ORIGIN/lib"]
+
+    # include_dirs += torch.utils.cpp_extension.include_paths(cuda=False)
+    kwargs['include_dirs'] = include_dirs
+    kwargs['library_dirs'] = library_dirs
+    kwargs['runtime_library_dirs'] = library_dirs
+
+    kwargs['language'] = 'c++'
+    kwargs['libraries'] = libraries
+    kwargs['extra_link_args'] = extra_link_args
+    kwargs['extra_compile_args'] = extra_compile_args
+
     return setuptools.Extension(name, sources, *args, **kwargs)
 
 
@@ -1731,8 +1827,8 @@ def _prepare_ldflags(extra_ldflags, with_cuda, verbose, is_standalone):
             if CUDNN_HOME is not None:
                 extra_ldflags.append(f'/LIBPATH:{os.path.join(CUDNN_HOME, "lib", "x64")}')
         elif not IS_HIP_EXTENSION:
-            extra_ldflags.append(f'-L{_join_cuda_home("lib64")}')
-            extra_ldflags.append('-lcudart')
+            extra_ldflags.append(f'-L{_join_cuda_home("lib")}')
+            # extra_ldflags.append('-lcudart')
             if CUDNN_HOME is not None:
                 extra_ldflags.append(f'-L{os.path.join(CUDNN_HOME, "lib64")}')
         elif IS_HIP_EXTENSION:
@@ -2063,7 +2159,7 @@ def _write_ninja_file_to_build_library(path,
         if _is_cuda_file(source_file) and with_cuda:
             # Use a different object filename in case a C++ and CUDA file have
             # the same filename but different extension (.cpp vs. .cu).
-            target = f'{file_name}.cuda.o'
+            target = f'{file_name}.mu.o'
         else:
             target = f'{file_name}.o'
         return target
@@ -2148,7 +2244,7 @@ def _write_ninja_file(path,
         if IS_HIP_EXTENSION:
             nvcc = _join_rocm_home('bin', 'hipcc')
         else:
-            nvcc = _join_cuda_home('bin', 'nvcc')
+            nvcc = _join_cuda_home('bin', 'mcc')
         config.append(f'nvcc = {nvcc}')
 
     if IS_HIP_EXTENSION:

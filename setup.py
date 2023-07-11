@@ -122,7 +122,7 @@ def get_extensions():
         print("== build for MUSA ==")
         sources += source_musa
         define_macros += [("WITH_MUSA", None)]
-        extension = torch_utils_cpp_extension.CUDAExtension
+        extension = torch_utils_cpp_extension.MUSAExtension
     else:
         print("== build for CPU ==")
 
