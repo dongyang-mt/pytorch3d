@@ -71,6 +71,39 @@ CUDA_CLANG_VERSIONS: VersionMap = {
     '11.7': (MINIMUM_CLANG_VERSION, (14, 0)),
 }
 
+def locate_musa():
+    """Locate the MUSA environment on the system
+
+    Returns a dict with keys 'home', 'mcc', 'include', and 'lib'
+    and values giving the absolute path to each directory.
+
+    Starts by looking for the MUSA_HOME env variable. If not found,
+    everything is based on finding 'mcc' in the PATH.
+    """
+
+    # First check if the MUSA_HOME env variable is in use
+    if 'MUSA_HOME' in os.environ:
+        home = os.environ['MUSA_HOME']
+        mcc = os.path.join(home, 'bin', 'mcc')
+    else:
+        # Otherwise, search the PATH for NVCC
+        mcc = find_in_path('mcc', os.environ['PATH'])
+        if mcc is None:
+            raise EnvironmentError('The mcc binary could not be '
+                'located in your $PATH. Either add it to your path, '
+                'or set $MUSA_HOME')
+        home = os.path.dirname(os.path.dirname(mcc))
+
+    musaconfig = {'home': home, 'mcc': mcc,
+                  'include': os.path.join(home, 'include'),
+                  'lib': os.path.join(home, 'lib')}
+    for k, v in iter(musaconfig.items()):
+        if not os.path.exists(v):
+            raise EnvironmentError('The MUSA %s path could not be '
+                                   'located in %s' % (k, v))
+    return musaconfig
+MUSA = locate_musa()
+
 __all__ = ["get_default_build_root", "check_compiler_ok_for_platform", "get_compiler_abi_compatibility_and_version", "BuildExtension",
            "CppExtension", "CUDAExtension", "include_paths", "library_paths", "load", "load_inline", "is_ninja_available",
            "verify_ninja_availability"]
@@ -90,6 +123,7 @@ def _nt_quote_args(args: Optional[List[str]]) -> List[str]:
 def _find_cuda_home() -> Optional[str]:
     r'''Finds the CUDA install path.'''
     # Guess #1
+    return MUSA["home"]
     cuda_home = os.environ.get('CUDA_HOME') or os.environ.get('CUDA_PATH')
     if cuda_home is None:
         # Guess #2
@@ -372,7 +406,8 @@ def _check_cuda_version(compiler_name: str, compiler_version: TorchVersion) -> N
     if not CUDA_HOME:
         raise RuntimeError(CUDA_NOT_FOUND_MESSAGE)
 
-    nvcc = os.path.join(CUDA_HOME, 'bin', 'nvcc')
+    # nvcc = os.path.join(CUDA_HOME, 'bin', 'nvcc')
+    nvcc = MUSA["mcc"]
     cuda_version_str = subprocess.check_output([nvcc, '--version']).strip().decode(*SUBPROCESS_DECODE_ARGS)
     cuda_version = re.search(r'release (\d+[.]\d+)', cuda_version_str)
     if cuda_version is None:
@@ -490,7 +525,7 @@ class BuildExtension(build_ext):
         while not cuda_ext and extension:
             for source in extension.sources:
                 _, ext = os.path.splitext(source)
-                if ext == '.cu':
+                if ext == '.mu':
                     cuda_ext = True
                     break
             extension = next(extension_iter, None)
@@ -524,10 +559,10 @@ class BuildExtension(build_ext):
                 assert self.use_ninja, f"With dlink=True, ninja is required to build cuda extension {extension.name}."
 
         # Register .cu, .cuh and .hip as valid source extensions.
-        self.compiler.src_extensions += ['.cu', '.cuh', '.hip']
+        self.compiler.src_extensions += ['.mu', '.muh']
         # Save the original _compile method for later.
         if self.compiler.compiler_type == 'msvc':
-            self.compiler._cpp_extensions += ['.cu', '.cuh']
+            self.compiler._cpp_extensions += ['.mu', '.muh']
             original_compile = self.compiler.compile
             original_spawn = self.compiler.spawn
         else:
@@ -545,7 +580,7 @@ class BuildExtension(build_ext):
         def unix_cuda_flags(cflags):
             cflags = (COMMON_NVCC_FLAGS +
                       ['--compiler-options', "'-fPIC'"] +
-                      cflags + _get_cuda_arch_flags(cflags))
+                      cflags)
 
             # NVCC does not allow multiple -ccbin/--compiler-bindir to be passed, so we avoid
             # overriding the option if the user explicitly passed it.
@@ -571,7 +606,7 @@ class BuildExtension(build_ext):
             try:
                 original_compiler = self.compiler.compiler_so
                 if _is_cuda_file(src):
-                    nvcc = [_join_rocm_home('bin', 'hipcc') if IS_HIP_EXTENSION else _join_cuda_home('bin', 'nvcc')]
+                    nvcc = [_join_rocm_home('bin', 'hipcc') if IS_HIP_EXTENSION else _join_cuda_home('bin', 'mcc')]
                     self.compiler.set_executable('compiler_so', nvcc)
                     if isinstance(cflags, dict):
                         cflags = cflags['nvcc']
@@ -672,7 +707,7 @@ class BuildExtension(build_ext):
 
         def win_cuda_flags(cflags):
             return (COMMON_NVCC_FLAGS +
-                    cflags + _get_cuda_arch_flags(cflags))
+                    cflags)
 
         def win_wrap_single_compile(sources,
                                     output_dir=None,
@@ -2004,7 +2039,7 @@ def _write_ninja_file_to_build_library(path,
         cuda_flags += extra_cuda_cflags
         cuda_flags += _get_rocm_arch_flags(cuda_flags)
     elif with_cuda:
-        cuda_flags = common_cflags + COMMON_NVCC_FLAGS + _get_cuda_arch_flags()
+        cuda_flags = common_cflags + COMMON_NVCC_FLAGS
         if IS_WINDOWS:
             for flag in COMMON_MSVC_FLAGS:
                 cuda_flags = ['-Xcompiler', flag] + cuda_flags
@@ -2226,7 +2261,7 @@ def _join_cuda_home(*paths) -> str:
 
 
 def _is_cuda_file(path: str) -> bool:
-    valid_ext = ['.cu', '.cuh']
+    valid_ext = ['.mu', '.muh']
     if IS_HIP_EXTENSION:
         valid_ext.append('.hip')
     return os.path.splitext(path)[1] in valid_ext

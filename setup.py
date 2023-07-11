@@ -15,7 +15,7 @@ from typing import List, Optional
 import torch
 from setuptools import find_packages, setup
 from torch.utils.cpp_extension import CppExtension, CUDA_HOME, CUDAExtension
-from musa_extension import MUSAExtension, musa_build_ext, MUSA_BuildExtension
+# from musa_extension import MUSAExtension, musa_build_ext, MUSA_BuildExtension
 import torch_utils_cpp_extension
 
 
@@ -52,8 +52,8 @@ def get_extensions():
     source_musa = glob.glob(os.path.join(extensions_dir, "**", "*.mu"), recursive=True)
     extension = CppExtension
 
-    # extra_compile_args = {"cxx": ["-std=c++14", "-fPIC"]}
-    extra_compile_args = {"gcc": ["-std=c++14", "-fPIC"]}
+    extra_compile_args = {"cxx": ["-std=c++14"]}
+    # extra_compile_args = {"gcc": ["-std=c++14", "-fPIC"]}
     # extra_compile_args["gcc"] += '-D_GLIBCXX_USE_CXX11_ABI=' + str(int(torch._C._GLIBCXX_USE_CXX11_ABI))
     define_macros = []
     include_dirs = [extensions_dir]
@@ -122,7 +122,7 @@ def get_extensions():
         print("== build for MUSA ==")
         sources += source_musa
         define_macros += [("WITH_MUSA", None)]
-        extension = MUSAExtension
+        extension = torch_utils_cpp_extension.CUDAExtension
     else:
         print("== build for CPU ==")
 
