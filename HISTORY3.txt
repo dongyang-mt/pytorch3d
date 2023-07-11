@@ -1,0 +1,17 @@
+(py38) root@work:/home/dongyang/code/pytorch3d# FORCE_MUSA=1 FORCE_CUDA=0 python setup.py install |& tee HISTORY3.txt 2>&1
+
+== use torch.utils.cpp_extension.BuildExtension ==
+== build for MUSA ==
+== start building ==
+running install
+running bdist_egg
+running egg_info
+writing manifest file 'pytorch3d.egg-info/SOURCES.txt'
+running install_lib
+running build_py
+running build_ext
+/opt/conda/envs/py38/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/opt/conda/envs/py38/lib/python3.8/site-packages/setuptools/command/easy_install.py:156: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+error: unknown file type '.mu' (from '/home/dongyang/code/pytorch3d/pytorch3d/csrc/knn/knn.mu')
