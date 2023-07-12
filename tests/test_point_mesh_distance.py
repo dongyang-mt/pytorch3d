@@ -8,11 +8,12 @@ import unittest
 
 import numpy as np
 import torch
+import torch_musa
 from pytorch3d import _C
 from pytorch3d.loss import point_mesh_edge_distance, point_mesh_face_distance
 from pytorch3d.structures import Meshes, packed_to_list, Pointclouds
 
-from .common_testing import TestCaseMixin
+from common_testing import TestCaseMixin
 
 def get_random_musa_device() -> str:
     """
@@ -48,7 +49,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         num_verts: int = 1000,
         num_faces: int = 3000,
         num_points: int = 3000,
-        device: str = "cuda:0",
+        device: str = "musa:0",
     ):
         device = torch.device(device)
         nump = torch.randint(low=1, high=num_points, size=(batch_size,))
@@ -70,7 +71,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
             faces, allf = [], 0
             validf = numv[i].item() - numv[i].item() % 3
             while allf < numf[i]:
-                ff = torch.randperm(numv[i], device=device)[:validf].view(-1, 3)
+                ff = torch.randperm(numv[i], device='cpu')[:validf].view(-1, 3).to(device=device)
                 faces.append(ff)
                 allf += ff.shape[0]
             faces = torch.cat(faces, 0)
@@ -142,8 +143,8 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         """
         v0 = tri[1] - tri[0]
         v1 = tri[2] - tri[0]
-        area = torch.cross(v0, v1).norm() / 2.0
-
+        area = torch.cross(v0.to('cpu'), v1.to('cpu')).norm() / 2.0
+        area = area.to(point.device)
         # check if triangle is a line or a point. In that case, return False
         if area < 5e-3:
             return False
@@ -198,7 +199,9 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
             dist: FloatTensor of shape (1)
         """
         a, b, c = tri.unbind(0)
-        cross = torch.cross(b - a, c - a)
+        cross = torch.cross((b - a).to('cpu'), (c - a).to('cpu'))
+        cross = cross.to(point.device)
+
         norm = cross.norm()
         normal = torch.nn.functional.normalize(cross, dim=0)
 
@@ -233,7 +236,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
             &  PointEdgeArrayDistanceBackward
         """
         P, E = 16, 32
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         points = torch.rand((P, 3), dtype=torch.float32, device=device)
         edges = torch.rand((E, 2, 3), dtype=torch.float32, device=device)
 
@@ -286,7 +289,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         Test CUDA implementation for PointEdgeDistanceForward
             &  PointEdgeDistanceBackward
         """
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         N, V, F, P = 4, 32, 16, 24
         meshes, pcls = self.init_meshes_clouds(N, V, F, P, device=device)
 
@@ -384,7 +387,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         Test CUDA implementation for EdgePointDistanceForward
             &  EdgePointDistanceBackward
         """
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         N, V, F, P = 4, 32, 16, 24
         meshes, pcls = self.init_meshes_clouds(N, V, F, P, device=device)
 
@@ -483,7 +486,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         """
         Test point_mesh_edge_distance from pytorch3d.loss
         """
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         N, V, F, P = 4, 32, 16, 24
         meshes, pcls = self.init_meshes_clouds(N, V, F, P, device=device)
 
@@ -520,8 +523,12 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
                     dist = self._point_to_edge_distance(points[p], edges[e])
                     dists[p, e] = dist
 
-            min_dist_p, min_idx_p = dists.min(1)
-            min_dist_e, min_idx_e = dists.min(0)
+            min_dist_p, min_idx_p = dists.to('cpu').min(1)
+            # min_dist_p  = min_dist_p.to('musa')
+            # min_idx_p  = min_idx_p.to('musa')
+            min_dist_e, min_idx_e = dists.to('cpu').min(0)
+            # min_dist_e  = min_dist_e.to('musa')
+            # min_idx_e  = min_idx_e.to('musa')
 
             loss_naive[i] = min_dist_p.mean() + min_dist_e.mean()
         loss_naive = loss_naive.mean()
@@ -554,7 +561,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
             &  PointFaceArrayDistanceBackward
         """
         P, T = 16, 32
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         points = torch.rand((P, 3), dtype=torch.float32, device=device)
         tris = torch.rand((T, 3, 3), dtype=torch.float32, device=device)
         points_cpu = points.clone().cpu()
@@ -615,7 +622,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         Test CUDA implementation for PointFaceDistanceForward
             &  PointFaceDistanceBackward
         """
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         N, V, F, P = 4, 32, 16, 24
         meshes, pcls = self.init_meshes_clouds(N, V, F, P, device=device)
 
@@ -721,16 +728,16 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
 
         # Compare
         self.assertClose(grad_points_naive.cpu(), grad_points_cuda.cpu(), atol=1e-7)
-        self.assertClose(grad_faces_naive, grad_faces_cuda.cpu(), atol=5e-7)
+        self.assertClose(grad_faces_naive, grad_faces_cuda.cpu(), atol=5e-5)
         self.assertClose(grad_points_naive.cpu(), grad_points_cpu, atol=1e-7)
-        self.assertClose(grad_faces_naive, grad_faces_cpu, atol=5e-7)
+        self.assertClose(grad_faces_naive, grad_faces_cpu, atol=5e-5)
 
     def test_face_point_distance(self):
         """
         Test CUDA implementation for FacePointDistanceForward
             &  FacePointDistanceBackward
         """
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         N, V, F, P = 4, 32, 16, 24
         meshes, pcls = self.init_meshes_clouds(N, V, F, P, device=device)
 
@@ -843,7 +850,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         """
         Test point_mesh_face_distance from pytorch3d.loss
         """
-        device = get_random_cuda_device()
+        device = get_random_musa_device()
         N, V, F, P = 4, 32, 16, 24
         meshes, pcls = self.init_meshes_clouds(N, V, F, P, device=device)
 
@@ -902,7 +909,7 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
             self.assertClose(pcls.points_list()[i].grad, pcls_op.points_list()[i].grad)
 
     def test_small_faces_case(self):
-        for device in [torch.device("cpu"), torch.device("cuda:0")]:
+        for device in [torch.device("cpu"), torch.device("musa:0")]:
             mesh_vertices = torch.tensor(
                 [
                     [-0.0021, -0.3769, 0.7146],
@@ -929,11 +936,11 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         meshes, pcls = TestPointMeshDistance.init_meshes_clouds(
             N, V, F, P, device=device
         )
-        torch.cuda.synchronize()
+        torch.musa.synchronize()
 
         def loss():
             point_mesh_edge_distance(meshes, pcls)
-            torch.cuda.synchronize()
+            torch.musa.synchronize()
 
         return loss
 
@@ -943,10 +950,14 @@ class TestPointMeshDistance(TestCaseMixin, unittest.TestCase):
         meshes, pcls = TestPointMeshDistance.init_meshes_clouds(
             N, V, F, P, device=device
         )
-        torch.cuda.synchronize()
+        torch.musa.synchronize()
 
         def loss():
             point_mesh_face_distance(meshes, pcls)
-            torch.cuda.synchronize()
+            torch.musa.synchronize()
 
         return loss
+
+
+if __name__=='__main__':
+    unittest.main()

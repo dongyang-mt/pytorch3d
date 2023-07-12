@@ -1,0 +1,59 @@
+.E..EEEE.
+======================================================================
+ERROR: test_face_point_distance (__main__.TestPointMeshDistance)
+Test CUDA implementation for FacePointDistanceForward
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_point_mesh_distance.py", line 809, in test_face_point_distance
+    dist = self._point_to_tri_distance(points[p], tris[t])
+  File "tests/test_point_mesh_distance.py", line 211, in _point_to_tri_distance
+    tt = normal.dot(a) - normal.dot(point)
+RuntimeError: t == kMUSA INTERNAL ASSERT FAILED at "/home/torch_musa/torch_musa/csrc/core/GuardImpl.h":29, please report a bug to PyTorch. 
+
+======================================================================
+ERROR: test_point_face_array_distance (__main__.TestPointMeshDistance)
+Test CUDA implementation for PointFaceArrayDistanceForward
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_point_mesh_distance.py", line 579, in test_point_face_array_distance
+    dist = self._point_to_tri_distance(points[p], tris[t])
+  File "tests/test_point_mesh_distance.py", line 211, in _point_to_tri_distance
+    tt = normal.dot(a) - normal.dot(point)
+RuntimeError: t == kMUSA INTERNAL ASSERT FAILED at "/home/torch_musa/torch_musa/csrc/core/GuardImpl.h":29, please report a bug to PyTorch. 
+
+======================================================================
+ERROR: test_point_face_distance (__main__.TestPointMeshDistance)
+Test CUDA implementation for PointFaceDistanceForward
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_point_mesh_distance.py", line 695, in test_point_face_distance
+    dist = self._point_to_tri_distance(points[p], tris[t])
+  File "tests/test_point_mesh_distance.py", line 211, in _point_to_tri_distance
+    tt = normal.dot(a) - normal.dot(point)
+RuntimeError: t == kMUSA INTERNAL ASSERT FAILED at "/home/torch_musa/torch_musa/csrc/core/GuardImpl.h":29, please report a bug to PyTorch. 
+
+======================================================================
+ERROR: test_point_mesh_edge_distance (__main__.TestPointMeshDistance)
+Test point_mesh_edge_distance from pytorch3d.loss
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_point_mesh_distance.py", line 526, in test_point_mesh_edge_distance
+    min_dist_p, min_idx_p = dists.to('cpu').min(1).to('musa')
+AttributeError: 'torch.return_types.min' object has no attribute 'to'
+
+======================================================================
+ERROR: test_point_mesh_face_distance (__main__.TestPointMeshDistance)
+Test point_mesh_face_distance from pytorch3d.loss
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_point_mesh_distance.py", line 878, in test_point_mesh_face_distance
+    dist = self._point_to_tri_distance(points[p], tris[t])
+  File "tests/test_point_mesh_distance.py", line 211, in _point_to_tri_distance
+    tt = normal.dot(a) - normal.dot(point)
+RuntimeError: t == kMUSA INTERNAL ASSERT FAILED at "/home/torch_musa/torch_musa/csrc/core/GuardImpl.h":29, please report a bug to PyTorch. 
+
+----------------------------------------------------------------------
+Ran 9 tests in 31.583s
+
+FAILED (errors=5)
+musa:0

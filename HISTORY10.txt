@@ -1,0 +1,2 @@
+.GPU fault (1: Guilty Lockup) detected when processing kick NO.134270172 in process:437432
+
