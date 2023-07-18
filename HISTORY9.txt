@@ -1,0 +1,60 @@
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ cat build.sh 
+FORCE_MUSA=1 FORCE_CUDA=0 python setup.py install
+# FORCE_MUSA=0 FORCE_CUDA=0 python setup.py install
+# FORCE_MUSA=1 FORCE_CUDA=0 pip install -e .
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ FORCE_MUSA=1 FORCE_CUDA=0 python setup.py install
+...
+# FORCE_MUSA=1 FORCE_CUDA=0 pip install -e .
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ cd ../
+(rig_no6) root@work: /home$ python
+Python 3.8.16 (default, Mar  2 2023, 03:21:46) 
+[GCC 11.2.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import pytorch3d
+>>> import pytorch3d.ops.nms
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/__init__.py", line 7, in <module>
+    from .ball_query import ball_query
+  File "/opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/ball_query.py", line 10, in <module>
+    from pytorch3d import _C
+ImportError: /home/torch_musa/torch_musa/lib/libmusa_kernels.so: undefined symbol: _ZN2at6native23hardswish_backward_stubE
+>>> exit()
+
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ /usr/local/musa/bin/mcc -pthread -shared -B /opt/conda/envs/rig_no6/compiler_compat -L/opt/conda/envs/rig_no6/lib -Wl,-rpath=/opt/conda/envs/rig_no6/lib -Wl,--no-as-needed -Wl,--sysroot=/ /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/ball_query/ball_query_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/blending/sigmoid_alpha_blend_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/alpha_composite_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/norm_weighted_sum_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/compositing/weighted_sum_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/ext.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/face_areas_normals/face_areas_normals_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/gather_scatter/gather_scatter_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/iou_box3d/iou_box3d_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/knn/knn.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/knn/knn_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/marching_cubes/marching_cubes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/mesh_normal_consistency/mesh_normal_consistency_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/packed_to_padded_tensor/packed_to_padded_tensor_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/point_mesh/point_mesh_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/points_to_volumes/points_to_volumes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.backward_dbg.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.calc_signature.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.construct.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.create_selector.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.destruct.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.fill_bg.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.forward.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_cam_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.norm_sphere_gradients.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/host/renderer.render.cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/camera.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/renderer.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/tensor_util.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/pytorch/util.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/pulsar/warnings.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/rasterize_meshes/rasterize_meshes_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/rasterize_points/rasterize_points_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/sample_farthest_points/sample_farthest_points_cpu.o /home/pytorch3d/build/temp.linux-x86_64-3.8/home/pytorch3d/pytorch3d/csrc/sample_pdf/sample_pdf_cpu.o -L/opt/conda/envs/rig_no6/lib/python3.8/site-packages/torch/lib -L/opt/conda/envs/py38/lib/python3.8/site-packages/torch_musa-2.0.0-py3.8-linux-x86_64.egg/torch_musa/lib -L/usr/local/musa/lib -Wl,--enable-new-dtags,-R/opt/conda/envs/rig_no6/lib/python3.8/site-packages/torch/lib -Wl,--enable-new-dtags,-R/opt/conda/envs/py38/lib/python3.8/site-packages/torch_musa-2.0.0-py3.8-linux-x86_64.egg/torch_musa/lib -Wl,--enable-new-dtags,-R/usr/local/musa/lib -lmusa_python -lmudnn -lmublas -lmusart -o build/lib.linux-x86_64-3.8/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so -O2 -ggdb -Wl,-rpath,$ORIGIN/lib
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ ls /opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/
+EGG-INFO  projects  pytorch3d
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ ls /opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/
+_C.cpython-38-x86_64-linux-gnu.so  _C.py  __init__.py  __pycache__  common  datasets  implicitron  implicitron_trainer  io  loss  ops  renderer  structures  transforms  utils  vis
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ find . -name *.so
+./torch_musa/lib/libpytorch3d_musa.so
+./build/lib64/libpytorch3d_musa.so
+./build/lib.linux-x86_64-cpython-38/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+./build/lib.linux-x86_64-3.8/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ md5sum ./build/lib.linux-x86_64-cpython-38/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so ./build/lib.linux-x86_64-3.8/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+db472683b5bccf8dd2481026cd217501  ./build/lib.linux-x86_64-cpython-38/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+398ff2dbe39f57d06c76000530e22f85  ./build/lib.linux-x86_64-3.8/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ md5sum /opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/
+_C.cpython-38-x86_64-linux-gnu.so  common/                            io/                                structures/                        
+_C.py                              datasets/                          loss/                              transforms/                        
+__init__.py                        implicitron/                       ops/                               utils/                             
+__pycache__/                       implicitron_trainer/               renderer/                          vis/                               
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ md5sum /opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so 
+9bad3d344ef4398ce96a8dad368acfa9  /opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ cp build/lib.linux-x86_64-3.8/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so /opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/_C.cpython-38-x86_64-linux-gnu.so
+(rig_no6) root@work: /home/pytorch3d (dev-musa-porting)$ cd ../
+(rig_no6) root@work: /home$ python
+Python 3.8.16 (default, Mar  2 2023, 03:21:46) 
+[GCC 11.2.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import pytorch3d
+>>> import pytorch3d.ops.nms
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/__init__.py", line 7, in <module>
+    from .ball_query import ball_query
+  File "/opt/conda/envs/rig_no6/lib/python3.8/site-packages/pytorch3d-0.7.4-py3.8-linux-x86_64.egg/pytorch3d/ops/ball_query.py", line 10, in <module>
+    from pytorch3d import _C
+ImportError: /home/torch_musa/torch_musa/lib/libmusa_kernels.so: undefined symbol: _ZN2at6native23hardswish_backward_stubE
+>>> exit()
+(rig_no6) root@work: /home$ 
